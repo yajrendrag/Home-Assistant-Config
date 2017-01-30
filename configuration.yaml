@@ -93,7 +93,7 @@ device_tracker:
     hosts:
       - 192.168.1.147
       - 192.168.1.154
-      - 192.168.1.134
+      - 192.168.1.146
       - 192.168.1.159
     home_interval: 15
     scan_options: " --privileged -p 62078 -sS "
