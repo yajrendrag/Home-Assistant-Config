@@ -1,0 +1,245 @@
+default_view:
+  view: yes
+  entities:
+    - climate.hallway
+    - cover.main
+    - cover.single
+    - device_tracker.jay_note_4
+    - device_tracker.jayn5_nexus_5x
+    - camera.yi_basement
+    - camera.yi_garage
+    - camera.yi_lr
+    - binary_sensor.basement_sensor_22_0 
+    - binary_sensor.entry_sensor_24_0 
+    - binary_sensor.den_sensor_26_0
+    - binary_sensor.gwink_hub 
+    - binary_sensor.hallway_thermostat_has_leaf 
+    - binary_sensor.hallway_thermostat_is_using_emergency_heat 
+    - binary_sensor.hallway_thermostat_online
+    - binary_sensor.kitchen_sensor_11_0
+    - sensor.entry_burglar_24_10
+    - sensor.den_burglar_26_10
+    - sensor.basement_burglar_22_10
+    - sensor.kitchen_burglar_11_10
+    - binary_sensor.ffmpeg
+    - binary_sensor.ffmpeg_2
+    - binary_sensor.basement_motion
+    - binary_sensor.basement_sound
+    - group.weather
+
+Scenes:
+  view: yes
+  name: Scenes
+  entities:
+  - scene.basement_dim
+  - scene.basement_normal
+  - scene.entry_hall_on
+  - scene.living_room_on
+  - scene.living_room_dim
+
+Weather:
+  view: no
+  name: Weather
+  entities:
+    - sensor.pws_station_id
+    - sensor.pws_location
+    - sensor.pws_observation_time
+    - sensor.pws_alerts
+    - sensor.pws_temp_f
+    - sensor.pws_feelslike_f
+    - sensor.pws_precip_today_in
+    - sensor.pws_relative_humidity
+    - sensor.pws_wind_mph
+
+Rooms:
+  view: no
+  name: Rooms
+  entities:
+    - group.living_room
+    - group.madeline
+    - group.master
+    - group.basement
+    - group.den
+    - group.kitchen
+
+Living Room:
+  view: yes
+  name: Living Room
+  entities:
+    - light.living_room_c_table
+    - light.living_room_corner
+    - light.living_room_flood_left
+    - light.living_room_flood_right
+    - light.front_hall_table
+    - light.entry_hall
+    - switch.living_room_reading_lamp_switch_2_0
+    - switch.living_room_camera_power
+    - sensor.lr_motion_detection
+
+Madeline:
+  view: yes
+  name: Madelines Room
+  entities:
+    - light.front_bedroom
+
+Master:
+  view: yes
+  name: Master
+  entities:
+    - light.master
+    - light.master_corner
+    - light.master_left_night_stand
+    - light.master_right_night_stand
+    - switch.bedroom_phone_power
+    - sensor.note_4_battery
+
+Basement:
+  view: yes
+  name: Basement
+  entities:
+    - light.basement
+    - light.basement_3way_dimmer_level_25_0
+#   - light.basement_ceiling_couch
+#   - light.basement_ceiling_table
+#   - light.basement_ceiling_tv
+    - light.basement_wall
+    - light.lightstrip
+    - switch.basement_stairs_switch_3_0
+    - light.basement_cabinet
+    - sensor.nexus_5x_battery
+
+Den:
+  view: yes
+  name: Den
+  entities:
+    - light.den
+    - light.den_corner
+    - light.den_window
+    - light.desk_drawer_level_14_0
+    - light.tiffany_level_12_0
+
+Kitchen:
+  view: yes
+  name: Kitchen
+  entities:
+    - light.kitchen_left_stove
+    - light.kitchen_right_stove
+    - switch.kitchen_switch_4_0
+
+Devices:
+  view: yes
+  name: Devices
+  entities:
+    - device_tracker.jays7_galaxy_s7
+    - device_tracker.jay_ipadpro
+    - device_tracker.020fb53faa4b
+    - device_tracker.cc088d3faa4b
+    - device_tracker.bc9fef72f640
+    - device_tracker.020fb572f640
+    - input_boolean.lily_home
+    - input_boolean.maddie_home
+    - input_boolean.jay_phone_den
+    - input_boolean.jay_phone_master
+    - input_boolean.jay_phone_basement
+    - sensor.jay_room_locator
+
+Family:
+  view: no
+  name: Family
+  entities:
+    - device_tracker.jays7_galaxy_s7
+    - device_tracker.020fb54707ce
+    - device_tracker.bc9fef72f640
+    - device_tracker.020fb572f640
+    - device_tracker.203cae4707ce
+
+Automations:
+  view: yes
+  name: Automations
+  entities:
+    - automation.alternate_updater_notifier 
+    - automation.basement_corner_light_in_late_pm 
+    - automation.basement_corner_light_off_at_1245am 
+    - automation.den_light_in_morning_during_the_week 
+    - automation.den_lights_off_at_10pm_during_the_week 
+    - automation.entry_light_off_in_early_am 
+    - automation.lights_off_at_midnight 
+    - automation.lily_away 
+    - automation.lily_home 
+    - automation.lr_camera_switch_off 
+    - automation.lr_camera_switch_on 
+    - automation.lr_lights_on_late_pm 
+    - automation.madeline_away 
+    - automation.madeline_home 
+    - automation.master_bedroom_lights_in_late_pm 
+    - automation.master_bedroom_nightstand_lights_in_late_pm 
+    - automation.master_nightstand_lights_off_at_1230am 
+    - automation.master_phone_pwr_switch_off 
+    - automation.master_phone_pwr_switch_on 
+    - automation.media_player_pausedstopped 
+    - automation.media_player_pausedstopped_2 
+    - automation.motion_detected 
+    - automation.motion_detection_automation_off 
+    - automation.motion_detection_automation_on 
+    - automation.track_sensor_state_of_jay_room_locator 
+    - automation.turn_off_basement_lights_based_on_presence 
+    - automation.turn_off_basement_lights_in_late_pm 
+    - automation.turn_off_den_detection_automation 
+    - automation.turn_off_den_lights_when_leaving_den 
+    - automation.turn_off_entryway_lights_based_when_no_presence_detected 
+    - automation.turn_off_kitchen_lights_based_on_presence_at_night 
+    - automation.turn_off_living_room_reading_lamp_at_bedtime 
+    - automation.turn_on_basement_lights_if_too_dark_and_motion 
+    - automation.turn_on_basement_stairs_light_in_late_pm 
+    - automation.turn_on_den_detection_automation 
+    - automation.turn_on_den_lights_when_entering_den 
+    - automation.turn_on_entryway_light_if_too_dark_and_motion 
+    - automation.turn_on_kitchen_lights_if_too_dark_and_motion 
+    - automation.turn_on_living_room_reading_lamp_on_in_evening 
+    - automation.update_available_notifications 
+    - automation.zwave_heal_at_233amy
+    - automation.zwave_soft_reset_at_230am
+
+Sensors:
+  view: yes
+  name: Sensors
+  entities:
+    - sensor.basement_alarm_level_22_1 
+    - sensor.basement_alarm_type_22_0 
+    - sensor.basement_burglar_22_10 
+    - sensor.basement_luminance_22_3 
+    - sensor.basement_relative_humidity_22_5 
+    - sensor.basement_sourcenodeid_22_2 
+    - sensor.basement_temperature_22_1 
+    - sensor.basement_ultraviolet_22_27 
+    - sensor.den_alarm_level_26_1
+    - sensor.den_alarm_type_26_0
+    - sensor.den_burglar_26_10
+    - sensor.den_luminance_26_3
+    - sensor.den_relative_humidity_26_5
+    - sensor.den_sourcenodeid_26_2
+    - sensor.den_temperature_26_1
+    - sensor.den_ultraviolet_26_27
+    - sensor.current_ha_version 
+    - sensor.installed_version
+    - sensor.entry_alarm_level_24_1 
+    - sensor.entry_alarm_type_24_0 
+    - sensor.entry_burglar_24_10 
+    - sensor.entry_luminance_24_3 
+    - sensor.entry_relative_humidity_24_5 
+    - sensor.entry_sourcenodeid_24_2 
+    - sensor.entry_temperature_24_1 
+    - sensor.entry_ultraviolet_24_27 
+    - sensor.hallway_thermostat_humidity 
+    - sensor.hallway_thermostat_hvac_state 
+    - sensor.hallway_thermostat_operation_mode 
+    - sensor.hallway_thermostat_target 
+    - sensor.hallway_thermostat_temperature 
+    - sensor.kitchen_alarm_level_11_1 
+    - sensor.kitchen_alarm_type_11_0 
+    - sensor.kitchen_burglar_11_10 
+    - sensor.kitchen_luminance_11_3 
+    - sensor.kitchen_relative_humidity_11_5 
+    - sensor.kitchen_sourcenodeid_11_2 
+    - sensor.kitchen_temperature_11_1 
+    - sensor.kitchen_ultraviolet_11_27 

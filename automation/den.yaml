@@ -1,0 +1,125 @@
+#Turn on den light in morning during the week
+- alias: 'den light in morning during the week'
+  trigger:
+    platform: time
+    after: '07:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.den
+      - light.den_window
+      - light.desk_drawer_level_14_0
+      - light.tiffany_level_12_0
+
+#Turn off den lights during the week
+- alias: 'den lights off at 10pm during the week'
+  trigger:
+    platform: time
+    after: '22:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.den
+      - light.den_window
+      - light.desk_drawer_level_14_0
+      - light.tiffany_level_12_0
+
+#turn on den lights when entering den
+- alias: 'turn on den lights when entering den'
+  trigger:
+    - platform: state
+      entity_id: sensor.jay_room_locator
+      state: 'enter den'
+      for:
+        seconds: 3
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      state: 'den'
+      for:
+        seconds: 3
+    - platform: state
+      entity_id: input_boolean.jay_phone_den
+      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.den_burglar_26_10
+      above: '3'
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.den
+      - light.den_window
+      - light.desk_drawer_level_14_0
+      - light.tiffany_level_12_0
+      - light.den_corner
+
+#turn off den lights when leaving den
+- alias: 'turn off den lights when leaving den'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      state: 'not_home'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id: sensor.den_burglar_26_10
+      to: '0'
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      state: 'home'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      state: 'master_bedroom'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      state: 'basement'
+      for:
+        minutes: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.jay_phone_den
+    state: 'off'
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.den
+      - light.den_window
+      - light.desk_drawer_level_14_0
+      - light.tiffany_level_12_0
+      - light.den_corner
+
+
+- alias: 'turn off den detection automation'
+#  initial: off
+  trigger:
+    platform: time
+    after: '01:59:00'
+  action:
+    service: shell_command.den_detect_off
+
+- alias: 'turn on den detection automation'
+#  initial: off
+  trigger:
+    platform: time
+    after: '06:00:00'
+  action:
+    service: shell_command.den_detect_on

@@ -1,0 +1,21 @@
+zwave_reset:
+  sequence:
+    - service: zwave.stop_network
+    - delay: "00:00:30"
+    - service: zwave.soft_reset
+
+zwave_healer:
+  sequence:
+    - service: zwave.heal_network
+    - delay: "00:00:30"
+    - service: zwave.start_network
+
+basement_lights_on:
+  sequence:
+    - service: light.turn_on
+      entity_id:
+        - light.basement_3way_dimmer_level_25_0
+        - light.basement_wall
+        - light.basement_cabinet
+    - service: switch.turn_on
+      entity_id: switch.basement_stairs_switch_3_0

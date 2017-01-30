@@ -1,0 +1,27 @@
+#turn on kitchen lights if too dark and motion
+- alias: 'turn on kitchen lights if too dark and motion'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.kitchen_burglar_11_10
+    above: '2'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.kitchen_luminance_11_3
+      below: '15'
+  action:
+    service: switch.turn_on
+    entity_id: switch.kitchen_switch_4_0
+
+#turn off kitchen lights at night on presence state
+- alias: 'turn off kitchen lights based on presence at night'
+  trigger:
+    platform: state
+    entity_id: sensor.kitchen_burglar_11_10
+    to: '0'
+  condition:
+    condition: time
+    after: '21:30:00'
+    before: '07:00:00'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.kitchen_switch_4_0

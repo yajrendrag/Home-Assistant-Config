@@ -1,0 +1,14 @@
+- platform: wunderground
+  api_key: !secret wunderground_api
+  pws_id: !secret wunderground_pws
+  monitored_conditions:
+    - temp_f
+    - feelslike_f
+    - wind_mph
+    - relative_humidity
+    - precip_today_in
+    - alerts
+    - location
+    - station_id
+    - temperature_string
+    - observation_time

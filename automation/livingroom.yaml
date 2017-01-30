@@ -1,0 +1,55 @@
+#Turn on living room lights & den corner in late pm
+- alias: 'LR lights on late pm'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-02:30:00"
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.living_room_c_table
+      - light.living_room_corner
+      - light.den_corner
+
+#Turn on living room reading lamp in evening
+- alias: 'turn on living room reading lamp on in evening'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+  action:
+    service: switch.turn_on
+    entity_id: switch.living_room_reading_lamp_switch_2_0
+
+#Turn off living room reading lamp at bedtime
+- alias: 'turn off living room reading lamp at bedtime'
+  trigger:
+    platform: time
+    after: '23:00:00'
+  action:
+    service: switch.turn_off
+    entity_id: switch.living_room_reading_lamp_switch_2_0
+
+#turn on entryway light if too dark and motion
+- alias: 'turn on entryway light if too dark and motion'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.entry_burglar_24_10
+    above: '2'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.entry_luminance_24_3
+      below: '25'
+  action:
+    service: scene.turn_on
+    entity_id: scene.entry_hall_on
+
+#turn off entryway lights when no presence detected
+- alias: 'turn off entryway lights based when no presence detected'
+  trigger:
+    platform: state
+    entity_id: sensor.entry_burglar_24_10
+    to: '0'
+  action:
+    service: light.turn_off
+    entity_id: light.entry_hall

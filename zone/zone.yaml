@@ -1,0 +1,26 @@
+- name: Home
+  latitude: 39.4627
+  longitude: -104.8961
+  radius: 75
+  icon: mdi:home
+
+- name: den
+  latitude: 39.4627
+  longitude: -104.8961
+  radius: 1
+  passive: true
+  icon: mdi:television
+
+- name: master bedroom
+  latitude: 39.4627
+  longitude: -104.8961
+  radius: 1
+  passive: true
+  icon: mdi:sleep
+
+- name: basement
+  latitude: 39.4627
+  longitude: -104.8961
+  radius: 1
+  passive: true
+  icon: mdi:television-guide

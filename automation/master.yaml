@@ -1,0 +1,34 @@
+#Turn on master bedroom lights in late pm
+- alias: 'master bedroom lights in late pm'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+  action:
+    service: light.turn_on
+    entity_id: 
+      - light.master
+      - light.master_corner
+
+#Turn on master bedroom nightstand lights in late pm
+- alias: 'master bedroom nightstand lights in late pm'
+  trigger:
+    platform: time
+    after: '19:30:00'
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.master_left_night_stand
+      - light.master_right_night_stand
+
+#Turn off master nightstand lights at 12:30am
+- alias: 'master nightstand lights off at 12:30am'
+  trigger:
+    platform: time
+    after: '00:30:00'
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.master_left_night_stand
+      - light.master_right_night_stand
+

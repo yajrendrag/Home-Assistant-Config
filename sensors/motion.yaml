@@ -1,0 +1,6 @@
+- platform: mqtt
+  state_topic: "homeassistant/motion"
+  name: "LR Motion Detection"
+  unit_of_measurement: "Date"
+  value_template: '{{ value_json.date ~ "\n" ~ value_json.time }}'
+

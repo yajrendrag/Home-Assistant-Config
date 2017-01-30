@@ -1,0 +1,87 @@
+#Turn on basement corner light in late pm
+- alias: 'basement corner light in late pm'
+  trigger:
+    platform: time
+    after: '15:00:00'
+  action:
+    service: light.turn_on
+    entity_id:
+      - light.basement
+
+#Turn on basement stairs light in late pm
+- alias: 'turn on basement stairs light in late pm'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-02:00:00"
+  action:
+    service: switch.turn_on
+    entity_id: switch.basement_stairs_switch_3_0
+
+#Turn off basement corner light at 12:45am
+- alias: 'basement corner light off at 12:45am'
+  trigger:
+    platform: time
+    after: '00:45:00'
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.basement
+
+#Turn off basement lights in late pm
+- alias: 'turn off basement lights in late pm'
+  trigger:
+    platform: time
+    after: "00:00:00"
+  action:
+    service: homeassistant.turn_off
+    entity_id:
+      - switch.basement_stairs_switch_3_0
+      - light.basement_3way_dimmer_level_25_0
+      - light.basement_wall
+      - light.basement_cabinet
+
+- alias: 'turn on basement lights if too dark and motion'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.basement_burglar_22_10
+    above: '3'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.basement_luminance_22_3
+      below: '25'
+  action:
+    service: script.basement_lights_on
+
+#turn off basement lights if jay is not downstairs
+- alias: 'turn off basement lights based on presence'
+#  trigger:
+#    platform: mqtt
+#    topic: owntracks/jays7/galaxy s7/event
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      to: 'den'
+      for:
+        minutes: 2
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      to: 'master_bedroom'
+      for:        
+        minutes: 2
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      to: 'not_home'
+      for:        
+        minutes: 2
+#  condition:
+#    condition: template
+#    value_template: "{{ 'basement' not in states.device_tracker.jays7_galaxy_s7.state }}"
+  action:
+    service: homeassistant.turn_off
+    entity_id: 
+      - light.basement_3way_dimmer_level_25_0
+      - light.basement_cabinet
+      - light.basement_wall
+      - switch.basement_stairs_switch_3_0
+      - light.lightstrip

@@ -1,0 +1,15 @@
+- platform: mqtt
+  state_topic: "owntracks/jay/note 4"
+  name: "Note 4 Battery"
+  unit_of_measurement: "%"
+  value_template: '{{ value_json.batt }}'
+- platform: mqtt
+  state_topic: "owntracks/jay-n5/nexus 5x"
+  name: "Nexus 5x Battery"
+  unit_of_measurement: "%"    
+  value_template: '{{ value_json.batt }}'
+- platform: mqtt
+  state_topic: "owntracks/jays7/galaxy s7/event"   
+  name: "Jay Room Locator"
+  value_template: '{{ value_json.event ~ " " ~ value_json.desc|replace("-","") }}'
+

@@ -1,0 +1,83 @@
+- alias: 'track sensor state of Jay Room Locator'
+  trigger:
+    platform: mqtt
+    topic: owntracks/jays7/galaxy s7/event
+  condition:
+    condition: or
+    conditions:
+    - condition: template
+      value_template: "{{ trigger.payload_json['desc'] == '-den' }}"
+    - condition: template
+      value_template: "{{ trigger.payload_json['desc'] == '-master bedroom' }}"
+    - condition: template
+      value_template: "{{ trigger.payload_json['desc'] == '-basement' }}"
+  action:
+    service_template: "input_boolean.turn_{{ 'on' if trigger.payload_json['event'] == 'enter' else 'off' }}"
+    data_template:
+      entity_id: "input_boolean.jay_phone_{{ 'den' if trigger.payload_json['desc'] == '-den' else 'master' if trigger.payload_json['desc'] == '-master bedroom' else 'basement' }}"
+
+- alias: 'Lily Away'
+  condition:
+    condition: state
+    entity_id: input_boolean.lily_home
+    state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.cc088d3faa4b
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.020fb53faa4b
+      to: 'not_home'
+  action:
+     service: input_boolean.turn_off
+     data:
+       entity_id: input_boolean.lily_home
+
+- alias: 'Lily Home'
+  condition:
+    condition: state
+    entity_id: input_boolean.lily_home
+    state: 'off'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.cc088d3faa4b
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.020fb53faa4b
+      to: 'home'
+  action:
+     service: input_boolean.turn_on
+     data:
+       entity_id: input_boolean.lily_home
+
+- alias: 'Madeline Away'
+  condition:
+    condition: state
+    entity_id: input_boolean.maddie_home
+    state: 'on'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.020fb572f640
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.bc9fef72f640
+      to: 'not_home'
+  action:
+     service: input_boolean.turn_off
+     entity_id: input_boolean.maddie_home
+
+- alias: 'Madeline Home'
+  condition:
+    condition: state
+    entity_id: input_boolean.maddie_home
+    state: 'off'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.020fb572f640
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.bc9fef72f640
+      to: 'home'
+  action:
+     service: input_boolean.turn_on
+     entity_id: input_boolean.maddie_home

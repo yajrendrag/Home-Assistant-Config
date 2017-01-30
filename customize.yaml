@@ -1,0 +1,49 @@
+#
+# Emulated Hue Customizations
+#
+light.basement_3way_dimmer_level_25_0:
+  emulated_hue: true
+  emulated_hue_name: "basement ceiling"
+switch.basement_stairs_switch_3_0:
+  emulated_hue: true
+  emulatred_hue_name: "basement stairs switch"
+light.tiffany_level_12_0:
+  emulated_hue: true
+  emulated_hue_name: "tiffany"
+light.desk_drawer_level_14:
+  emulated_hue: true
+  emulated_hue_name: "desk drawer"
+switch.kitchen_switch_4_0:
+  emulated_hue: true
+  emulated_hue_name: "kitchen"
+switch.living_room_reading_lamp_switch_2_0:
+  emulated_hue: true
+  emulated_hue_name: "living room reading lamp"
+#
+#  WeatherUnderground Customizations
+#
+sensor.pws_station_id:
+  friendly_name: PWS Station ID
+  icon: mdi:fingerprint
+sensor.pws_location:
+  friendly_name: Location
+  icon: mdi:earth
+sensor.pws_observation_time:
+  friendly_name: Observation Time
+  icon: mdi:calendar-clock
+sensor.pws_relative_humidity:
+  friendly_name: Relative Humidity
+  icon: mdi:water-percent
+sensor.pws_feelslike_f:
+  friendly_name: Feels Like F
+  icon: mdi:account-alert
+sensor.pws_temp_f:
+  friendly_name: Temperature F
+  icon: mdi:thermometer
+sensor.pws_precip_today_in:
+  friendly_name: Precip Today in
+  icon: mdi:water
+sensor.pws_wind_mph:
+  friendly_name: Sustained Wind Speed MPH
+  icon: mdi:weather-windy
+

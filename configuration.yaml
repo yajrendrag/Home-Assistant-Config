@@ -1,0 +1,173 @@
+
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret ha_latitude
+  longitude: !secret ha_longitude
+  elevation: 1944
+  # C for Celsius, F for Fahrenheit
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Denver
+  customize: !include customize.yaml
+
+# View all events in a logbook
+logbook:
+
+# Checks for available updates
+updater:
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Discover some devices automatically
+discovery:
+
+http:
+  api_password: !secret http_pass
+  ssl_certificate: !secret ha_ssl_cert
+  ssl_key: !secret ha_ssl_key
+  base_url: !secret ha_base_url
+  trusted_networks:
+    - 192.168.1.0/24
+
+tts:
+  - platform: google
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+
+media_player:
+  platform: sonos
+
+wink:
+  email: !secret wink_email
+  password: !secret wink_pass
+  client_id: !secret wink_client_id
+  client_secret: !secret wink_client_secret
+
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /srv/jhass/src/python-openzwave/openzwave/config
+  autoheal: False
+
+notify:
+  platform: pushbullet
+  api_key: !secret notify_api
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+cover:
+  - platform: myq
+    name: Garage Door
+    username: !secret myq_user
+    password: !secret myq_pass
+    brand: liftmaster
+
+shell_command:
+  motion_auto_off: /usr/bin/python3 /home/jay/auto-motion.py
+  motion_auto_on: /usr/bin/python3 /home/jay/auto-motion-on.py
+  den_detect_on: /usr/bin/python3 /home/jay/den-detection-on.py
+  den_detect_off: /usr/bin/python3 /home/jay/den-detection-off.py
+  
+mqtt:
+  broker: !secret mqtt_broker
+  port: 1883
+  client_id: jay-ha
+  keepalive: 60
+  username: !secret mqtt_user
+  password: !secret mqtt_pass
+
+device_tracker:
+  - platform: owntracks
+    consider_home: 300
+  - platform: mqtt
+    devices:
+      jay_note_4: /location/jay
+      jayn5_nexus_5x: /location/jayn5
+      jays7_galaxy_s7: /location/jays7
+  - platform: nmap_tracker
+    hosts:
+      - 192.168.1.147
+      - 192.168.1.154
+      - 192.168.1.134
+      - 192.168.1.159
+    home_interval: 15
+    scan_options: " --privileged -p 62078 -sS "
+
+input_boolean:
+  lily_home:
+    name: Lily Home
+    initial: off
+    icon: mdi:cellphone-iphone
+  maddie_home:
+    name: Madeline Home
+    initial: off
+    icon: mdi:cellphone-iphone
+  jay_phone_den:
+    name: Jay in Den
+    initial: off
+    icon: mdi:cellphone-android
+  jay_phone_master:
+    name: Jay in Master
+    initial: off
+    icon: mdi:cellphone-android
+  jay_phone_basement:
+    name: Jay in Basement
+    initial: off
+    icon: mdi:cellphone-android
+
+emulated_hue:
+  type: alexa
+  expose_by_default: false
+
+
+group: !include groups.yaml
+
+automation: !include_dir_merge_list automation/
+
+scene: !include scenes.yaml
+
+script: !include scripts.yaml
+
+camera: !include_dir_merge_list camera/
+
+zone: !include_dir_merge_list zone/
+
+sensor: !include_dir_merge_list sensors/
+
+binary_sensor:
+  - platform: nest
+    monitored_conditions:
+      - 'online'
+      - 'is_using_emergency_heat'
+#  - platform: ffmpeg
+#    tool: motion
+#    name: basement_motion
+#    input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
+#    changes: 5
+#    extra_arguments: -pred 1 -q:v 2 -filter:v "crop=600:450:0:150"
+  - platform: ffmpeg
+    tool: noise
+    name: basement_sound
+    input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
+    peak: -10
+
+# Allows you to issue voice commands from the frontend
+conversation:
+
+# Enables the frontend
+frontend:
+
+# Enables support for tracking state changes over time.
+history:
+
+# Track the sun
+sun:
+
+recorder:
+  db_url: !secret recorder_db_url
+  purge_days: 14
