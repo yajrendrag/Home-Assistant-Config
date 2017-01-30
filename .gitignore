@@ -3,7 +3,9 @@
 *.csr
 *.crt
 *.key
+certs
 www
+custom_components
 OZW_Log.txt
 home-assistant.log
 home-assistant_v2.db
