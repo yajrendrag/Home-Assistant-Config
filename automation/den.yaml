@@ -44,15 +44,15 @@
 - alias: 'turn on den lights when entering den'
   trigger:
     - platform: state
-      entity_id: sensor.jay_room_locator
+      entity_id: sensor.jay_in_which_room
       state: 'enter den'
       for:
         seconds: 3
-    - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
-      state: 'den'
-      for:
-        seconds: 3
+#    - platform: state
+#      entity_id: device_tracker.jays7_galaxy_s7
+#      state: 'den'
+#      for:
+#        seconds: 3
     - platform: state
       entity_id: input_boolean.jay_phone_den
       to: 'on'
@@ -79,19 +79,29 @@
     - platform: state
       entity_id: sensor.den_burglar_26_10
       to: '0'
+#    - platform: state
+#      entity_id: device_tracker.jays7_galaxy_s7
+#      state: 'home'
+#      for:
+#        minutes: 3
     - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
-      state: 'home'
+      entity_id: sensor.jay_in_which_room
+      state: 'master bedroom'
       for:
         minutes: 3
     - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
-      state: 'master_bedroom'
-      for:
-        minutes: 3
-    - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
+      entity_id: sensor.jay_in_which_room
       state: 'basement'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id: sensor.jay_in_which_room      
+      state: 'livingroom'
+      for:
+        minutes: 3
+    - platform: state
+      entity_id: sensor.jay_in_which_room      
+      state: 'kitchen'
       for:
         minutes: 3
   condition:

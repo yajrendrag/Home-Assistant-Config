@@ -119,6 +119,14 @@ input_boolean:
     name: Jay in Basement
     initial: off
     icon: mdi:cellphone-android
+  jay_phone_lr:
+    name: Jay in LivingRoom
+    initial: off
+    icon: mdi:cellphone-android
+  jay_phone_kitchen:
+    name: Jay in Kitchen
+    initial: off
+    icon: mdi:cellphone-android
 
 emulated_hue:
   type: alexa

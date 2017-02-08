@@ -17,6 +17,7 @@ default_view:
     - binary_sensor.hallway_thermostat_is_using_emergency_heat 
     - binary_sensor.hallway_thermostat_online
     - binary_sensor.kitchen_sensor_11_0
+    - binary_sensor.gwink
     - sensor.entry_burglar_24_10
     - sensor.den_burglar_26_10
     - sensor.basement_burglar_22_10
@@ -141,7 +142,11 @@ Devices:
     - input_boolean.jay_phone_den
     - input_boolean.jay_phone_master
     - input_boolean.jay_phone_basement
+    - input_boolean.jay_phone_kitchen
+    - input_boolean.jay_phone_lr
     - sensor.jay_room_locator
+    - sensor.jay_in_which_room
+    - sensor.jay_wifi_locator
 
 Family:
   view: no

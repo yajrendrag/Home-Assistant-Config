@@ -53,33 +53,25 @@
   action:
     service: script.basement_lights_on
 
-#turn off basement lights if jay is not downstairs
+#turn off basement lights if jay is not downstairs and kids not home
 - alias: 'turn off basement lights based on presence'
-#  trigger:
-#    platform: mqtt
-#    topic: owntracks/jays7/galaxy s7/event
   trigger:
-    - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
-      to: 'den'
-      for:
-        minutes: 2
-    - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
-      to: 'master_bedroom'
-      for:        
-        minutes: 2
-    - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
-      to: 'not_home'
-      for:        
-        minutes: 2
-    - platform: state
-      entity_id: sensor.basement_burglar_22_10
-      to: '0'
-#  condition:
-#    condition: template
-#    value_template: "{{ 'basement' not in states.device_tracker.jays7_galaxy_s7.state }}"
+    platform: state
+    entity_id: sensor.jay_in_which_room
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.lily_home
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.maddie_home
+        state: 'off'
+      - condition: state
+        entity_id: sensor.basement_luminance_22_3
+        state: '0'
+      - condition: template
+        value_template: "{{ 'basement' not in trigger.to_state.state }}"
   action:
     service: homeassistant.turn_off
     entity_id: 
@@ -88,3 +80,30 @@
       - light.basement_wall
       - switch.basement_stairs_switch_3_0
       - light.lightstrip
+
+#turn off basement lights if no motion and no one downstairs
+- alias: 'turn off basement lights based on motion & no presence'
+  trigger:
+    platform: state
+    entity_id: sensor.basement_burglar_22_10
+    to: '0'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.lily_home
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.maddie_home
+        state: 'off'
+      - condition: template
+        value_template: "{{ 'basement' not in states.sensor.jay_in_which_room.state }}"
+  action:
+    service: homeassistant.turn_off
+    entity_id:
+      - light.basement_3way_dimmer_level_25_0
+      - light.basement_cabinet
+      - light.basement_wall
+      - switch.basement_stairs_switch_3_0
+      - light.lightstrip
+

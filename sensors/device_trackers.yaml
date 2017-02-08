@@ -12,4 +12,13 @@
   state_topic: "owntracks/jays7/galaxy s7/event"   
   name: "Jay Room Locator"
   value_template: '{{ value_json.event ~ " " ~ value_json.desc|replace("-","") }}'
-
+- platform: mqtt_room
+  device_id: 74278bdab64445208f0c720eaf059931-539-7
+  name: 'Jay in which room'
+  state_topic: 'room_presence'
+  timeout: 5
+  away_timeout: 60
+- platform: mqtt
+  state_topic: "smellystarfish/location/jay"
+  name: "Jay WiFi Locator"
+  value_template: '{{ value_json.location }}'
