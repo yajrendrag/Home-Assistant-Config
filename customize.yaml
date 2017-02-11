@@ -46,4 +46,78 @@ sensor.pws_precip_today_in:
 sensor.pws_wind_mph:
   friendly_name: Sustained Wind Speed MPH
   icon: mdi:weather-windy
-
+#
+#  Alarm Customizations
+#
+sensor.entry_burglar_24_10:
+  friendly_name: Entry Motion
+  icon: mdi:message-alert
+sensor.den_burglar_26_10:
+  friendly_name: Den Motion
+  icon: mdi:message-alert
+sensor.basement_burglar_22_10:
+  friendly_name: Basement Motion
+  icon: mdi:message-alert
+sensor.kitchen_burglar_11_10:
+  friendly_name: Kitchen Motion
+  icon: mdi:message-alert
+binary_sensor.basement_sound:
+  friendly_name: Basement Sound
+  icon: mdi:surround-sound
+#
+#  Nest Customizations
+#
+binary_sensor.hallway_thermostat_has_leaf:
+  friendly_name: Green Mode
+  icon: mdi:nest-thermostat
+binary_sensor.hallway_thermostat_is_using_emergency_heat:
+  friendly_name: Emergency Heat
+  icon: mdi:nest-thermostat
+binary_sensor.hallway_thermostat_online:
+  friendly_name: Thermostat Online
+  icon: mdi:nest-thermostat
+#
+#  Binary Sensor Customizations
+#
+binary_sensor.basement_sensor_22_0:
+  friendly_name: Basement MultiSensor Status
+  icon: mdi:toggle-switch
+binary_sensor.entry_sensor_24_0:
+  friendly_name: Entry MultiSensor Status
+  icon: mdi:toggle-switch
+binary_sensor.den_sensor_26_0:
+  friendly_name: Dne MultiSensor Status
+  icon: mdi:toggle-switch
+binary_sensor.kitchen_sensor_11_0:
+  friendly_name: Kitchen MultiSensor Status
+  icon: mdi:toggle-switch
+binary_sensor.gwink:
+  friendly_name: Wink Hub Status
+  icon: mdi:toggle-switch
+#
+#  Battery Customizations
+# 
+sensor.note_4_battery:
+  friendly_name: Note 4 Battery Level
+  icon: mdi:battery-unknown
+sensor.nexus_5x_battery:
+  friendly_name: Nexus 5x Battery Level
+  icon: mdi:battery-unknown
+#
+#  Wifi Locator Customization
+#
+sensor.jay_wifi_locator:
+  friendly_name: Jay is currently in room
+  icon: mdi:wifi
+#
+#  Icon Customizations for Family Locators
+#
+group.jay:
+  friendly_name: Jay
+  icon: mdi:map-marker
+group.lily:
+  friendly_name: Lily
+  icon: mdi:map-marker
+group.madeline:
+  friendly_name: Madeline
+  icon: mdi:map-marker

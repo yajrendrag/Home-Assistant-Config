@@ -74,3 +74,8 @@ I slightly modified the included delete_old_videos.sh script, which is located a
 
 You may also need to do the same thing for the contents of /home/hd1/record_sub.  the script is only written to act on /home/hd1/record.
 
+---
+ftp setup notes:
+-i am running hass on a full desktop, 8 core machine, so i run the ftp server on this same machine.
+-set up a user with only ftp access - ie, no shell access.  see here: http://www.faqs.org/docs/securing/chap29sec295.html
+-i am running ubuntu 16.04, so followed this to enable ftp: https://www.ostechnix.com/install-vsftpd-server-ubuntu-16-04-lts/

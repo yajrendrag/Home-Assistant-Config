@@ -15,7 +15,7 @@
 #    service_template: "input_boolean.turn_{{ 'on' if trigger.payload_json['event'] == 'enter' else 'off' }}"
 #    data_template:
 #      entity_id: "input_boolean.jay_phone_{{ 'den' if trigger.payload_json['desc'] == '-den' else 'master' if trigger.payload_json['desc'] == '-master bedroom' else 'basement' }}"
-- alias: 'track sensor state of Jay in which room'
+- alias: 'track sensor state of Jay WiFi Locator'
   trigger:
     platform: state
     entity_id: sensor.jay_wifi_locator

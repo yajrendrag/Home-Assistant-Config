@@ -72,11 +72,6 @@
 - alias: 'turn off den lights when leaving den'
   trigger:
     - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
-      state: 'not_home'
-      for:
-        minutes: 3
-    - platform: state
       entity_id: sensor.den_burglar_26_10
       to: '0'
     - platform: state
@@ -111,6 +106,22 @@
       - light.tiffany_level_12_0
       - light.den_corner
 
+#turn off den lights when not home
+- alias: 'turn off den lights when leaving den'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      state: 'not_home'
+      for:
+        minutes: 3
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.den
+      - light.den_window
+      - light.desk_drawer_level_14_0
+      - light.tiffany_level_12_0
+      - light.den_corner
 
 - alias: 'turn off den detection automation'
 #  initial: off

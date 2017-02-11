@@ -22,7 +22,3 @@
   state_topic: "gwifilocator/location/jay"
   name: "Jay WiFi Locator"
   value_template: '{{ value_json.location }}'
-- platform: mqtt
-  state_topic: "gwifilocator/location/jay"
-  name: "bayes den metric"
-  value_template: '{{ value_json.bayes.den }}'

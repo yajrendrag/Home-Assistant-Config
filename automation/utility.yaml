@@ -19,7 +19,7 @@
       - light.den_corner
 
 #Turn off any lights in early morning
-- alias: 'entry light off in early am'
+- alias: 'any lights off in early am'
   trigger:
     platform: time
     after: '02:30:00'
