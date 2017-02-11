@@ -43,19 +43,19 @@
 #turn on den lights when entering den
 - alias: 'turn on den lights when entering den'
   trigger:
-    - platform: state
-      entity_id: sensor.jay_in_which_room
-      state: 'enter den'
-      for:
-        seconds: 3
+#    - platform: state
+#      entity_id: sensor.jay_in_which_room
+#      state: 'enter den'
+#      for:
+#        seconds: 3
 #    - platform: state
 #      entity_id: device_tracker.jays7_galaxy_s7
 #      state: 'den'
 #      for:
 #        seconds: 3
-    - platform: state
-      entity_id: input_boolean.jay_phone_den
-      to: 'on'
+#    - platform: state
+#      entity_id: input_boolean.jay_phone_den
+#      to: 'on'
     - platform: numeric_state
       entity_id: sensor.den_burglar_26_10
       above: '3'
@@ -79,35 +79,29 @@
     - platform: state
       entity_id: sensor.den_burglar_26_10
       to: '0'
-#    - platform: state
-#      entity_id: device_tracker.jays7_galaxy_s7
-#      state: 'home'
-#      for:
-#        minutes: 3
     - platform: state
-      entity_id: sensor.jay_in_which_room
+      entity_id: sensor.jay_wifi_locator
       state: 'master bedroom'
       for:
         minutes: 3
     - platform: state
-      entity_id: sensor.jay_in_which_room
+      entity_id: sensor.jay_wifi_locator
       state: 'basement'
       for:
         minutes: 3
     - platform: state
-      entity_id: sensor.jay_in_which_room      
+      entity_id: sensor.jay_wifi_locator
       state: 'livingroom'
       for:
         minutes: 3
     - platform: state
-      entity_id: sensor.jay_in_which_room      
+      entity_id: sensor.jay_wifi_locator
       state: 'kitchen'
       for:
         minutes: 3
   condition:
-    condition: state
-    entity_id: input_boolean.jay_phone_den
-    state: 'off'
+    condition: template
+    value_template: "{{ 'den' not in states('sensor.jay_wifi_locator') }}"
   action:
     service: light.turn_off
     entity_id:

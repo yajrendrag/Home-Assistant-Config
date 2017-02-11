@@ -1,0 +1,32 @@
+lily_home:
+  name: Lily Home
+  initial: off
+  icon: mdi:cellphone-iphone
+maddie_home:
+  name: Madeline Home
+  initial: off
+  icon: mdi:cellphone-iphone
+jay_phone_den:
+  name: Jay in Den
+  initial: off
+  icon: mdi:cellphone-android
+jay_phone_master:
+  name: Jay in Master
+  initial: off
+  icon: mdi:cellphone-android
+jay_phone_basement:
+  name: Jay in Basement
+  initial: off
+  icon: mdi:cellphone-android
+jay_phone_lr:
+  name: Jay in LivingRoom
+  initial: off
+  icon: mdi:cellphone-android
+jay_phone_kitchen:
+  name: Jay in Kitchen
+  initial: off
+  icon: mdi:cellphone-android
+jay_phone_gym:
+  name: Jay in Gym
+  initial: off
+  icon: mdi:cellphone-android

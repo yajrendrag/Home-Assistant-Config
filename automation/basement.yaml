@@ -57,7 +57,7 @@
 - alias: 'turn off basement lights based on presence'
   trigger:
     platform: state
-    entity_id: sensor.jay_in_which_room
+    entity_id: sensor.jay_wifi_locator
   condition:
     condition: and
     conditions:
@@ -97,7 +97,7 @@
         entity_id: input_boolean.maddie_home
         state: 'off'
       - condition: template
-        value_template: "{{ 'basement' not in states.sensor.jay_in_which_room.state }}"
+        value_template: "{{ 'basement' not in states('sensor.jay_wifi_locator') }}"
   action:
     service: homeassistant.turn_off
     entity_id:

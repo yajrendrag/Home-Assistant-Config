@@ -118,6 +118,7 @@ Den:
     - light.den_window
     - light.desk_drawer_level_14_0
     - light.tiffany_level_12_0
+    - sensor.bayes_den_metric
 
 Kitchen:
   view: yes
@@ -144,9 +145,11 @@ Devices:
     - input_boolean.jay_phone_basement
     - input_boolean.jay_phone_kitchen
     - input_boolean.jay_phone_lr
-    - sensor.jay_room_locator
-    - sensor.jay_in_which_room
+    - input_boolean.jay_phone_gym
+#    - sensor.jay_room_locator
+#    - sensor.jay_in_which_room
     - sensor.jay_wifi_locator
+    - input_select.jay_room_tracker
 
 Family:
   view: no

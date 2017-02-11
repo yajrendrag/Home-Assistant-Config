@@ -87,7 +87,7 @@ device_tracker:
   - platform: mqtt
     devices:
       jay_note_4: /location/jay
-      jayn5_nexus_5x: /location/jayn5
+      jayn5_nexus_5x: /location/jay-n5
       jays7_galaxy_s7: /location/jays7
   - platform: nmap_tracker
     hosts:
@@ -98,40 +98,21 @@ device_tracker:
     home_interval: 15
     scan_options: " --privileged -p 62078 -sS "
 
-input_boolean:
-  lily_home:
-    name: Lily Home
-    initial: off
-    icon: mdi:cellphone-iphone
-  maddie_home:
-    name: Madeline Home
-    initial: off
-    icon: mdi:cellphone-iphone
-  jay_phone_den:
-    name: Jay in Den
-    initial: off
-    icon: mdi:cellphone-android
-  jay_phone_master:
-    name: Jay in Master
-    initial: off
-    icon: mdi:cellphone-android
-  jay_phone_basement:
-    name: Jay in Basement
-    initial: off
-    icon: mdi:cellphone-android
-  jay_phone_lr:
-    name: Jay in LivingRoom
-    initial: off
-    icon: mdi:cellphone-android
-  jay_phone_kitchen:
-    name: Jay in Kitchen
-    initial: off
-    icon: mdi:cellphone-android
+input_select:
+  jay_room_tracker:
+    name: "Jay is in room"
+    options:
+      - den
+      - master
+      - livingroom
+      - kitchen
+      - basement
+      - gym
+    icon: mdi:home
 
 emulated_hue:
   type: alexa
   expose_by_default: false
-
 
 group: !include groups.yaml
 
@@ -146,6 +127,8 @@ camera: !include_dir_merge_list camera/
 zone: !include_dir_merge_list zone/
 
 sensor: !include_dir_merge_list sensors/
+
+input_boolean: !include_dir_merge_named input_booleans/
 
 binary_sensor:
   - platform: nest

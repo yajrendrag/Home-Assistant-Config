@@ -4,21 +4,25 @@
   unit_of_measurement: "%"
   value_template: '{{ value_json.batt }}'
 - platform: mqtt
-  state_topic: "owntracks/jay-n5/nexus 5x"
+  state_topic: "owntracks/jayn5/nexus 5x"
   name: "Nexus 5x Battery"
   unit_of_measurement: "%"    
   value_template: '{{ value_json.batt }}'
+#- platform: mqtt
+#  state_topic: "owntracks/jays7/galaxy s7/event"   
+#  name: "Jay Room Locator"
+#  value_template: '{{ value_json.event ~ " " ~ value_json.desc|replace("-","") }}'
+#- platform: mqtt_room
+#  device_id: 74278bdab64445208f0c720eaf059931-539-7
+#  name: 'Jay in which room'
+#  state_topic: 'room_presence'
+#  timeout: 5
+#  away_timeout: 0
 - platform: mqtt
-  state_topic: "owntracks/jays7/galaxy s7/event"   
-  name: "Jay Room Locator"
-  value_template: '{{ value_json.event ~ " " ~ value_json.desc|replace("-","") }}'
-- platform: mqtt_room
-  device_id: 74278bdab64445208f0c720eaf059931-539-7
-  name: 'Jay in which room'
-  state_topic: 'room_presence'
-  timeout: 5
-  away_timeout: 60
-- platform: mqtt
-  state_topic: "smellystarfish/location/jay"
+  state_topic: "gwifilocator/location/jay"
   name: "Jay WiFi Locator"
   value_template: '{{ value_json.location }}'
+- platform: mqtt
+  state_topic: "gwifilocator/location/jay"
+  name: "bayes den metric"
+  value_template: '{{ value_json.bayes.den }}'

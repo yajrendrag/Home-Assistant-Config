@@ -18,16 +18,21 @@
 - alias: 'track sensor state of Jay in which room'
   trigger:
     platform: state
-    entity_id: sensor.jay_in_which_room
+    entity_id: sensor.jay_wifi_locator
   action:
     - service: input_boolean.turn_off
       data_template:
         entity_id: "input_boolean.jay_phone_{{ 'den' if trigger.from_state.state == 'den' else 'master' if trigger.from_state.state == 'master bedroom' else 'basement' if trigger.from_state.state == 'basement'
-                    else 'kitchen' if trigger.from_state.state == 'kitchen' else 'lr' if trigger.from_state.state == 'livingroom' }}"
-    - service: input_boolean.turn_on                                                               
+                    else 'kitchen' if trigger.from_state.state == 'kitchen' else 'lr' if trigger.from_state.state == 'livingroom' else 'gym' if trigger.from_state.state == 'gym' }}"
+    - service: input_boolean.turn_on
       data_template:
         entity_id: "input_boolean.jay_phone_{{ 'den' if trigger.to_state.state == 'den' else 'master' if trigger.to_state.state == 'master bedroom' else 'basement' if trigger.to_state.state == 'basement'
-                    else 'kitchen' if trigger.to_state.state == 'kitchen' else 'lr' if trigger.to_state.state == 'livingroom' }}"
+                    else 'kitchen' if trigger.to_state.state == 'kitchen' else 'lr' if trigger.to_state.state == 'livingroom' else 'gym' if trigger.to_state.state == 'gym' }}"
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.jay_room_tracker
+        option: "{{ 'den' if trigger.to_state.state == 'den' else 'master' if trigger.to_state.state == 'master bedroom' else 'basement' if trigger.to_state.state == 'basement'
+                else 'kitchen' if trigger.to_state.state == 'kitchen' else 'livingroom' if trigger.to_state.state == 'livingroom' else 'gym' if trigger.to_state.state == 'gym' }}"
 
 - alias: 'Lily Away'
   condition:

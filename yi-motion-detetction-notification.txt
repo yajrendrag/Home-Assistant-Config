@@ -1,0 +1,76 @@
+Yi Camera based Motion Detection Notifications without using ffmpeg sensor
+
+I implemented this because:
+(a) I couldn't figure out how to get ffmpeg sensor to work, and
+(b) the camera already captures motion detection so it seemed worthwhile to try and use it.
+
+This is based on the Yi camera with the Yi Hack: https://github.com/fritz-smh/yi-hack
+
+The basic sequence of operations is:
+
+1) Yi Camera captures motion events and saves the video to the Camera's SD Card
+2) Copy the video of the motion to an ftp server that can detect new file additions
+3) Based on detection of new file on ftp server, publish an mqtt message to an mqtt sensor topic subscribed to by your HA user
+4) leverage whatever notification component you like in HA to receive notification of motion
+
+1) The Yi Camera automatically captures and saves to the SD card a short video clip when there is motion.  You can use this video
+to generate a notification.  One could probably just compile a mosquitto client onto the Yi's SD card, but I didn't want to spend time
+figuring that out - if you do, please let me know how to do it.  Video from motion events is automatically saved to /home/hd1/record
+and sometimes /home/hd1/record_sub.
+
+2) Once the video is captured, we just need to move it to an ftp server.  The Yi Hack includes two scripts - one to delete old videos,
+the other to copy video files to an ftp server.  The scripts are located in /home/hd1/test/scripts.  I used the copy-to-ftp script as is -
+just fill out the 5 lines at the top of the file with specifics of your ftp server, which in my case is the same host that runs my HA instance.
+(I do not run on an rpi, i have an 8 core desktop machine, so plenty of cpu/disk capacity...).
+
+3) I use a utility to watch the ftp serverfor new file additions - inotifywait - which i incorporated into the bash script below that runs at startup.
+inotify-tools is available to install via apt-get on ubuntu 16.04 and available to download for debian jessie... google is your friend here.
+i just run the script using cron's @reboot.  The thing about inotifywait is that it cannot monitor FUSE based file systems.  so, if you're mounting
+an external device, you'll have to choose carefully.  Alternatively, you could write something find based to monitor the mounted directory
+every minute or so..  Here's the script I run at startup:
+
+notifier.sh:
+----
+#!/bin/bash
+
+MAILTO=""
+
+while inotifywait -re create /path/to/ftp/directory; do /usr/bin/mosquitto_pub -h mqtthost -u ha-user -P password -p 1883 -t 'ha/motion-video-topic' -m '{"camera":"living room","date":"'"`date +%D`"'","time":"'"`date +%H:%M`"'"}'; done
+----
+where: '{"camera":"living room","date":"'"`date +%D`"'","time":"'"`date +%H:%M`"'"}' is the json payload i use - {"camera": "living rooom", "date":"date-of-motion-event", "time":"time-of-motion-event"}
+
+this will run continuously and look for creation (create event) of new files anwhere in path specified (-r = recursive, ie, watch all subdirectories of path)) and
+then publish an mqtt messages as video files get copied to your ftp directory.
+
+Optionally, set up an mqtt sensor in HA to include in a front end group:
+
+for example
+- platform: mqtt
+  state_topic: "homeassistant/motion"
+  name: "LR Motion Detection"
+  unit_of_measurement: "Date"
+  value_template: '{{ value_json.date ~ "\n" ~ value_json.time }}'
+
+4) Set up an automation to send notifications based on published messages:
+the condition here is used to only send notifications when i'm not home.
+for example:
+
+- alias: 'motion detected'
+  trigger:
+    platform: mqtt
+    topic: 'homeassistant/motion'
+  condition:
+    - condition: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      state: 'not_home'
+  action:
+    service: notify.notify
+    data_template:
+      message: "motion detected: {{ trigger.payload_json['camera'] ~ ' ' ~ trigger.payload_json['time'] ~ ' ' ~ trigger.payload_json['date'] }}"
+
+Thats pretty much it except for cleanup of files on the Yi... since i copy them to the ftp server, i run the other script on the Yi camera to delete videos every 2 days.
+
+I slightly modified the included delete_old_videos.sh script, which is located at /home/hd1/test/scripts, to run every 2 days and delete any videos older than 2880 minutes.
+
+You may also need to do the same thing for the contents of /home/hd1/record_sub.  the script is only written to act on /home/hd1/record.
+
