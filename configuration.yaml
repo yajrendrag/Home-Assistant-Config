@@ -130,6 +130,8 @@ sensor: !include_dir_merge_list sensors/
 
 input_boolean: !include_dir_merge_named input_booleans/
 
+ffmpeg:
+
 binary_sensor:
   - platform: nest
     monitored_conditions:
@@ -141,11 +143,11 @@ binary_sensor:
 #    input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
 #    changes: 5
 #    extra_arguments: -pred 1 -q:v 2 -filter:v "crop=600:450:0:150"
-  - platform: ffmpeg
-    tool: noise
+  - platform: ffmpeg_noise
     name: basement_sound
     input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
-    peak: -10
+    peak: -25
+    duration: 5
 
 # Allows you to issue voice commands from the frontend
 conversation:

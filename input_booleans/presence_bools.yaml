@@ -30,3 +30,7 @@ jay_phone_gym:
   name: Jay in Gym
   initial: off
   icon: mdi:cellphone-android
+jay_home:
+  name: Jay Home
+  initial: off
+  icon: mdi:cellphone-android

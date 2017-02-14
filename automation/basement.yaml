@@ -32,7 +32,7 @@
 - alias: 'turn off basement lights in late pm'
   trigger:
     platform: time
-    after: "00:00:00"
+    after: "01:00:00"
   action:
     service: homeassistant.turn_off
     entity_id:
@@ -40,6 +40,7 @@
       - light.basement_3way_dimmer_level_25_0
       - light.basement_wall
       - light.basement_cabinet
+      - light.lightstrip
 
 - alias: 'turn on basement lights if too dark and motion'
   trigger:
@@ -56,22 +57,30 @@
 #turn off basement lights if jay is not downstairs and kids not home
 - alias: 'turn off basement lights based on presence'
   trigger:
-    platform: state
-    entity_id: sensor.jay_wifi_locator
+    - platform: state
+      entity_id: sensor.jay_wifi_locator
+      to: 'den'
+      for:
+        minutes: '2'
+    - platform: state
+      entity_id: sensor.jay_wifi_locator
+      to: 'livingroom'
+      for:
+        minutes: '2'
+    - platform: state
+      entity_id: sensor.jay_wifi_locator
+      to: 'kitchen'
+      for:
+        minutes: '2'
+    - platform: state
+      entity_id: sensor.jay_wifi_locator
+      to: 'master bedroom'
+      for:
+        minutes: '2'
   condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.lily_home
-        state: 'off'
-      - condition: state
-        entity_id: input_boolean.maddie_home
-        state: 'off'
-      - condition: state
-        entity_id: sensor.basement_luminance_22_3
-        state: '0'
-      - condition: template
-        value_template: "{{ 'basement' not in trigger.to_state.state }}"
+    condition: state
+    entity_id: binary_sensor.basement_sound
+    state: 'off'
   action:
     service: homeassistant.turn_off
     entity_id: 
@@ -91,11 +100,8 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.lily_home
-        state: 'off'
-      - condition: state
-        entity_id: input_boolean.maddie_home
-        state: 'off'
+        entity_id: group.lily
+        state: 'not_home'
       - condition: template
         value_template: "{{ 'basement' not in states('sensor.jay_wifi_locator') }}"
   action:
@@ -106,4 +112,3 @@
       - light.basement_wall
       - switch.basement_stairs_switch_3_0
       - light.lightstrip
-

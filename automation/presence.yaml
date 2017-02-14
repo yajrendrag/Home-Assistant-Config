@@ -33,6 +33,13 @@
         entity_id: input_select.jay_room_tracker
         option: "{{ 'den' if trigger.to_state.state == 'den' else 'master' if trigger.to_state.state == 'master bedroom' else 'basement' if trigger.to_state.state == 'basement'
                 else 'kitchen' if trigger.to_state.state == 'kitchen' else 'livingroom' if trigger.to_state.state == 'livingroom' else 'gym' if trigger.to_state.state == 'gym' }}"
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.jay_home
+#    - service: tts.google_say
+#      entity_id: media_player.living_room
+#      data_template:
+#        message: "Jay moved rooms to {{ trigger.to_state.state ~ ' ' ~ trigger.for ~ ' seconds ago' }}"
 
 - alias: 'Lily Away'
   condition:
@@ -99,3 +106,30 @@
   action:
      service: input_boolean.turn_on
      entity_id: input_boolean.maddie_home
+
+- alias: 'Jay Home'
+  condition:
+    condition: state
+    entity_id: input_boolean.jay_home
+    state: 'off'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jays7_galaxy_s7
+    to: 'home'
+  action:
+     service: input_boolean.turn_on
+     entity_id: input_boolean.jay_home
+
+- alias: 'Jay Not Home'
+  condition:
+    condition: state
+    entity_id: input_boolean.jay_home
+    state: 'on'
+  trigger:
+    platform: state
+    entity_id: device_tracker.jays7_galaxy_s7
+    to: 'not_home'
+  action:
+     service: input_boolean.turn_off
+     entity_id: input_boolean.jay_home
+

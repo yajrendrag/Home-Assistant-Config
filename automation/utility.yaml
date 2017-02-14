@@ -134,7 +134,7 @@
     topic: 'homeassistant/motion'
   condition:
     - condition: state
-      entity_id: device_tracker.jays7_galaxy_s7
+      entity_id: group.jay
       state: 'not_home'
   action:
     service: notify.notify

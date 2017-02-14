@@ -110,7 +110,7 @@
 - alias: 'turn off den lights when leaving den'
   trigger:
     - platform: state
-      entity_id: device_tracker.jays7_galaxy_s7
+      entity_id: group.jay
       state: 'not_home'
       for:
         minutes: 3

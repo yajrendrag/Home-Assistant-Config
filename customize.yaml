@@ -121,3 +121,12 @@ group.lily:
 group.madeline:
   friendly_name: Madeline
   icon: mdi:map-marker
+#
+#  Camera Power Customizations
+#
+switch.living_room_camera_power:
+  friendly_name: Note 4 Power
+  icon: mdi:power-socket
+switch.bedroom_phone_power:
+  friendly_name: Nexus 5x Power
+  icon: mdi:power-socket

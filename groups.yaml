@@ -60,7 +60,7 @@ Living Room:
     - light.front_hall_table
     - light.entry_hall
     - switch.living_room_reading_lamp_switch_2_0
-    - switch.living_room_camera_power
+#    - switch.living_room_camera_power
     - media_player.living_room
     - group.lr_motion_sensor
     - scene.entry_hall_on
@@ -81,8 +81,9 @@ Master:
     - light.master_corner
     - light.master_left_night_stand
     - light.master_right_night_stand
-    - switch.bedroom_phone_power
+#    - switch.bedroom_phone_power
     - group.note_4_battery
+    - switch.living_room_camera_power
 
 Basement:
   view: yes
@@ -100,6 +101,7 @@ Basement:
     - group.nexus_5x_battery
     - scene.basement_dim
     - scene.basement_normal
+    - switch.bedroom_phone_power
 
 Den:
   view: yes
@@ -130,6 +132,7 @@ Devices:
     - group.note_4_battery
     - input_boolean.lily_home
     - input_boolean.maddie_home
+    - input_boolean.jay_home
     - input_boolean.jay_phone_den
     - input_boolean.jay_phone_master
     - input_boolean.jay_phone_basement
@@ -142,7 +145,7 @@ Devices:
     
 Kids:
   view: no
-  name: Family
+  name: Kids
   entities:
     - device_tracker.020fb54707ce
     - device_tracker.bc9fef72f640
@@ -217,7 +220,7 @@ Jay:
   view: no
   name: Jay
   entities:
-    - device_tracker.jays7_galaxy_s7
+    - sensor.jay_home
 
 Jay is currently in:
   view: no
