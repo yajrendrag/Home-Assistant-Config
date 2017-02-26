@@ -26,7 +26,7 @@
     light.basement_wall:
       state: on
       brightness: 254
-    light.basement:
+    light.basement_corner:
       state: on
       brightness: 254
 
@@ -63,7 +63,7 @@
     light.basement_wall:
       state: on
       brightness: 30
-    light.basement:
+    light.basement_corner:
       state: on
       brightness: 30
 

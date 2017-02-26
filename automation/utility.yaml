@@ -43,7 +43,7 @@
 - alias: 'lr camera switch on'
   trigger:
     platform: template
-    value_template: "{% if states.device_tracker.jay_note_4.attributes.battery | float <= 40.0 %}true{% endif %}"
+    value_template: "{% if states ('sensor.note_4_battery') | int < 40 %}true{% endif %}"
   action:
     service: switch.turn_on
     entity_id: switch.living_room_camera_power
@@ -52,7 +52,7 @@
 - alias: 'lr camera switch off'
   trigger:
     platform: template
-    value_template: "{% if states.device_tracker.jay_note_4.attributes.battery | float >= 95.0 %}true{% endif %}"
+    value_template: "{% if states ('sensor.note_4_battery') | int > 95 %}true{% endif %}"
   action:
     service: switch.turn_off
     entity_id: switch.living_room_camera_power
@@ -61,7 +61,7 @@
 - alias: 'master phone pwr switch on'
   trigger:
     platform: template
-    value_template: "{% if states.device_tracker.jayn5_nexus_5x.attributes.battery | float <= 40.0 %}true{% endif %}"
+    value_template: "{% if states ('sensor.nexus_5x_battery') | int < 40 %}true{% endif %}"
   action:
     service: switch.turn_on
     entity_id: switch.bedroom_phone_power
@@ -70,7 +70,7 @@
 - alias: 'master phone pwr switch off'
   trigger:
     platform: template
-    value_template: "{% if states.device_tracker.jayn5_nexus_5x.attributes.battery | float >= 90.0 %}true{% endif %}"
+    value_template: "{% if states ('sensor.nexus_5x_battery') | int  > 90 %}true{% endif %}"
   action:
     service: switch.turn_off
     entity_id: switch.bedroom_phone_power

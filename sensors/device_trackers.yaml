@@ -1,13 +1,13 @@
-- platform: mqtt
-  state_topic: "owntracks/jay/note 4"
-  name: "Note 4 Battery"
-  unit_of_measurement: "%"
-  value_template: '{{ value_json.batt }}'
-- platform: mqtt
-  state_topic: "owntracks/jayn5/nexus 5x"
-  name: "Nexus 5x Battery"
-  unit_of_measurement: "%"    
-  value_template: '{{ value_json.batt }}'
+#- platform: mqtt
+#  state_topic: "owntracks/jay/note 4"
+#  name: "Note 4 Battery"
+#  unit_of_measurement: "%"
+#  value_template: '{{ value_json.batt }}'
+#- platform: mqtt
+#  state_topic: "owntracks/jayn5/nexus 5x"
+#  name: "Nexus 5x Battery"
+#  unit_of_measurement: "%"    
+#  value_template: '{{ value_json.batt }}'
 #- platform: mqtt
 #  state_topic: "owntracks/jays7/galaxy s7/event"   
 #  name: "Jay Room Locator"
@@ -26,4 +26,15 @@
   sensors:
     jay_home:
       friendly_name: Jay Home
-      value_template: "{%- if is_state('input_boolean.jay_home', 'on') -%}home{%- else -%}not_home{% endif %}"
+      value_template: "{{ 'home' if states.input_boolean.jay_home is not none and states ('input_boolean.jay_home') == 'on' else 'not_home' }}"
+      entity_id: input_boolean.jay_home
+    note_4_battery:
+      friendly_name: Note 4 Battery
+      value_template: "{{ states.device_tracker.jay_note_4.attributes.battery|default(-1)|int if states.device_tracker.jay_note_4 is not none }}"
+      unit_of_measurement: '%'
+      entity_id: device_tracker.jay_note_4
+    nexus_5x_battery:
+      friendly_name: Nexus 5x Battery
+      value_template: "{{ states.device_tracker.jayn5_nexus_5x.attributes.battery|default(-1)|int if states.device_tracker.jayn5_nexus_5x is not none }}"
+      unit_of_measurement: '%'
+      entity_id: device_tracker.jayn5_nexus_5x

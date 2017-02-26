@@ -6,7 +6,7 @@
   action:
     service: light.turn_on
     entity_id:
-      - light.basement
+      - light.basement_corner
 
 #Turn on basement stairs light in late pm
 - alias: 'turn on basement stairs light in late pm'
@@ -26,7 +26,7 @@
   action:
     service: light.turn_off
     entity_id:
-      - light.basement
+      - light.basement_corner
 
 #Turn off basement lights in late pm
 - alias: 'turn off basement lights in late pm'

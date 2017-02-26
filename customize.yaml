@@ -19,6 +19,8 @@ switch.kitchen_switch_4_0:
 switch.living_room_reading_lamp_switch_2_0:
   emulated_hue: true
   emulated_hue_name: "living room reading lamp"
+light.basement:
+  emulated_hue: false
 #
 #  WeatherUnderground Customizations
 #
@@ -86,7 +88,7 @@ binary_sensor.entry_sensor_24_0:
   friendly_name: Entry MultiSensor Status
   icon: mdi:toggle-switch
 binary_sensor.den_sensor_26_0:
-  friendly_name: Dne MultiSensor Status
+  friendly_name: Den MultiSensor Status
   icon: mdi:toggle-switch
 binary_sensor.kitchen_sensor_11_0:
   friendly_name: Kitchen MultiSensor Status

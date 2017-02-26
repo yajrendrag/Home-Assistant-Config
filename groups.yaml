@@ -89,7 +89,7 @@ Basement:
   view: yes
   name: Basement
   entities:
-    - light.basement
+    - light.basement_corner
     - light.basement_3way_dimmer_level_25_0
 #   - light.basement_ceiling_couch
 #   - light.basement_ceiling_table
@@ -102,6 +102,7 @@ Basement:
     - scene.basement_dim
     - scene.basement_normal
     - switch.bedroom_phone_power
+    - media_player.nuci5
 
 Den:
   view: yes

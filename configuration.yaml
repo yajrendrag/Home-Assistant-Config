@@ -23,12 +23,15 @@ updater:
 
 # Discover some devices automatically
 discovery:
+  ignore:
+    - roku
+    - samsung_tv
 
 http:
   api_password: !secret http_pass
-  ssl_certificate: !secret ha_ssl_cert
-  ssl_key: !secret ha_ssl_key
-  base_url: !secret ha_base_url
+#  ssl_certificate: !secret ha_ssl_cert
+#  ssl_key: !secret ha_ssl_key
+#  base_url: !secret ha_base_url
   trusted_networks:
     - 192.168.1.0/24
 
@@ -38,8 +41,13 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
 
+light:
+  platform: hue
+  host: 192.168.1.137
+
 media_player:
-  platform: sonos
+  - platform: sonos
+  - platform: openhome
 
 wink:
   email: !secret wink_email
@@ -62,10 +70,10 @@ nest:
 
 cover:
   - platform: myq
-    name: Garage Door
+#    name: Garage Door
     username: !secret myq_user
     password: !secret myq_pass
-    brand: liftmaster
+    type: liftmaster
 
 shell_command:
   motion_auto_off: /usr/bin/python3 /home/jay/auto-motion.py
@@ -84,11 +92,11 @@ mqtt:
 device_tracker:
   - platform: owntracks
     consider_home: 300
-  - platform: mqtt
-    devices:
-      jay_note_4: /location/jay
-      jayn5_nexus_5x: /location/jay-n5
-      jays7_galaxy_s7: /location/jays7
+#  - platform: mqtt
+#    devices:
+#      jay_note_4: /location/jay
+#      jayn5_nexus_5x: /location/jayn5
+#      jays7_galaxy_s7: /location/jays7
   - platform: nmap_tracker
     hosts:
       - 192.168.1.147
