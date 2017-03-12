@@ -102,16 +102,16 @@
 - alias: 'turn off basement lights based on motion & no presence'
   trigger:
     platform: state
-    entity_id: sensor.basement_camera_sensor
-    to: 'off'
+    entity_id: sensor.total_basement_motion #basement_camera_sensor
+    to: 'no motion' #'off'
   condition:
-    condition: and
-    conditions:
-      - condition: template
-        value_template: "{{ 'basement' not in states('sensor.jay_wifi_locator') }}"
-      - condition: state
-        entity_id:  binary_sensor.basement_sound
-        state: 'off'
+#    condition: and
+#    conditions:
+    condition: template
+    value_template: "{{ 'basement' not in states('sensor.jay_wifi_locator') }}"
+#      - condition: state#
+#        entity_id:  binary_sensor.basement_sound
+#        state: 'off'
   action:
     service: homeassistant.turn_off
     entity_id:

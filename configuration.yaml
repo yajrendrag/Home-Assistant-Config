@@ -88,7 +88,7 @@ shell_command:
   motion_auto_on: /usr/bin/python3 /home/jay/auto-motion-on.py
   den_detect_on: /usr/bin/python3 /home/jay/den-detection-on.py
   den_detect_off: /usr/bin/python3 /home/jay/den-detection-off.py
-  
+
 mqtt:
   broker: !secret mqtt_broker
   port: 1883

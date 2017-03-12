@@ -28,7 +28,7 @@
 - platform: zoneminder
 - platform: mjpeg
 #  mjpeg_url: http://192.168.1.160:32772/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=2&user=jay-ha&connkey=757229&rand=1488983459
-  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=2&user=admin&connkey=848243&rand=1488857225 
+  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=2&user=admin&connkey=848243&rand=1488857225
   name: garage
   username: !secret mqtt_user
   password: !secret mqtt_pass
@@ -40,4 +40,14 @@
   username: !secret mqtt_user
   password: !secret mqtt_pass
   authentication: basic
-
+- platform: mjpeg
+  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=4&user=admin&connkey=430352&rand=1489346525
+  username: !secret mqtt_user
+  password: !secret mqtt_pass
+  authentication: basic
+- platform: mjpeg
+  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=5&user=admin&connkey=323283&rand=1489346711
+  name: master
+  username: !secret mqtt_user
+  password: !secret mqtt_pass
+  authentication: basic

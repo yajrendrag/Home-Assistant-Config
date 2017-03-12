@@ -11,6 +11,8 @@ default_view:
     - camera.basement
     - camera.garage
     - camera.livingroom_2
+    - camera.master
+    - camera.storage
     - group.weather
     - group.alarms
     - group.nest

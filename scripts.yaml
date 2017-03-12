@@ -35,7 +35,7 @@ motion_timer:
 motion_timer_off:
   sequence:
     - delay:
-        minutes: 4
+        minutes: 10
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.basement_camera_motion_bool
