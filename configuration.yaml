@@ -15,6 +15,7 @@ homeassistant:
 # View all events in a logbook
 logbook:
 
+
 # Checks for available updates
 updater:
 
@@ -26,6 +27,13 @@ discovery:
   ignore:
     - roku
     - samsung_tv
+
+zoneminder:
+  host: 192.168.2.100
+  path: /zm/
+  path_zms: /zm/cgi-bin/nph-zms
+  username: jay-ha
+  password: madlil54
 
 http:
   api_password: !secret http_pass
@@ -70,7 +78,7 @@ nest:
 
 cover:
   - platform: myq
-#    name: Garage Door
+    name: Garage Door
     username: !secret myq_user
     password: !secret myq_pass
     type: liftmaster
@@ -119,7 +127,6 @@ input_select:
     icon: mdi:home
 
 emulated_hue:
-  type: alexa
   expose_by_default: false
 
 group: !include groups.yaml
@@ -137,6 +144,9 @@ zone: !include_dir_merge_list zone/
 sensor: !include_dir_merge_list sensors/
 
 input_boolean: !include_dir_merge_named input_booleans/
+
+logger:
+  default: error
 
 ffmpeg:
 

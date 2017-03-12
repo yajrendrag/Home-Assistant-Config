@@ -34,3 +34,7 @@ jay_home:
   name: Jay Home
   initial: off
   icon: mdi:cellphone-android
+basement_camera_motion_bool:
+  name: basement camera motion boolean
+  initial: off
+  icon: mdi:run-fast

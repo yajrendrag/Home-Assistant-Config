@@ -78,12 +78,20 @@
       for:
         minutes: '2'
   condition:
-    condition: state
-    entity_id: binary_sensor.basement_sound
-    state: 'off'
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.basement_camera_sensor
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.basement_sound
+        state: 'off'
+      - condition: state
+        entity_id: group.kids
+        state: 'not_home'
   action:
     service: homeassistant.turn_off
-    entity_id: 
+    entity_id:
       - light.basement_3way_dimmer_level_25_0
       - light.basement_cabinet
       - light.basement_wall
@@ -94,16 +102,16 @@
 - alias: 'turn off basement lights based on motion & no presence'
   trigger:
     platform: state
-    entity_id: sensor.basement_burglar_22_10
-    to: '0'
+    entity_id: sensor.basement_camera_sensor
+    to: 'off'
   condition:
     condition: and
     conditions:
-      - condition: state
-        entity_id: group.lily
-        state: 'not_home'
       - condition: template
         value_template: "{{ 'basement' not in states('sensor.jay_wifi_locator') }}"
+      - condition: state
+        entity_id:  binary_sensor.basement_sound
+        state: 'off'
   action:
     service: homeassistant.turn_off
     entity_id:
@@ -112,3 +120,11 @@
       - light.basement_wall
       - switch.basement_stairs_switch_3_0
       - light.lightstrip
+
+- alias: 'no motion countdown'
+  trigger:
+    platform: mqtt
+    topic: 'homeassistant/motion/basement'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.motion_timer

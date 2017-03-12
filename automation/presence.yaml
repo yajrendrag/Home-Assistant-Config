@@ -132,4 +132,3 @@
   action:
      service: input_boolean.turn_off
      entity_id: input_boolean.jay_home
-

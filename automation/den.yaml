@@ -101,6 +101,9 @@
         value_template: "{{ 'den' not in states('sensor.jay_wifi_locator') }}"
       - condition: template
         value_template: "{{ '8' not in states('sensor.den_burglar_26_10') }}"
+#      - condition: state
+#        entity_id: group.jay
+#        state: 'home'
   action:
     service: light.turn_off
     entity_id:

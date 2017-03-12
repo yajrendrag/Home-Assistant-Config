@@ -21,7 +21,7 @@
   condition:
     condition: time
     after: '21:30:00'
-    before: '07:00:00'
+    before: '06:00:00'
   action:
     service: homeassistant.turn_off
     entity_id: switch.kitchen_switch_4_0

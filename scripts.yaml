@@ -19,3 +19,23 @@ basement_lights_on:
         - light.basement_cabinet
     - service: switch.turn_on
       entity_id: switch.basement_stairs_switch_3_0
+
+motion_timer:
+  sequence:
+    - service: script.turn_off
+      data:
+        entity_id: script.motion_timer_off
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.basement_camera_motion_bool
+    - service: script.turn_on
+      data:
+        entity_id: script.motion_timer_off
+
+motion_timer_off:
+  sequence:
+    - delay:
+        minutes: 4
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.basement_camera_motion_bool

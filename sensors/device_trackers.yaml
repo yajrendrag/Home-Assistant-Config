@@ -6,10 +6,10 @@
 #- platform: mqtt
 #  state_topic: "owntracks/jayn5/nexus 5x"
 #  name: "Nexus 5x Battery"
-#  unit_of_measurement: "%"    
+#  unit_of_measurement: "%"
 #  value_template: '{{ value_json.batt }}'
 #- platform: mqtt
-#  state_topic: "owntracks/jays7/galaxy s7/event"   
+#  state_topic: "owntracks/jays7/galaxy s7/event"
 #  name: "Jay Room Locator"
 #  value_template: '{{ value_json.event ~ " " ~ value_json.desc|replace("-","") }}'
 #- platform: mqtt_room
@@ -22,12 +22,26 @@
   state_topic: "gwifilocator/location/jay"
   name: "Jay WiFi Locator"
   value_template: '{{ value_json.location }}'
+- platform: mqtt
+  state_topic: "homeassistant/motion/basement"
+  name: "basement camera motion"
+  value_template: '{{ value_json.camera ~ " " ~ value_json.time ~ " " ~ value_json.date}}'
 - platform: template
   sensors:
     jay_home:
       friendly_name: Jay Home
       value_template: "{{ 'home' if states.input_boolean.jay_home is not none and states ('input_boolean.jay_home') == 'on' else 'not_home' }}"
       entity_id: input_boolean.jay_home
+    basement_camera_sensor:
+      friendly_name: basement camera sensor
+      value_template: "{{ 'off' if states.input_boolean.basement_camera_motion_bool is not none and states ('input_boolean.basement_camera_motion_bool') == 'off' else 'on' }}"
+      entity_id: input_boolean.basement_camera_motion_bool
+    total_basement_motion:
+      friendly_name: Motion Detected in basement
+      value_template: "{{ 'no motion' if states('sensor.basement_camera_sensor') == 'off' and states('binary_sensor.basement_sound') == 'off' else 'motion' }}"
+#      entity_id:
+#        - sensor.basement_camera_sensor
+#        - binary_sensor.basement_sound
     note_4_battery:
       friendly_name: Note 4 Battery
       value_template: "{{ states.device_tracker.jay_note_4.attributes.battery|default(-1)|int if states.device_tracker.jay_note_4 is not none }}"

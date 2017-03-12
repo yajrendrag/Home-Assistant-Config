@@ -36,7 +36,7 @@
 ##############################
 #                            #
 #      CAMERA AUTOMATION     #
-#                            # 
+#                            #
 ##############################
 
 #Turn on living room camera switch based on battery levels
@@ -78,7 +78,7 @@
 ##############################
 #                            #
 #    UPDATER AUTOMATION      #
-#                            # 
+#                            #
 ##############################
 
 # updater notification
@@ -104,7 +104,7 @@
 ##############################
 #                            #
 #     NIGHTLY ZWAVE RESET    #
-#                            # 
+#                            #
 ##############################
 
 - alias: 'zwave soft reset at 2:30am'
@@ -124,14 +124,14 @@
 ##############################
 #                            #
 # MOTION DETECTION NOTIFIER  #
-#                            # 
+#                            #
 ##############################
 
 - alias: 'motion detected'
 #  initial_state: False
   trigger:
     platform: mqtt
-    topic: 'homeassistant/motion'
+    topic: 'homeassistant/motion/#'
   condition:
     - condition: state
       entity_id: group.jay
@@ -150,7 +150,7 @@
 ##############################
 #                            #
 #  MOTION AUTOMATION CONTROL #
-#                            # 
+#                            #
 ##############################
 
 #- alias: 'motion detection automation on'
@@ -179,4 +179,3 @@
 #        minutes: 2
 #  action:
 #    service: shell_command.motion_auto_off
-
