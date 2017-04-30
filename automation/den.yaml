@@ -58,7 +58,11 @@
 #      to: 'on'
     - platform: numeric_state
       entity_id: sensor.den_burglar_26_10
-      above: '3'
+      above: '2'
+  condition:
+    condition: time
+    after: '06:00:00'
+    before: '01:00:00'
   action:
     service: light.turn_on
     entity_id:
@@ -114,13 +118,13 @@
       - light.den_corner
 
 #turn off den lights when not home
-- alias: 'turn off den lights when leaving den'
+- alias: 'turn off den lights when leaving den when not home'
   trigger:
     - platform: state
       entity_id: group.jay
       state: 'not_home'
       for:
-        minutes: 3
+        minutes: 5
   action:
     service: light.turn_off
     entity_id:
@@ -130,18 +134,18 @@
       - light.tiffany_level_12_0
       - light.den_corner
 
-- alias: 'turn off den detection automation'
+#- alias: 'turn off den detection automation'
 #  initial: off
-  trigger:
-    platform: time
-    after: '01:59:00'
-  action:
-    service: shell_command.den_detect_off
+#  trigger:
+#    platform: time
+#    after: '01:59:00'
+#  action:
+#    service: shell_command.den_detect_off
 
-- alias: 'turn on den detection automation'
+# alias: 'turn on den detection automation'
 #  initial: off
-  trigger:
-    platform: time
-    after: '06:00:00'
-  action:
-    service: shell_command.den_detect_on
+#  trigger:
+#    platform: time
+#    after: '06:00:00'
+#  action:
+#    service: shell_command.den_detect_on

@@ -25,3 +25,13 @@
   action:
     service: homeassistant.turn_off
     entity_id: switch.kitchen_switch_4_0
+
+#turn off kitchen lights if no one home
+- alias: 'turn off kitchen lights if no one home'
+  trigger:
+    platform: state
+    entity_id: group.family
+    to: 'not_home'
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.kitchen_switch_4_0

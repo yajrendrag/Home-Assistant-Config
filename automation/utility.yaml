@@ -43,7 +43,7 @@
 - alias: 'lr camera switch on'
   trigger:
     platform: template
-    value_template: "{% if states ('sensor.note_4_battery') | int < 40 %}true{% endif %}"
+    value_template: "{% if states ('sensor.note_4_battery') | int < 60 %}true{% endif %}"
   action:
     service: switch.turn_on
     entity_id: switch.living_room_camera_power
@@ -61,7 +61,7 @@
 - alias: 'master phone pwr switch on'
   trigger:
     platform: template
-    value_template: "{% if states ('sensor.nexus_5x_battery') | int < 40 %}true{% endif %}"
+    value_template: "{% if states ('sensor.nexus_5x_battery') | int < 65 %}true{% endif %}"
   action:
     service: switch.turn_on
     entity_id: switch.bedroom_phone_power
@@ -134,7 +134,7 @@
     topic: 'homeassistant/motion/#'
   condition:
     - condition: state
-      entity_id: group.jay
+      entity_id: group.family
       state: 'not_home'
   action:
     service: notify.notify

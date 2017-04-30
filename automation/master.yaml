@@ -6,9 +6,11 @@
     offset: "-01:00:00"
   action:
     service: light.turn_on
-    entity_id: 
+    entity_id:
       - light.master
       - light.master_corner
+    data:
+      brightness: 255
 
 #Turn on master bedroom nightstand lights in late pm
 - alias: 'master bedroom nightstand lights in late pm'
@@ -20,6 +22,33 @@
     entity_id:
       - light.master_left_night_stand
       - light.master_right_night_stand
+    data:
+      brightness: 255
+
+#dim lights slowly between 9 and midnight
+- alias: 'dim lights slowly between 9pm and midnight'
+  trigger:
+    platform: time
+    minutes: '/1'
+    seconds: '00'
+  condition:
+    condition: time
+    after: '21:00:00'
+    before: '23:30:00'
+  action:
+    - service: script.dim_master_lights
+      data:
+        entity_id: light.master
+    - service: script.dim_master_left_ns_lights
+      data:
+        entity_id: light.master_left_night_stand
+    - service: script.dim_master_right_ns_lights
+      data:
+        entity_id: light.master_right_night_stand
+    - service: script.dim_master_corner_lights
+      data:
+        entity_id: light.master_corner
+
 
 #Turn off master nightstand lights at 12:30am
 - alias: 'master nightstand lights off at 12:30am'
@@ -31,4 +60,3 @@
     entity_id:
       - light.master_left_night_stand
       - light.master_right_night_stand
-

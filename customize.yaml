@@ -114,6 +114,9 @@ sensor.note_4_battery:
 sensor.nexus_5x_battery:
   friendly_name: Nexus 5x Battery Level
   icon: mdi:battery-unknown
+#sensor.nexus_9_battery:
+#  friendly_name: Nexus 9 Battery Level
+#  icon: mdi:battery-unknown
 #
 #  Wifi Locator Customization
 #

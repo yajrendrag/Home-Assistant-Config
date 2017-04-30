@@ -39,3 +39,31 @@ motion_timer_off:
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.basement_camera_motion_bool
+
+dim_master_lights:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: "{{ entity_id }}"
+        brightness: "{{ states[entity_id.split('.')[0]][entity_id.split('.')[1]].attributes.brightness | int - 1 | int }}"
+
+dim_master_left_ns_lights:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: "{{ entity_id }}"
+        brightness: "{{ states[entity_id.split('.')[0]][entity_id.split('.')[1]].attributes.brightness | int - 1 | int }}"
+
+dim_master_right_ns_lights:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: "{{ entity_id }}"
+        brightness: "{{ states[entity_id.split('.')[0]][entity_id.split('.')[1]].attributes.brightness | int - 1 | int }}"
+
+dim_master_corner_lights:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: "{{ entity_id }}"
+        brightness: "{{ states[entity_id.split('.')[0]][entity_id.split('.')[1]].attributes.brightness | int - 1 | int }}"

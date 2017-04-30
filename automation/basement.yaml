@@ -121,6 +121,21 @@
       - switch.basement_stairs_switch_3_0
       - light.lightstrip
 
+#turn off basement lights if no one home
+- alias: 'turn off basement lights if no one home'
+  trigger:
+    platform: state
+    entity_id: group.family
+    to: 'not_home'
+  action:
+    service: homeassistant.turn_off
+    entity_id:
+      - light.basement_3way_dimmer_level_25_0
+      - light.basement_cabinet
+      - light.basement_wall
+      - light.lightstrip
+
+
 - alias: 'no motion countdown'
   trigger:
     platform: mqtt

@@ -65,10 +65,10 @@
     state: 'off'
   trigger:
     - platform: state
-      entity_id: device_tracker.cc088d3faa4b
+      entity_id: device_tracker.bca920aed406
       to: 'home'
     - platform: state
-      entity_id: device_tracker.020fb53faa4b
+      entity_id: device_tracker.020fb5aed406
       to: 'home'
   action:
      service: input_boolean.turn_on

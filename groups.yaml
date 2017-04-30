@@ -12,7 +12,6 @@ default_view:
     - camera.garage
     - camera.livingroom_2
     - camera.master
-    - camera.storage
     - group.weather
     - group.alarms
     - group.nest
@@ -79,14 +78,20 @@ Front Bedroom::
   entities:
     - light.front_bedroom
 
-Master:
-  view: yes
-  name: Master
+Master lights:
+  view: no
+  name: Master lights
   entities:
     - light.master
     - light.master_corner
     - light.master_left_night_stand
     - light.master_right_night_stand
+
+Master:
+  view: yes
+  name: Master
+  entities:
+    - group.master_lights
 #    - switch.bedroom_phone_power
     - group.note_4_battery
     - switch.living_room_camera_power
@@ -105,6 +110,7 @@ Basement:
     - switch.basement_stairs_switch_3_0
     - light.basement_cabinet
     - group.nexus_5x_battery
+#    - group.nexus_9_battery
     - scene.basement_dim
     - scene.basement_normal
     - switch.bedroom_phone_power
@@ -137,6 +143,7 @@ Devices:
     - group.jay_is_currently_in
     - group.nexus_5x_battery
     - group.note_4_battery
+#    - group.nexus_9_battery
     - input_boolean.lily_home
     - input_boolean.maddie_home
     - input_boolean.jay_home
@@ -154,10 +161,10 @@ Kids:
   view: no
   name: Kids
   entities:
-    - device_tracker.020fb54707ce
+    - device_tracker.020fb5aed406
     - device_tracker.bc9fef72f640
     - device_tracker.020fb572f640
-    - device_tracker.203cae4707ce
+    - device_tracker.bca920aed406
 
 Automations:
   view: yes
@@ -223,8 +230,8 @@ Lily:
   view: no
   name: Lily
   entities:
-    - device_tracker.cc088d3faa4b
-    - device_tracker.020fb53faa4b
+    - device_tracker.020fb5aed406
+    - device_tracker.bca920aed406
 
 Jay:
   view: no
@@ -257,6 +264,12 @@ Note 4 Battery:
   name: Galaxy Note 4 Battery Level
   entities:
     - sensor.note_4_battery
+
+#Nexus 9 Battery:
+#  view: no
+#  name: Nexus 9 Battery Level
+#  entities:
+#    - sensor.nexus_9_battery
 
 Misc Automations:
   view: no
