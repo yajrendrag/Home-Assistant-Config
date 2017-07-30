@@ -1,5 +1,5 @@
 #when basement nuc player pauses
-- alias: "Media player paused/stopped"
+- alias: "Media player paused"
   trigger:
     platform: state
     entity_id: media_player.nuci5
@@ -13,7 +13,7 @@
     entity_id: scene.basement_normal
 
 #when basement nuc player starts playing
-- alias: "Media player paused/stopped"
+- alias: "Media player plays"
   trigger:
     platform: state
     entity_id: media_player.nuci5
@@ -25,4 +25,3 @@
   action:
     service: scene.turn_on
     entity_id: scene.basement_dim
-

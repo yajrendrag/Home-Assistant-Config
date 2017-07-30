@@ -1,12 +1,15 @@
 #- platform: ffmpeg
-#  name: Yi LR
+#  name: livingroom
 #  input: -rtsp_transport tcp -i rtsp://192.168.1.213:554/ch0_0.h264
 #- platform: ffmpeg
-#  name: Yi Garage
+#  name: garage
 #  input: -rtsp_transport tcp -i rtsp://192.168.1.215:554/ch0_0.h264
 #- platform: ffmpeg
-#  name: Yi Basement
+#  name: basement
 #  input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
+#- platform: mjpeg
+#  mjpeg_url: http://192.168.1.143:8080/video
+#  name: master
 #- platform: mjpeg
 #  mjpeg_url: http://192.168.1.166:89/mjpg/YiLR
 #  name: livingroom

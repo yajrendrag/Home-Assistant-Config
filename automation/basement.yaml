@@ -2,11 +2,11 @@
 - alias: 'basement corner light in late pm'
   trigger:
     platform: time
-    after: '15:00:00'
+    at: '15:00:00'
   action:
     service: light.turn_on
     entity_id:
-      - light.basement_corner
+      - light.basement_corner_level
 
 #Turn on basement stairs light in late pm
 - alias: 'turn on basement stairs light in late pm'
@@ -16,28 +16,28 @@
     offset: "-02:00:00"
   action:
     service: switch.turn_on
-    entity_id: switch.basement_stairs_switch_3_0
+    entity_id: switch.basement_stairs_switch
 
 #Turn off basement corner light at 12:45am
 - alias: 'basement corner light off at 12:45am'
   trigger:
     platform: time
-    after: '00:45:00'
+    at: '00:45:00'
   action:
     service: light.turn_off
     entity_id:
-      - light.basement_corner
+      - light.basement_corner_level
 
 #Turn off basement lights in late pm
 - alias: 'turn off basement lights in late pm'
   trigger:
     platform: time
-    after: "01:00:00"
+    at: "01:00:00"
   action:
     service: homeassistant.turn_off
     entity_id:
-      - switch.basement_stairs_switch_3_0
-      - light.basement_3way_dimmer_level_25_0
+      - switch.basement_stairs_switch
+      - light.basement_3way_dimmer_level
       - light.basement_wall
       - light.basement_cabinet
       - light.lightstrip
@@ -45,14 +45,15 @@
 - alias: 'turn on basement lights if too dark and motion'
   trigger:
     platform: numeric_state
-    entity_id: sensor.basement_burglar_22_10
+    entity_id: sensor.basement_burglar
     above: '3'
   condition:
     - condition: numeric_state
-      entity_id: sensor.basement_luminance_22_3
+      entity_id: sensor.basement_luminance
       below: '25'
   action:
-    service: script.basement_lights_on
+    - service: script.basement_lights_on
+    - service: shell_command.reload_ffmpeg
 
 #turn off basement lights if jay is not downstairs and kids not home
 - alias: 'turn off basement lights based on presence'
@@ -92,10 +93,10 @@
   action:
     service: homeassistant.turn_off
     entity_id:
-      - light.basement_3way_dimmer_level_25_0
+      - light.basement_3way_dimmer_level
       - light.basement_cabinet
       - light.basement_wall
-      - switch.basement_stairs_switch_3_0
+      - switch.basement_stairs_switch
       - light.lightstrip
 
 #turn off basement lights if no motion and no one downstairs
@@ -111,14 +112,14 @@
     value_template: "{{ 'basement' not in states('sensor.jay_wifi_locator') }}"
 #      - condition: state#
 #        entity_id:  binary_sensor.basement_sound
-#        state: 'off'
+#        to: 'off'
   action:
     service: homeassistant.turn_off
     entity_id:
-      - light.basement_3way_dimmer_level_25_0
+      - light.basement_3way_dimmer_level
       - light.basement_cabinet
       - light.basement_wall
-      - switch.basement_stairs_switch_3_0
+      - switch.basement_stairs_switch
       - light.lightstrip
 
 #turn off basement lights if no one home
@@ -130,11 +131,10 @@
   action:
     service: homeassistant.turn_off
     entity_id:
-      - light.basement_3way_dimmer_level_25_0
+      - light.basement_3way_dimmer_level
       - light.basement_cabinet
       - light.basement_wall
       - light.lightstrip
-
 
 - alias: 'no motion countdown'
   trigger:
@@ -143,3 +143,59 @@
   action:
     service: homeassistant.turn_on
     entity_id: script.motion_timer
+
+#- alias: 'turn on zpower switch 1'
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.power_switch_1
+#  condition:
+#    condition: state
+#    entity_id: input_boolean.power_switch_1
+#    to: 'off'
+#  action:
+#    service: homeassistant.turn_off
+#    entity_id: switch.zpower_strip_switch_2
+
+#- alias: 'turn off zpower switch 1'
+#  trigger:
+#    platform: state
+#    entity_id: input_boolean.power_switch_1
+#  condition:
+#    condition: state
+#    entity_id: input_boolean.power_switch_1
+#    to: 'on'
+#  action:
+#    service: homeassistant.turn_on
+#    entity_id: switch.zpower_strip_switch_2
+
+- alias: 'toggle zpower switch 1'
+  trigger:
+    platform: state
+    entity_id: input_boolean.power_switch_1
+  action:
+    service: homeassistant.toggle
+    entity_id: switch.zpower_strip_switch_2
+
+- alias: 'toggle zpower switch 2'
+  trigger:
+    platform: state
+    entity_id: input_boolean.power_switch_2
+  action:
+    service: homeassistant.toggle
+    entity_id: switch.zpower_strip_switch_3
+
+- alias: 'toggle zpower switch 3'
+  trigger:
+    platform: state
+    entity_id: input_boolean.power_switch_3
+  action:
+    service: homeassistant.toggle
+    entity_id: switch.zpower_strip_switch_4
+
+- alias: 'toggle zpower switch 4'
+  trigger:
+    platform: state
+    entity_id: input_boolean.power_switch_4
+  action:
+    service: homeassistant.toggle
+    entity_id: switch.zpower_strip_switch_5

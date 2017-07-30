@@ -4,13 +4,9 @@ default_view:
     - climate.hallway
     - cover.main
     - cover.single
-#    - camera.yi_basement
-#    - camera.yi_garage
-#    - camera.yi_lr
-    - camera.livingroom
     - camera.basement
     - camera.garage
-    - camera.livingroom_2
+    - camera.livingroom
     - camera.master
     - group.weather
     - group.alarms
@@ -64,7 +60,7 @@ Living Room:
     - light.living_room_flood_right
     - light.front_hall_table
     - light.entry_hall
-    - switch.living_room_reading_lamp_switch_2_0
+    - switch.living_room_reading_lamp_switch
 #    - switch.living_room_camera_power
     - media_player.living_room
     - group.lr_motion_sensor
@@ -100,14 +96,14 @@ Basement:
   view: yes
   name: Basement
   entities:
-    - light.basement_corner
-    - light.basement_3way_dimmer_level_25_0
+    - light.basement_corner_level
+    - light.basement_3way_dimmer_level
 #   - light.basement_ceiling_couch
 #   - light.basement_ceiling_table
 #   - light.basement_ceiling_tv
     - light.basement_wall
     - light.lightstrip
-    - switch.basement_stairs_switch_3_0
+    - switch.basement_stairs_switch
     - light.basement_cabinet
     - group.nexus_5x_battery
 #    - group.nexus_9_battery
@@ -115,6 +111,15 @@ Basement:
     - scene.basement_normal
     - switch.bedroom_phone_power
     - media_player.nuci5
+    - switch.zpower_strip_switch
+    - switch.zpower_strip_switch_2
+    - switch.zpower_strip_switch_3
+    - switch.zpower_strip_switch_4
+    - switch.zpower_strip_switch_5
+    - input_boolean.power_switch_1
+    - input_boolean.power_switch_2
+    - input_boolean.power_switch_3
+    - input_boolean.power_switch_4
 
 Den:
   view: yes
@@ -123,8 +128,8 @@ Den:
     - light.den
     - light.den_corner
     - light.den_window
-    - light.desk_drawer_level_14_0
-    - light.tiffany_level_12_0
+    - light.desk_drawer_level
+    - light.tiffany_level
     - media_player.jay_s_imac
 
 Kitchen:
@@ -133,7 +138,7 @@ Kitchen:
   entities:
     - light.kitchen_left_stove
     - light.kitchen_right_stove
-    - switch.kitchen_switch_4_0
+    - switch.kitchen_switch
 
 Devices:
   view: yes
@@ -192,10 +197,10 @@ Alarms:
   view: no
   name: Motion Alarms
   entities:
-    - sensor.entry_burglar_24_10
-    - sensor.den_burglar_26_10
-    - sensor.kitchen_burglar_11_10
-    - sensor.basement_burglar_22_10
+    - sensor.entry_burglar
+    - sensor.den_burglar
+    - sensor.kitchen_burglar
+    - sensor.basement_burglar
     - binary_sensor.basement_sound
     - sensor.basement_camera_motion
     - sensor.basement_camera_sensor
@@ -213,10 +218,10 @@ Binary Sensors:
   view: no
   name: Binary Sensor Status
   entities:
-    - binary_sensor.basement_sensor_22_0
-    - binary_sensor.entry_sensor_24_0
-    - binary_sensor.den_sensor_26_0
-    - binary_sensor.kitchen_sensor_11_0
+    - binary_sensor.basement_sensor
+    - binary_sensor.entry_sensor
+    - binary_sensor.den_sensor
+    - binary_sensor.kitchen_sensor
     - binary_sensor.gwink
 
 Madeline:
@@ -276,17 +281,21 @@ Misc Automations:
   name: Misc Automations
   entities:
     - automation.alternate_updater_notifier
-    - automation.lights_off_at_midnight
     - automation.any_lights_off_in_early_am
+    - automation.update_available_notifications
+    - automation.zwave_heal_at_233am
+    - automation.zwave_soft_reset_at_230am
+    - automation.jay_home
+    - automation.jay_not_home
     - automation.lily_away
     - automation.lily_home
     - automation.madeline_away
     - automation.madeline_home
     - automation.motion_detected
+    - automation.no_motion_countdown
     - automation.track_sensor_state_of_jay_wifi_locator
-    - automation.update_available_notifications
-    - automation.zwave_heal_at_233am
-    - automation.zwave_soft_reset_at_230am
+    - automation.lights_off_at_midnight
+    - automation.wink_update_needed_notifier
 
 Basement Automations:
   view: no
@@ -294,11 +303,16 @@ Basement Automations:
   entities:
     - automation.basement_corner_light_in_late_pm
     - automation.basement_corner_light_off_at_1245am
-    - automation.turn_on_basement_lights_if_too_dark_and_motion
-    - automation.turn_on_basement_stairs_light_in_late_pm
     - automation.turn_off_basement_lights_based_on_motion__no_presence
     - automation.turn_off_basement_lights_based_on_presence
+    - automation.turn_off_basement_lights_if_no_one_home
     - automation.turn_off_basement_lights_in_late_pm
+    - automation.turn_on_basement_lights_if_too_dark_and_motion
+    - automation.turn_on_basement_stairs_light_in_late_pm
+    - automation.master_phone_pwr_switch_off
+    - automation.master_phone_pwr_switch_on
+    - automation.media_player_paused
+    - automation.media_player_plays
 
 Master Automations:
   view: no
@@ -307,8 +321,7 @@ Master Automations:
     - automation.master_bedroom_lights_in_late_pm
     - automation.master_bedroom_nightstand_lights_in_late_pm
     - automation.master_nightstand_lights_off_at_1230am
-    - automation.master_phone_pwr_switch_off
-    - automation.master_phone_pwr_switch_on
+    - automation.dim_lights_slowly_between_9pm_and_midnight
     - automation.lr_camera_switch_off
     - automation.lr_camera_switch_on
 
@@ -318,69 +331,66 @@ Den Automations:
   entities:
     - automation.den_light_in_morning_during_the_week
     - automation.den_lights_off_at_10pm_during_the_week
-    - automation.turn_off_den_detection_automation
+    - automation.turn_off_den_lights_when_leaving_den_when_not_home
     - automation.turn_off_den_lights_when_leaving_den
-    - automation.turn_on_den_detection_automation
     - automation.turn_on_den_lights_when_entering_den
 
 Kitchen Automations:
   view: no
   name: Kitchen Automations
   entities:
-    - automation.turn_on_kitchen_lights_if_too_dark_and_motion
     - automation.turn_off_kitchen_lights_based_on_presence_at_night
+    - automation.turn_off_kitchen_lights_if_no_one_home
+    - automation.turn_on_kitchen_lights_if_too_dark_and_motion
 
 Living Room and Entry Automations:
   view: no
   name: Living Room and Entry Automations
   entities:
-    - automation.turn_off_entryway_lights_based_when_no_presence_detected
     - automation.turn_off_living_room_reading_lamp_at_bedtime
     - automation.turn_on_entryway_light_if_too_dark_and_motion
     - automation.turn_on_living_room_reading_lamp_on_in_evening
-    - automation.lr_lights_on_late_pm
     - automation.turn_off_entryway_lights_based_when_no_presence_detected
-    - automation.turn_off_living_room_reading_lamp_at_bedtime
-    - automation.turn_on_living_room_reading_lamp_on_in_evening
+    - automation.lr_lights_on_late_pm
 
 Basement Sensor:
   view: no
   name: Basement Sensor
   entities:
-    - sensor.basement_alarm_level_22_1
-    - sensor.basement_alarm_type_22_0
-    - sensor.basement_burglar_22_10
-    - sensor.basement_luminance_22_3
-    - sensor.basement_relative_humidity_22_5
-    - sensor.basement_sourcenodeid_22_2
-    - sensor.basement_temperature_22_1
-    - sensor.basement_ultraviolet_22_27
+    - sensor.basement_alarm_level
+    - sensor.basement_alarm_type
+    - sensor.basement_burglar
+    - sensor.basement_luminance
+    - sensor.basement_relative_humidity
+    - sensor.basement_sourcenodeid
+    - sensor.basement_temperature
+    - sensor.basement_ultraviolet
 
 Den Sensor:
   view: no
   name: Den Sensor
   entities:
-    - sensor.den_alarm_level_26_1
-    - sensor.den_alarm_type_26_0
-    - sensor.den_burglar_26_10
-    - sensor.den_luminance_26_3
-    - sensor.den_relative_humidity_26_5
-    - sensor.den_sourcenodeid_26_2
-    - sensor.den_temperature_26_1
-    - sensor.den_ultraviolet_26_27
+    - sensor.den_alarm_level
+    - sensor.den_alarm_type
+    - sensor.den_burglar
+    - sensor.den_luminance
+    - sensor.den_relative_humidity
+    - sensor.den_sourcenodeid
+    - sensor.den_temperature
+    - sensor.den_ultraviolet
 
 Entry Sensor:
   view: no
   name: Entry Sensor
   entities:
-    - sensor.entry_alarm_level_24_1
-    - sensor.entry_alarm_type_24_0
-    - sensor.entry_burglar_24_10
-    - sensor.entry_luminance_24_3
-    - sensor.entry_relative_humidity_24_5
-    - sensor.entry_sourcenodeid_24_2
-    - sensor.entry_temperature_24_1
-    - sensor.entry_ultraviolet_24_27
+    - sensor.entry_alarm_level
+    - sensor.entry_alarm_type
+    - sensor.entry_burglar
+    - sensor.entry_luminance
+    - sensor.entry_relative_humidity
+    - sensor.entry_sourcenodeid
+    - sensor.entry_temperature
+    - sensor.entry_ultraviolet
 
 Hallway Sensor:
   view: no
@@ -396,14 +406,14 @@ Kitchen Sensor:
   view: no
   name: Kitchen Sensor
   entities:
-    - sensor.kitchen_alarm_level_11_1
-    - sensor.kitchen_alarm_type_11_0
-    - sensor.kitchen_burglar_11_10
-    - sensor.kitchen_luminance_11_3
-    - sensor.kitchen_relative_humidity_11_5
-    - sensor.kitchen_sourcenodeid_11_2
-    - sensor.kitchen_temperature_11_1
-    - sensor.kitchen_ultraviolet_11_27
+    - sensor.kitchen_alarm_level
+    - sensor.kitchen_alarm_type
+    - sensor.kitchen_burglar
+    - sensor.kitchen_luminance
+    - sensor.kitchen_relative_humidity
+    - sensor.kitchen_sourcenodeid
+    - sensor.kitchen_temperature
+    - sensor.kitchen_ultraviolet
 
 Misc Sensors:
   view: no

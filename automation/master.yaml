@@ -16,7 +16,7 @@
 - alias: 'master bedroom nightstand lights in late pm'
   trigger:
     platform: time
-    after: '19:30:00'
+    at: '19:30:00'
   action:
     service: light.turn_on
     entity_id:
@@ -54,7 +54,7 @@
 - alias: 'master nightstand lights off at 12:30am'
   trigger:
     platform: time
-    after: '00:30:00'
+    at: '00:30:00'
   action:
     service: light.turn_off
     entity_id:

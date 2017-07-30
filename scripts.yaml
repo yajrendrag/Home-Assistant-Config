@@ -14,11 +14,11 @@ basement_lights_on:
   sequence:
     - service: light.turn_on
       entity_id:
-        - light.basement_3way_dimmer_level_25_0
+        - light.basement_3way_dimmer_level
         - light.basement_wall
         - light.basement_cabinet
     - service: switch.turn_on
-      entity_id: switch.basement_stairs_switch_3_0
+      entity_id: switch.basement_stairs_switch
 
 motion_timer:
   sequence:

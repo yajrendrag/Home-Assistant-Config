@@ -38,11 +38,11 @@
       entity_id: input_boolean.basement_camera_motion_bool
     total_basement_motion:
       friendly_name: Motion Detected in basement
-      value_template: "{{ 'no motion' if states('sensor.basement_camera_sensor') == 'off' and states('binary_sensor.basement_sound') == 'off' and states('sensor.basement_burglar_22_10') == '0' else 'motion' }}"
+      value_template: "{{ 'no motion' if states('sensor.basement_camera_sensor') == 'off' and states('binary_sensor.basement_sound') == 'off' and states('sensor.basement_burglar') == '0' else 'motion' }}"
       entity_id:
         - sensor.basement_camera_sensor
         - binary_sensor.basement_sound
-        - sensor.basement_burglar_22_10
+        - sensor.basement_burglar
     note_4_battery:
       friendly_name: Note 4 Battery
       value_template: "{{ states.device_tracker.jay_note_4.attributes.battery|default(-1)|int if states.device_tracker.jay_note_4 is not none }}"

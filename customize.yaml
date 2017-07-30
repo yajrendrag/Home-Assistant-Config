@@ -1,24 +1,27 @@
 #
 # Emulated Hue Customizations
 #
-light.basement_3way_dimmer_level_25_0:
+light.basement_3way_dimmer_level:
   emulated_hue: true
   emulated_hue_name: "basement ceiling"
-switch.basement_stairs_switch_3_0:
+switch.basement_stairs_switch:
   emulated_hue: true
   emulatred_hue_name: "basement stairs switch"
-light.tiffany_level_12_0:
+light.tiffany_level:
   emulated_hue: true
   emulated_hue_name: "tiffany"
 light.desk_drawer_level_14:
   emulated_hue: true
   emulated_hue_name: "desk drawer"
-switch.kitchen_switch_4_0:
+switch.kitchen_switch:
   emulated_hue: true
   emulated_hue_name: "kitchen"
-switch.living_room_reading_lamp_switch_2_0:
+switch.living_room_reading_lamp_switch:
   emulated_hue: true
   emulated_hue_name: "living room reading lamp"
+light.basement_corner_level:
+  emulated_hue: true
+  emulated_hue_name: "basement corner"
 light.basement:
   emulated_hue: false
 #
@@ -51,16 +54,16 @@ sensor.pws_wind_mph:
 #
 #  Alarm Customizations
 #
-sensor.entry_burglar_24_10:
+sensor.entry_burglar:
   friendly_name: Entry Motion
   icon: mdi:run-fast
-sensor.den_burglar_26_10:
+sensor.den_burglar:
   friendly_name: Den Motion
   icon: mdi:run-fast
-sensor.basement_burglar_22_10:
+sensor.basement_burglar:
   friendly_name: Basement Motion
   icon: mdi:run-fast
-sensor.kitchen_burglar_11_10:
+sensor.kitchen_burglar:
   friendly_name: Kitchen Motion
   icon: mdi:run-fast
 binary_sensor.basement_sound:
@@ -90,16 +93,16 @@ binary_sensor.hallway_thermostat_online:
 #
 #  Binary Sensor Customizations
 #
-binary_sensor.basement_sensor_22_0:
+binary_sensor.basement_sensor:
   friendly_name: Basement MultiSensor Status
   icon: mdi:toggle-switch
-binary_sensor.entry_sensor_24_0:
+binary_sensor.entry_sensor:
   friendly_name: Entry MultiSensor Status
   icon: mdi:toggle-switch
-binary_sensor.den_sensor_26_0:
+binary_sensor.den_sensor:
   friendly_name: Den MultiSensor Status
   icon: mdi:toggle-switch
-binary_sensor.kitchen_sensor_11_0:
+binary_sensor.kitchen_sensor:
   friendly_name: Kitchen MultiSensor Status
   icon: mdi:toggle-switch
 binary_sensor.gwink:

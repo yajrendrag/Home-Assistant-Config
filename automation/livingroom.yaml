@@ -19,26 +19,26 @@
     offset: "-01:00:00"
   action:
     service: switch.turn_on
-    entity_id: switch.living_room_reading_lamp_switch_2_0
+    entity_id: switch.living_room_reading_lamp_switch
 
 #Turn off living room reading lamp at bedtime
 - alias: 'turn off living room reading lamp at bedtime'
   trigger:
     platform: time
-    after: '23:00:00'
+    at: '23:00:00'
   action:
     service: switch.turn_off
-    entity_id: switch.living_room_reading_lamp_switch_2_0
+    entity_id: switch.living_room_reading_lamp_switch
 
 #turn on entryway light if too dark and motion
 - alias: 'turn on entryway light if too dark and motion'
   trigger:
     platform: numeric_state
-    entity_id: sensor.entry_burglar_24_10
+    entity_id: sensor.entry_burglar
     above: '2'
   condition:
     - condition: numeric_state
-      entity_id: sensor.entry_luminance_24_3
+      entity_id: sensor.entry_luminance
       below: '25'
   action:
     service: scene.turn_on
@@ -48,7 +48,7 @@
 - alias: 'turn off entryway lights based when no presence detected'
   trigger:
     platform: state
-    entity_id: sensor.entry_burglar_24_10
+    entity_id: sensor.entry_burglar
     to: '0'
   action:
     service: light.turn_off

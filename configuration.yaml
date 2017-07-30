@@ -32,8 +32,8 @@ zoneminder:
   host: 192.168.2.100
   path: /zm/
   path_zms: /zm/cgi-bin/nph-zms
-  username: jay-ha
-  password: madlil54
+  username: !secret blue
+  password: !secret bluep
 
 http:
   api_password: !secret http_pass
@@ -67,6 +67,7 @@ zwave:
   usb_path: /dev/ttyACM0
   config_path: /srv/jhass/src/python-openzwave/openzwave/config
   autoheal: False
+  new_entity_ids: true
 
 notify:
   platform: pushbullet
@@ -88,6 +89,7 @@ shell_command:
   motion_auto_on: /usr/bin/python3 /home/jay/auto-motion-on.py
   den_detect_on: /usr/bin/python3 /home/jay/den-detection-on.py
   den_detect_off: /usr/bin/python3 /home/jay/den-detection-off.py
+  reload_ffmpeg: /usr/bin/python3 /home/jay/reload-ffmpeg.py
 
 mqtt:
   broker: !secret mqtt_broker
@@ -148,7 +150,7 @@ input_boolean: !include_dir_merge_named input_booleans/
 logger:
   default: error
 #  logs:
-#    homeassistant.components.ffmpeg_noise: warning
+#    homeassistant.components.automation: info
 
 ffmpeg:
 

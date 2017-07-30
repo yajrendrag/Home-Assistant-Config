@@ -13,7 +13,7 @@ New Updated Scheme - Feb 25, 2017
 3) send motion notification to mqtt topic via hass api
 4) leverage whatever notification component you like in HA to receive notification of motion
 
-1) video is saved to /home/hd1/record - nothing else to be done here except cleanup old files.  
+1) video is saved to /home/hd1/record - nothing else to be done here except cleanup old files.
 
 2) Once the video is captured, we just need to move it to an ftp server.  The Yi Hack includes two scripts - one to delete old videos,
 the other to copy video files to an ftp server.  The scripts are located in /home/hd1/test/scripts.  I used the copy-to-ftp script as is -

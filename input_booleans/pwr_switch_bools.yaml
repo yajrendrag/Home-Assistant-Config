@@ -1,0 +1,16 @@
+power_switch_1:
+  name: Switch 1 - Camera
+  initial: on
+  icon: mdi:power-socket
+power_switch_2:
+  name: Switch 2 - Lamp
+  initial: on
+  icon: mdi:power-socket
+power_switch_3:
+  name: Switch 3
+  initial: on
+  icon: mdi:power-socket
+power_switch_4:
+  name: Switch 4 - Wink
+  initial: on
+  icon: mdi:power-socket

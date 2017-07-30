@@ -2,7 +2,7 @@
 - alias: 'den light in morning during the week'
   trigger:
     platform: time
-    after: '07:00:00'
+    at: '07:00:00'
   condition:
     - condition: time
       weekday:
@@ -16,14 +16,14 @@
     entity_id:
       - light.den
       - light.den_window
-      - light.desk_drawer_level_14_0
-      - light.tiffany_level_12_0
+      - light.desk_drawer_level
+      - light.tiffany_level
 
 #Turn off den lights during the week
 - alias: 'den lights off at 10pm during the week'
   trigger:
     platform: time
-    after: '22:00:00'
+    at: '22:00:00'
   condition:
     - condition: time
       weekday:
@@ -37,27 +37,27 @@
     entity_id:
       - light.den
       - light.den_window
-      - light.desk_drawer_level_14_0
-      - light.tiffany_level_12_0
+      - light.desk_drawer_level
+      - light.tiffany_level
 
 #turn on den lights when entering den
 - alias: 'turn on den lights when entering den'
   trigger:
 #    - platform: state
 #      entity_id: sensor.jay_in_which_room
-#      state: 'enter den'
+#      to: 'enter den'
 #      for:
 #        seconds: 3
 #    - platform: state
 #      entity_id: device_tracker.jays7_galaxy_s7
-#      state: 'den'
+#      to: 'den'
 #      for:
 #        seconds: 3
 #    - platform: state
 #      entity_id: input_boolean.jay_phone_den
 #      to: 'on'
     - platform: numeric_state
-      entity_id: sensor.den_burglar_26_10
+      entity_id: sensor.den_burglar
       above: '2'
   condition:
     condition: time
@@ -68,34 +68,34 @@
     entity_id:
       - light.den
       - light.den_window
-      - light.desk_drawer_level_14_0
-      - light.tiffany_level_12_0
+      - light.desk_drawer_level
+      - light.tiffany_level
       - light.den_corner
 
 #turn off den lights when leaving den
 - alias: 'turn off den lights when leaving den'
   trigger:
     - platform: state
-      entity_id: sensor.den_burglar_26_10
+      entity_id: sensor.den_burglar
       to: '0'
     - platform: state
       entity_id: sensor.jay_wifi_locator
-      state: 'master bedroom'
+      to: 'master bedroom'
       for:
         minutes: 3
     - platform: state
       entity_id: sensor.jay_wifi_locator
-      state: 'basement'
+      to: 'basement'
       for:
         minutes: 3
     - platform: state
       entity_id: sensor.jay_wifi_locator
-      state: 'livingroom'
+      to: 'livingroom'
       for:
         minutes: 3
     - platform: state
       entity_id: sensor.jay_wifi_locator
-      state: 'kitchen'
+      to: 'kitchen'
       for:
         minutes: 3
   condition:
@@ -104,17 +104,17 @@
       - condition: template
         value_template: "{{ 'den' not in states('sensor.jay_wifi_locator') }}"
       - condition: template
-        value_template: "{{ '8' not in states('sensor.den_burglar_26_10') }}"
+        value_template: "{{ '8' not in states('sensor.den_burglar') }}"
 #      - condition: state
 #        entity_id: group.jay
-#        state: 'home'
+#        to: 'home'
   action:
     service: light.turn_off
     entity_id:
       - light.den
       - light.den_window
-      - light.desk_drawer_level_14_0
-      - light.tiffany_level_12_0
+      - light.desk_drawer_level
+      - light.tiffany_level
       - light.den_corner
 
 #turn off den lights when not home
@@ -122,7 +122,7 @@
   trigger:
     - platform: state
       entity_id: group.jay
-      state: 'not_home'
+      to: 'not_home'
       for:
         minutes: 5
   action:
@@ -130,15 +130,15 @@
     entity_id:
       - light.den
       - light.den_window
-      - light.desk_drawer_level_14_0
-      - light.tiffany_level_12_0
+      - light.desk_drawer_level
+      - light.tiffany_level
       - light.den_corner
 
 #- alias: 'turn off den detection automation'
 #  initial: off
 #  trigger:
 #    platform: time
-#    after: '01:59:00'
+#    at: '01:59:00'
 #  action:
 #    service: shell_command.den_detect_off
 
@@ -146,6 +146,6 @@
 #  initial: off
 #  trigger:
 #    platform: time
-#    after: '06:00:00'
+#    at: '06:00:00'
 #  action:
 #    service: shell_command.den_detect_on

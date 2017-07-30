@@ -8,7 +8,7 @@
 - alias: 'lights off at midnight'
   trigger:
     platform: time
-    after: '23:59:00'
+    at: '23:59:00'
   action:
     service: light.turn_off
     entity_id:
@@ -22,7 +22,7 @@
 - alias: 'any lights off in early am'
   trigger:
     platform: time
-    after: '02:30:00'
+    at: '02:30:00'
   action:
     service: homeassistant.turn_off
     entity_id:
@@ -30,7 +30,7 @@
       - light.front_hall_table
       - light.office
       - light.lightstrip
-      - switch.kitchen_switch_4_0
+      - switch.kitchen_switch
       - light.living_room
 
 ##############################
@@ -101,6 +101,16 @@
     data:
       message: 'Update for Home Assistant is available.'
 
+# Wink updater notification
+- alias: 'wink update needed notifier'
+  trigger:
+    platform: template
+    value_template: '{% if states.binary_sensor.gwink.attributes["update needed"] == true %}true{%else%}false{%endif%}'
+  action:
+    service: notify.notify
+    data:
+      message: 'Update for Wink is available.'
+
 ##############################
 #                            #
 #     NIGHTLY ZWAVE RESET    #
@@ -110,14 +120,14 @@
 - alias: 'zwave soft reset at 2:30am'
   trigger:
     platform: time
-    after: '2:30:00'
+    at: '2:30:00'
   action:
     service: script.zwave_reset
 
 - alias: 'zwave heal at 2:33am'
   trigger:
     platform: time
-    after: '2:33:00'
+    at: '2:33:00'
   action:
     service: script.zwave_healer
 
