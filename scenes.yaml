@@ -1,108 +1,108 @@
 - name: basement normal
   entities:
 #      light.basement_ceiling_couch:
-#          to: on
+#          state: on
 #          transition: 2
 #          brightness: 251
 #          xy_color: [ 0.4448, 0.4066 ]
 #      light.basement_ceiling_tv:
-#          to: on
+#          state: on
 #          transition: 2
 #          brightness: 251
 #          xy_color: [ 0.4448, 0.4066 ]
 #      light.basement_ceiling_table:
-#          to: on
+#          state: on
 #          transition: 2
 #          brightness: 251
 #          xy_color: [ 0.4448, 0.4066 ]
     light.basement_3way_dimmer_level:
-      to: on
+      state: on
       brightness: 242
     switch.basement_stairs_switch:
-      to: on
+      state: on
     light.basement_cabinet:
-      to: on
+      state: on
       brightness: 255
     light.basement_wall:
-      to: on
+      state: on
       brightness: 254
     light.basement_corner_level:
-      to: on
+      state: on
       brightness: 254
 
 - name: basement dim
   entities:
 #      light.basement_ceiling_couch:
-#          to: on
+#          state: on
 #          transition: 2
 #          brightness: 81
 #          xy_color: [ 0.4435, 0.4063 ]
 #      light.basement_ceiling_tv:
-#          to: on
+#          state: on
 #          transition: 2
 #          brightness: 81
 #          xy_color: [ 0.4435, 0.4063 ]
 #      light.basement_ceiling_table:
-#          to: on
+#          state: on
 #          transition: 2
 #          brightness: 251
 #          xy_color: [ 0.4448, 0.4066 ]
 #      light.lightstrip:
-#          to: on
+#          state: on
 #          transition: 2
 #          brightness: 254
 #          xy_color: [ 0.4671, 0.3483 ]
     light.basement_3way_dimmer_level:
-      to: on
+      state: on
       brightness: 30
     switch.basement_stairs_switch:
-      to: off
+      state: off
     light.basement_cabinet:
-      to: on
+      state: on
       brightness: 30
     light.basement_wall:
-      to: on
+      state: on
       brightness: 30
     light.basement_corner_level:
-      to: on
+      state: on
       brightness: 30
 
 - name: entry_hall_on
   entities:
     light.entry_hall:
-      to: on
+      state: on
       brightness: 25
 
 - name: living room dim
   entities:
     light.living_room_c_table:
-      to: on
+      state: on
       brightness: 50
     light.living_room_corner:
-      to: on
+      state: on
       brightness: 50
     switch.living_room_reading_lamp_switch:
-      to: on
+      state: on
     light.living_room_flood_left:
-      to: on
+      state: on
       brightness: 50
     light.living_room_flood_right:
-      to: on
+      state: on
       brightness: 50
 
 - name: living room on
   entities:
     light.living_room_c_table:
-      to: on
+      state: on
       brightness: 254
     light.living_room_corner:
-      to: on
+      state: on
       brightness: 254
     switch.living_room_reading_lamp_switch:
-      to: on
+      state: on
     light.living_room_flood_left:
-      to: on
+      state: on
       brightness: 254
     light.living_room_flood_right:
-      to: on
+      state: on
       brightness: 254

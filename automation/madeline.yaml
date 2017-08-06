@@ -1,0 +1,8 @@
+- alias: 'turn off front bedroom lights @ 8am'
+  trigger:
+    platform: time
+    at: '8:00:00'
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.front_bedroom

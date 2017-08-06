@@ -8,6 +8,7 @@ default_view:
     - camera.garage
     - camera.livingroom
     - camera.master
+    - camera.storage
     - group.weather
     - group.alarms
     - group.nest
@@ -60,6 +61,7 @@ Living Room:
     - light.living_room_flood_right
     - light.front_hall_table
     - light.entry_hall
+    - light.front_porch_level
     - switch.living_room_reading_lamp_switch
 #    - switch.living_room_camera_power
     - media_player.living_room
@@ -180,6 +182,7 @@ Automations:
     - group.master_automations
     - group.den_automations
     - group.kitchen_automations
+    - group.front_bedroom_automations
     - group.living_room_and_entry_automations
 
 Sensors:
@@ -313,6 +316,10 @@ Basement Automations:
     - automation.master_phone_pwr_switch_on
     - automation.media_player_paused
     - automation.media_player_plays
+    - automation.toggle_zpower_switch_1
+    - automation.toggle_zpower_switch_2
+    - automation.toggle_zpower_switch_3
+    - automation.toggle_zpower_switch_4
 
 Master Automations:
   view: no
@@ -334,6 +341,12 @@ Den Automations:
     - automation.turn_off_den_lights_when_leaving_den_when_not_home
     - automation.turn_off_den_lights_when_leaving_den
     - automation.turn_on_den_lights_when_entering_den
+
+Front Bedroom Automations:
+  view: no
+  name: Front Bedroom Automations
+  entities:
+    - automation.turn_off_front_bedroom_lights__8am
 
 Kitchen Automations:
   view: no

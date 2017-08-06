@@ -24,6 +24,12 @@ light.basement_corner_level:
   emulated_hue_name: "basement corner"
 light.basement:
   emulated_hue: false
+light.front_bedroom:
+  emulated_hue: false
+light.front_porch_level:
+  emulated_hue: true
+  emulated_hue_name: "front porch"
+  friendly_name: "front porch"
 #
 #  WeatherUnderground Customizations
 #
