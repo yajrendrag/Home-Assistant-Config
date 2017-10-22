@@ -26,7 +26,7 @@
   action:
     service: homeassistant.turn_off
     entity_id:
-      - light.entry_hall
+      - light.entry_hall_level
       - light.front_hall_table
       - light.office
       - light.lightstrip
@@ -150,6 +150,17 @@
     service: notify.notify
     data_template:
       message: "motion detected: {{ trigger.payload_json['camera'] ~ ' ' ~ trigger.payload_json['time'] ~ ' ' ~ trigger.payload_json['date'] }}"
+
+- alias: 'family home - turn nest to home mode'
+  trigger:
+    platform: state
+    entity_id: group.family
+    to: 'home'
+  action:
+    service: nest.set_mode
+    data:
+      home_mode: home
+
 
 ##############################
 #                            #

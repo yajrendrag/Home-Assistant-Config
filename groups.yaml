@@ -9,6 +9,7 @@ default_view:
     - camera.livingroom
     - camera.master
     - camera.storage
+    - camera.kitchen
     - group.weather
     - group.alarms
     - group.nest
@@ -24,6 +25,7 @@ Scenes:
   - scene.entry_hall_on
   - scene.living_room_on
   - scene.living_room_dim
+  - scene.front_porch_dim
 
 Weather:
   view: no
@@ -60,7 +62,7 @@ Living Room:
     - light.living_room_flood_left
     - light.living_room_flood_right
     - light.front_hall_table
-    - light.entry_hall
+    - light.entry_hall_level
     - light.front_porch_level
     - switch.living_room_reading_lamp_switch
 #    - switch.living_room_camera_power
@@ -69,6 +71,8 @@ Living Room:
     - scene.entry_hall_on
     - scene.living_room_on
     - scene.living_room_dim
+    - scene.front_porch_dim
+    - scene.front_porch_full
 
 Front Bedroom::
   view: yes
@@ -231,16 +235,17 @@ Madeline:
   view: no
   name: Madeline
   entities:
-    - device_tracker.020fb572f640
-    - device_tracker.bc9fef72f640
+#    - device_tracker.020fb572f640
+#    - device_tracker.bc9fef72f640
+    - sensor.maddie_home
 
 Lily:
   view: no
   name: Lily
   entities:
-    - device_tracker.020fb5aed406
-    - device_tracker.bca920aed406
-
+#    - device_tracker.020fb5aed406
+#    - device_tracker.bca920aed406
+    - sensor.lily_home
 Jay:
   view: no
   name: Jay
@@ -299,6 +304,7 @@ Misc Automations:
     - automation.track_sensor_state_of_jay_wifi_locator
     - automation.lights_off_at_midnight
     - automation.wink_update_needed_notifier
+    - automation.garage_door_open_notification
 
 Basement Automations:
   view: no
@@ -365,6 +371,9 @@ Living Room and Entry Automations:
     - automation.turn_on_living_room_reading_lamp_on_in_evening
     - automation.turn_off_entryway_lights_based_when_no_presence_detected
     - automation.lr_lights_on_late_pm
+    - automation.turn_off_front_porch_lights_in_morning
+    - automation.brighten_front_porch_lights_slowly
+    - automation.turn_on_front_porch_lights_at_sunset
 
 Basement Sensor:
   view: no

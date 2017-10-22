@@ -62,31 +62,31 @@
       entity_id: sensor.jay_wifi_locator
       to: 'den'
       for:
-        minutes: '2'
+        minutes: '5'
     - platform: state
       entity_id: sensor.jay_wifi_locator
       to: 'livingroom'
       for:
-        minutes: '2'
+        minutes: '5'
     - platform: state
       entity_id: sensor.jay_wifi_locator
       to: 'kitchen'
       for:
-        minutes: '2'
+        minutes: '5'
     - platform: state
       entity_id: sensor.jay_wifi_locator
       to: 'master bedroom'
       for:
-        minutes: '2'
+        minutes: '5'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: sensor.basement_camera_sensor
-        state: 'off'
-      - condition: state
-        entity_id: binary_sensor.basement_sound
-        state: 'off'
+        entity_id: sensor.total_basement_motion
+        state: 'no motion'
+#      - condition: state
+#        entity_id: binary_sensor.basement_sound
+#        state: 'off'
       - condition: state
         entity_id: group.kids
         state: 'not_home'
@@ -129,12 +129,16 @@
     entity_id: group.family
     to: 'not_home'
   action:
-    service: homeassistant.turn_off
-    entity_id:
-      - light.basement_3way_dimmer_level
-      - light.basement_cabinet
-      - light.basement_wall
-      - light.lightstrip
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - light.basement_3way_dimmer_level
+          - light.basement_cabinet
+          - light.basement_wall
+          - light.lightstrip
+    - service: nest.set_mode
+      data:
+        home_mode: away
 
 - alias: 'no motion countdown'
   trigger:

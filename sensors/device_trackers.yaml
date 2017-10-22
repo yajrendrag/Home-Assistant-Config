@@ -32,6 +32,14 @@
       friendly_name: Jay Home
       value_template: "{{ 'home' if states.input_boolean.jay_home is not none and states ('input_boolean.jay_home') == 'on' else 'not_home' }}"
       entity_id: input_boolean.jay_home
+    maddie_home:
+      friendly_name: Maddie Home
+      value_template: "{{ 'home' if states.input_boolean.maddie_home is not none and states ('input_boolean.maddie_home') == 'on' else 'not_home' }}"
+      entity_id: input_boolean.maddie_home
+    lily_home:
+      friendly_name: Lily Home
+      value_template: "{{ 'home' if states.input_boolean.lily_home is not none and states ('input_boolean.lily_home') == 'on' else 'not_home' }}"
+      entity_id: input_boolean.lily_home
     basement_camera_sensor:
       friendly_name: basement camera sensor
       value_template: "{{ 'off' if states.input_boolean.basement_camera_motion_bool is not none and states ('input_boolean.basement_camera_motion_bool') == 'off' else 'on' }}"

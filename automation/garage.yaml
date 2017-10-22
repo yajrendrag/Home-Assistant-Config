@@ -1,0 +1,17 @@
+#notify if garage doors are open too long
+- alias: 'garage door open notification'
+  trigger:
+    - platform: state
+      entity_id: cover.main
+      to: 'open'
+      for:
+        minutes: 15
+    - platform: state
+      entity_id: cover.single
+      to: 'open'
+      for:
+        minutes: 15
+  action:
+    service: notify.notify
+    data_template:
+      message: "URGENT - Garage door {{ states[trigger.entity_id.split('.')[0]][trigger.entity_id.split('.')[1]].attributes.friendly_name }} is open"

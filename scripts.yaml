@@ -67,3 +67,10 @@ dim_master_corner_lights:
       data_template:
         entity_id: "{{ entity_id }}"
         brightness: "{{ states[entity_id.split('.')[0]][entity_id.split('.')[1]].attributes.brightness | int - 1 | int }}"
+
+brighten_front_porch:
+  sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: "{{ entity_id }}"
+        brightness: "{{ states[entity_id.split('.')[0]][entity_id.split('.')[1]].attributes.brightness | int + 2 | int }}"

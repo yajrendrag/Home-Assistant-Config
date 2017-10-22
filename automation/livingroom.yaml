@@ -52,4 +52,59 @@
     to: '0'
   action:
     service: light.turn_off
-    entity_id: light.entry_hall
+    entity_id: light.entry_hall_level
+
+#brighten front porch lights slowly between sunset and sunse + 2 hours
+- alias: 'brighten front porch lights slowly'
+  trigger:
+    platform: time
+    minutes: '/3'
+    seconds: '00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: light.front_porch_level
+        state: 'on'
+      - condition: time
+        after: '18:00:00'
+        before: '21:00:00'
+#  condition:
+#    condition: time
+#    after: '20:30:00'
+#    before: '22:00:00'
+  action:
+    - service: script.brighten_front_porch
+      data:
+        entity_id: light.front_porch_level
+
+#turn off front porch lights in morning
+- alias: 'turn off front porch lights in morning'
+  trigger:
+    platform: sun
+    event: sunrise
+  action:
+    service: light.turn_off
+    entity_id:
+      - light.front_porch_level
+
+#turn on front porch lights at sunset'
+- alias: 'turn on front porch lights at sunset'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-0:31:00"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.front_porch_dim
+    - service: scene.turn_on
+      entity_id: scene.front_porch_dim
+
+#- alias: 'turn on front porch lights with brightness test'
+#  trigger:
+#    platform: time
+#    at: '20:22:00'
+#  action:
+#    entity_id: light.front_porch_level
+#    data:
+#      brightness: 200.0

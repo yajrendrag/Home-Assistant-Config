@@ -92,7 +92,7 @@
       entity_id: sensor.jay_wifi_locator
       to: 'livingroom'
       for:
-        minutes: 3
+        minutes: 9
     - platform: state
       entity_id: sensor.jay_wifi_locator
       to: 'kitchen'
