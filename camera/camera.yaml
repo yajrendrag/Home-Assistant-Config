@@ -29,6 +29,7 @@
 #  password: !secret bluep
 #  authentication: basic
 - platform: zoneminder
+- platform: ring
 #- platform: mjpeg
 ##  mjpeg_url: http://192.168.1.160:32772/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=2&user=jay-ha&connkey=757229&rand=1488983459
 #  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=2&user=admin&connkey=848243&rand=1488857225

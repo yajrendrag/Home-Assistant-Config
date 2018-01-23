@@ -1,1 +1,14 @@
-{"4": "light.tiffany_level", "7": "light.front_porch_level", "5": "switch.living_room_reading_lamp_switch", "2": "switch.basement_stairs_switch", "6": "light.basement_corner_level", "3": "switch.kitchen_switch", "1": "light.basement_3way_dimmer_level"}
+{
+    "1": "light.basement_3way_dimmer_level",
+    "10": "light.living_room_c_table_level",
+    "11": "light.living_room_corner_level",
+    "12": "light.dining_room_level",
+    "2": "switch.basement_stairs_switch",
+    "3": "switch.kitchen_switch",
+    "4": "light.tiffany_level",
+    "5": "switch.living_room_reading_lamp_switch",
+    "6": "light.basement_corner_level",
+    "7": "light.front_porch_level",
+    "8": "light.front_bedroom",
+    "9": "light.basement"
+}

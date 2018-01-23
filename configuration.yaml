@@ -29,7 +29,7 @@ discovery:
     - samsung_tv
 
 zoneminder:
-  host: 192.168.2.100
+  host: 192.168.1.165
   path: /zm/
   path_zms: /zm/cgi-bin/nph-zms
   username: !secret blue
@@ -49,9 +49,9 @@ tts:
     cache_dir: /tmp/tts
     time_memory: 300
 
-light:
-  platform: hue
-  host: 192.168.1.137
+hue:
+  bridges:
+    - host: 192.168.1.137
 
 media_player:
   - platform: sonos
@@ -62,6 +62,10 @@ wink:
   password: !secret wink_pass
   client_id: !secret wink_client_id
   client_secret: !secret wink_client_secret
+
+ring:
+  username: !secret ring
+  password: !secret ringp
 
 zwave:
   usb_path: /dev/ttyACM0
@@ -99,15 +103,30 @@ mqtt:
   username: !secret mqtt_user
   password: !secret mqtt_pass
 
+#mqtt_statestream:
+#  base_topic: homeassistant
+#  publish_attributes: true
+#  publish_timestamps: true
+
 device_tracker:
   - platform: owntracks
-    consider_home: 300
+    consider_home: 180
 #  - platform: mqtt
 #    devices:
 #      jay_note_4: /location/jay
 #      jayn5_nexus_5x: /location/jayn5
 #      jays7_galaxy_s7: /location/jays7
+  - platform: asuswrt
+    consider_home: 180
+    host: 192.168.1.1
+    username: !secret ngear
+    ssh_key: !secret asuswrt_ssh_key
+    port: 22
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
   - platform: nmap_tracker
+    consider_home: 180
     hosts:
       - 192.168.1.147
       - 192.168.1.154
@@ -116,6 +135,11 @@ device_tracker:
       - 192.168.1.120
     home_interval: 15
     scan_options: " --privileged -p 62078 -sS "
+  - platform: tile
+    consider_home: 600
+    username: !secret tile_user
+    password: !secret tile_pw
+
 
 input_select:
   jay_room_tracker:
@@ -150,8 +174,8 @@ input_boolean: !include_dir_merge_named input_booleans/
 
 logger:
   default: error
-#  logs:
-#    homeassistant.components.media_player.nuci5: info
+  logs:
+    homeassistant.components.camera: critical
 
 ffmpeg:
 
@@ -160,17 +184,16 @@ binary_sensor:
     monitored_conditions:
       - 'online'
       - 'is_using_emergency_heat'
-#  - platform: ffmpeg
-#    tool: motion
-#    name: basement_motion
-#    input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
-#    changes: 5
-#    extra_arguments: -pred 1 -q:v 2 -filter:v "crop=600:450:0:150"
   - platform: ffmpeg_noise
     name: basement_sound
     input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
-    peak: -18
-    duration: 1
+    peak: -23
+    duration: 2
+  - platform: ring
+
+timer:
+  porch:
+    duration: '00:05:00'
 
 # Allows you to issue voice commands from the frontend
 conversation:

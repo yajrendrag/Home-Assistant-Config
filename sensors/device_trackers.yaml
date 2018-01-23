@@ -25,7 +25,7 @@
 - platform: mqtt
   state_topic: "homeassistant/motion/basement"
   name: "basement camera motion"
-  value_template: '{{ value_json.camera ~ " " ~ value_json.time ~ " " ~ value_json.date}}'
+  value_template: '{{ value_json.time ~ " " ~ value_json.date }}'
 - platform: template
   sensors:
     jay_home:
@@ -56,13 +56,8 @@
       value_template: "{{ states.device_tracker.jay_note_4.attributes.battery|default(-1)|int if states.device_tracker.jay_note_4 is not none }}"
       unit_of_measurement: '%'
       entity_id: device_tracker.jay_note_4
-    nexus_5x_battery:
-      friendly_name: Nexus 5x Battery
-      value_template: "{{ states.device_tracker.jayn5_nexus_5x.attributes.battery|default(-1)|int if states.device_tracker.jayn5_nexus_5x is not none }}"
-      unit_of_measurement: '%'
-      entity_id: device_tracker.jayn5_nexus_5x
-#    nexus_9_battery:
-#      friendly_name: Nexus 9 Battery
-#      value_template: "{{ states.device_tracker.jayn9_nexus_9.attributes.battery|default(-1)|int if states.device_tracker.jayn9_nexus_9 is not none }}"
-#      unit_of_measurement: '%'
-#      entity_id: device_tracker.jayn9_nexus_9
+  #  nexus_5x_battery:
+  #    friendly_name: Nexus 5x Battery
+  #    value_template: "{{ states.device_tracker.jayn5_nexus_5x.attributes.battery|default(-1)|int if states.device_tracker.jayn5_nexus_5x is not none }}"
+  #    unit_of_measurement: '%'
+  #    entity_id: device_tracker.jayn5_nexus_5x

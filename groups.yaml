@@ -10,6 +10,7 @@ default_view:
     - camera.master
     - camera.storage
     - camera.kitchen
+    - camera.front_door
     - group.weather
     - group.alarms
     - group.nest
@@ -57,15 +58,16 @@ Living Room:
   view: yes
   name: Living Room
   entities:
-    - light.living_room_c_table
-    - light.living_room_corner
+    - light.living_room_c_table_level
+    - light.living_room_corner_level
     - light.living_room_flood_left
     - light.living_room_flood_right
     - light.front_hall_table
     - light.entry_hall_level
     - light.front_porch_level
     - switch.living_room_reading_lamp_switch
-#    - switch.living_room_camera_power
+    - switch.garage_camera_switch
+    - light.dining_room_level
     - media_player.living_room
     - group.lr_motion_sensor
     - scene.entry_hall_on
@@ -74,7 +76,7 @@ Living Room:
     - scene.front_porch_dim
     - scene.front_porch_full
 
-Front Bedroom::
+Madelines Room:
   view: yes
   name: Madelines Room
   entities:
@@ -96,7 +98,7 @@ Master:
     - group.master_lights
 #    - switch.bedroom_phone_power
     - group.note_4_battery
-    - switch.living_room_camera_power
+    - switch.living_room_camera_power_switch
 
 Basement:
   view: yes
@@ -111,11 +113,11 @@ Basement:
     - light.lightstrip
     - switch.basement_stairs_switch
     - light.basement_cabinet
-    - group.nexus_5x_battery
-#    - group.nexus_9_battery
+#    - group.nexus_5x_battery
+    - group.basement_motion_sensor
     - scene.basement_dim
     - scene.basement_normal
-    - switch.bedroom_phone_power
+    - switch.basement_phone_power_switch
     - media_player.nuci5
     - switch.zpower_strip_switch
     - switch.zpower_strip_switch_2
@@ -145,6 +147,7 @@ Kitchen:
     - light.kitchen_left_stove
     - light.kitchen_right_stove
     - switch.kitchen_switch
+    - switch.kitchen_camera_switch
 
 Devices:
   view: yes
@@ -154,7 +157,6 @@ Devices:
     - group.jay_is_currently_in
     - group.nexus_5x_battery
     - group.note_4_battery
-#    - group.nexus_9_battery
     - input_boolean.lily_home
     - input_boolean.maddie_home
     - input_boolean.jay_home
@@ -266,23 +268,17 @@ Family:
     - group.madeline
     - group.lily
 
-Nexus 5x Battery:
-  view: no
-  name: Nexus 5X Battery Level
-  entities:
-    - sensor.nexus_5x_battery
+#Nexus 5x Battery:
+#  view: no
+#  name: Nexus 5X Battery Level
+#  entities:
+#    - sensor.nexus_5x_battery
 
 Note 4 Battery:
   view: no
   name: Galaxy Note 4 Battery Level
   entities:
     - sensor.note_4_battery
-
-#Nexus 9 Battery:
-#  view: no
-#  name: Nexus 9 Battery Level
-#  entities:
-#    - sensor.nexus_9_battery
 
 Misc Automations:
   view: no
@@ -450,3 +446,9 @@ LR Motion Sensor:
   name: Living Room Motion Sensor Status
   entities:
     - sensor.lr_motion_detection
+
+Basement Motion Sensor:
+  view: no
+  name: Basement Camera Motion Sensor Status
+  entities:
+    - sensor.basement_camera_motion

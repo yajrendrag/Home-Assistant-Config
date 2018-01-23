@@ -14,8 +14,8 @@
     entity_id:
       - light.master
       - light.master_corner
-      - light.living_room_c_table
-      - light.living_room_corner
+      - light.living_room_c_table_level
+      - light.living_room_corner_level
       - light.den_corner
 
 #Turn off any lights in early morning
@@ -32,6 +32,12 @@
       - light.lightstrip
       - switch.kitchen_switch
       - light.living_room
+      - light.basement_3way_dimmer_level
+      - light.basement_cabinet
+      - light.basement_wall
+      - switch.basement_stairs_switch
+      - light.lightstrip
+      - light.dining_room_level
 
 ##############################
 #                            #
@@ -43,10 +49,10 @@
 - alias: 'lr camera switch on'
   trigger:
     platform: template
-    value_template: "{% if states ('sensor.note_4_battery') | int < 60 %}true{% endif %}"
+    value_template: "{% if states ('sensor.note_4_battery') | int < 70 %}true{% endif %}"
   action:
     service: switch.turn_on
-    entity_id: switch.living_room_camera_power
+    entity_id: switch.living_room_camera_power_switch
 
 #Turn off living room camera switch based on battery levels
 - alias: 'lr camera switch off'
@@ -55,25 +61,25 @@
     value_template: "{% if states ('sensor.note_4_battery') | int > 95 %}true{% endif %}"
   action:
     service: switch.turn_off
-    entity_id: switch.living_room_camera_power
+    entity_id: switch.living_room_camera_power_switch
 
 #Turn on master bedroom phone power switch based on battery levels
-- alias: 'master phone pwr switch on'
-  trigger:
-    platform: template
-    value_template: "{% if states ('sensor.nexus_5x_battery') | int < 65 %}true{% endif %}"
-  action:
-    service: switch.turn_on
-    entity_id: switch.bedroom_phone_power
+#- alias: 'master phone pwr switch on'
+#  trigger:
+#    platform: template
+#    value_template: "{% if states ('sensor.nexus_5x_battery') | int < 72 %}true{% endif %}"
+#  action:
+#    service: switch.turn_on
+#    entity_id: switch.basement_phone_power_switch
 
 #Turn off master bedroom phone power switch based on battery levels
-- alias: 'master phone pwr switch off'
-  trigger:
-    platform: template
-    value_template: "{% if states ('sensor.nexus_5x_battery') | int  > 90 %}true{% endif %}"
-  action:
-    service: switch.turn_off
-    entity_id: switch.bedroom_phone_power
+#- alias: 'master phone pwr switch off'
+#  trigger:
+#    platform: template
+#    value_template: "{% if states ('sensor.nexus_5x_battery') | int  > 90 %}true{% endif %}"
+#  action:
+#    service: switch.turn_off
+#    entity_id: switch.basement_phone_power_switch
 
 ##############################
 #                            #
@@ -161,6 +167,19 @@
     data:
       home_mode: home
 
+##############################
+#                            #
+#       ffmpeg restart       #
+#                            #
+##############################
+
+- alias: 'restart ffmpeg'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.basement_sound
+    to: 'unavailable'
+  action:
+    service: ffmpeg.restart
 
 ##############################
 #                            #

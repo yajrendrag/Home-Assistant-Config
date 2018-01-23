@@ -148,30 +148,6 @@
     service: homeassistant.turn_on
     entity_id: script.motion_timer
 
-#- alias: 'turn on zpower switch 1'
-#  trigger:
-#    platform: state
-#    entity_id: input_boolean.power_switch_1
-#  condition:
-#    condition: state
-#    entity_id: input_boolean.power_switch_1
-#    to: 'off'
-#  action:
-#    service: homeassistant.turn_off
-#    entity_id: switch.zpower_strip_switch_2
-
-#- alias: 'turn off zpower switch 1'
-#  trigger:
-#    platform: state
-#    entity_id: input_boolean.power_switch_1
-#  condition:
-#    condition: state
-#    entity_id: input_boolean.power_switch_1
-#    to: 'on'
-#  action:
-#    service: homeassistant.turn_on
-#    entity_id: switch.zpower_strip_switch_2
-
 - alias: 'toggle zpower switch 1'
   trigger:
     platform: state

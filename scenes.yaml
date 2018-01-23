@@ -75,10 +75,10 @@
 
 - name: living room dim
   entities:
-    light.living_room_c_table:
+    light.living_room_c_table_level:
       state: on
       brightness: 50
-    light.living_room_corner:
+    light.living_room_corner_level:
       state: on
       brightness: 50
     switch.living_room_reading_lamp_switch:
@@ -92,10 +92,10 @@
 
 - name: living room on
   entities:
-    light.living_room_c_table:
+    light.living_room_c_table_level:
       state: on
       brightness: 254
-    light.living_room_corner:
+    light.living_room_corner_level:
       state: on
       brightness: 254
     switch.living_room_reading_lamp_switch:

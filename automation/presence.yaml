@@ -48,10 +48,10 @@
     state: 'on'
   trigger:
     - platform: state
-      entity_id: device_tracker.cc088d3faa4b
+      entity_id: device_tracker.bca920aed406
       to: 'not_home'
     - platform: state
-      entity_id: device_tracker.020fb53faa4b
+      entity_id: device_tracker.020fb5aed406
       to: 'not_home'
   action:
      service: input_boolean.turn_off
@@ -87,6 +87,9 @@
     - platform: state
       entity_id: device_tracker.bc9fef72f640
       to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.madelinplewatch
+      to: 'not_home'
   action:
      service: input_boolean.turn_off
      entity_id: input_boolean.maddie_home
@@ -103,6 +106,9 @@
     - platform: state
       entity_id: device_tracker.bc9fef72f640
       to: 'home'
+    - platform: state
+      entity_id: device_tracker.madelinplewatch
+      to: 'home'
   action:
      service: input_boolean.turn_on
      entity_id: input_boolean.maddie_home
@@ -113,9 +119,15 @@
     entity_id: input_boolean.jay_home
     state: 'off'
   trigger:
-    platform: state
-    entity_id: device_tracker.jays7_galaxy_s7
-    to: 'home'
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.tile_samsungsmg950u
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.tile_keys
+      to: 'home'
   action:
      service: input_boolean.turn_on
      entity_id: input_boolean.jay_home
@@ -126,9 +138,21 @@
     entity_id: input_boolean.jay_home
     state: 'on'
   trigger:
-    platform: state
-    entity_id: device_tracker.jays7_galaxy_s7
-    to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.jays7_galaxy_s7
+      to: 'not_home'
+      for:
+        minutes: '5'
+    - platform: state
+      entity_id: device_tracker.tile_samsungsmg950u
+      to: 'not_home'
+      for:
+        minutes: '5'
+    - platform: state
+      entity_id: device_tracker.tile_keys
+      to: 'not_home'
+      for:
+        minutes: '5'
   action:
      service: input_boolean.turn_off
      entity_id: input_boolean.jay_home

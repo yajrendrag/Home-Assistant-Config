@@ -7,8 +7,8 @@
   action:
     service: light.turn_on
     entity_id:
-      - light.living_room_c_table
-      - light.living_room_corner
+      - light.living_room_c_table_level
+      - light.living_room_corner_level
       - light.den_corner
 
 #Turn on living room reading lamp in evening
@@ -55,28 +55,24 @@
     entity_id: light.entry_hall_level
 
 #brighten front porch lights slowly between sunset and sunse + 2 hours
-- alias: 'brighten front porch lights slowly'
-  trigger:
-    platform: time
-    minutes: '/3'
-    seconds: '00'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: light.front_porch_level
-        state: 'on'
-      - condition: time
-        after: '18:00:00'
-        before: '21:00:00'
+#- alias: 'brighten front porch lights slowly'
+#  trigger:
+#    platform: time
+#    minutes: '/3'
+#    seconds: '00'
 #  condition:
-#    condition: time
-#    after: '20:30:00'
-#    before: '22:00:00'
-  action:
-    - service: script.brighten_front_porch
-      data:
-        entity_id: light.front_porch_level
+#    condition: and
+#    conditions:
+#      - condition: state
+#        entity_id: light.front_porch_level
+#        state: 'on'
+#      - condition: time
+#        after: '18:00:00'
+#        before: '21:00:00'
+#  action:
+#    - service: script.brighten_front_porch
+#      data:
+#        entity_id: light.front_porch_level
 
 #turn off front porch lights in morning
 - alias: 'turn off front porch lights in morning'
@@ -100,11 +96,33 @@
     - service: scene.turn_on
       entity_id: scene.front_porch_dim
 
-#- alias: 'turn on front porch lights with brightness test'
-#  trigger:
-#    platform: time
-#    at: '20:22:00'
-#  action:
-#    entity_id: light.front_porch_level
-#    data:
-#      brightness: 200.0
+#- alias: 'porch timer control'
+- action:
+  - service: scene.turn_on
+    entity_id: scene.front_porch_full
+  - service: timer.start
+    entity_id: timer.porch
+  alias: PorchTimerswitch
+  id: 'PorchTimerswitch'
+# Timer is started when the ring doorbell senses motion
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ring_front_door_motion
+    to: 'on'
+  condition:
+    condition: sun
+    after: sunset
+
+# When timer ends restore porch lights to dim state
+- action:
+  - service: scene.turn_on
+    entity_id: scene.front_porch_dim
+  - service: scene.turn_on
+    entity_id: scene.front_porch_dim
+  alias: Timerstop
+  id: 'Timerstop'
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.porch

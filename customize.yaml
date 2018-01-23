@@ -2,34 +2,45 @@
 # Emulated Hue Customizations
 #
 light.basement_3way_dimmer_level:
-  emulated_hue: true
+  emulated_hue_hidden: false
   emulated_hue_name: "basement ceiling"
 switch.basement_stairs_switch:
-  emulated_hue: true
-  emulatred_hue_name: "basement stairs switch"
+  emulated_hue_hidden: false
+  emulated_hue_name: "basement stairs switch"
 light.tiffany_level:
-  emulated_hue: true
+  emulated_hue_hidden: true
   emulated_hue_name: "tiffany"
-light.desk_drawer_level_14:
-  emulated_hue: true
+  friendly_name: "tiffany"
+light.desk_drawer_level:
+  emulated_hue_hidden: true
   emulated_hue_name: "desk drawer"
 switch.kitchen_switch:
-  emulated_hue: true
+  emulated_hue_hidden: false
   emulated_hue_name: "kitchen"
 switch.living_room_reading_lamp_switch:
-  emulated_hue: true
+  emulated_hue_hidden: false
   emulated_hue_name: "living room reading lamp"
 light.basement_corner_level:
-  emulated_hue: true
+  emulated_hue_hidden: false
   emulated_hue_name: "basement corner"
-light.basement:
-  emulated_hue: false
 light.front_bedroom:
-  emulated_hue: false
+  emulated_hue_hidden: true
 light.front_porch_level:
-  emulated_hue: true
+  emulated_hue_hidden: true
   emulated_hue_name: "front porch"
   friendly_name: "front porch"
+light.living_room_corner_level:
+  emulated_hue_hidden: false
+  emulated_hue_name: "living room corner"
+  friendly_name: "living room corner"
+light.living_room_c_table_level:
+  emulated_hue_hidden: false
+  emulated_hue_name: "living room c table"
+  friendly_name: "living room c table"
+light.dining_room_level:
+  emulated_hue_hidden: false
+  emulated_hue_name: "dining room"
+  friendly_name: "dining room"
 #
 #  WeatherUnderground Customizations
 #
@@ -120,11 +131,8 @@ binary_sensor.gwink:
 sensor.note_4_battery:
   friendly_name: Note 4 Battery Level
   icon: mdi:battery-unknown
-sensor.nexus_5x_battery:
-  friendly_name: Nexus 5x Battery Level
-  icon: mdi:battery-unknown
-#sensor.nexus_9_battery:
-#  friendly_name: Nexus 9 Battery Level
+#sensor.nexus_5x_battery:
+#  friendly_name: Nexus 5x Battery Level
 #  icon: mdi:battery-unknown
 #
 #  Wifi Locator Customization
@@ -147,9 +155,9 @@ group.madeline:
 #
 #  Camera Power Customizations
 #
-switch.living_room_camera_power:
+switch.living_room_camera_power_switch:
   friendly_name: Note 4 Power
   icon: mdi:power-socket
-switch.bedroom_phone_power:
-  friendly_name: Nexus 5x Power
+switch.basement_phone_power_switch:
+  friendly_name: Storage Camera Power
   icon: mdi:power-socket

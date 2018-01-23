@@ -78,6 +78,8 @@
     - platform: state
       entity_id: sensor.den_burglar
       to: '0'
+      for:
+        minutes: 3
     - platform: state
       entity_id: sensor.jay_wifi_locator
       to: 'master bedroom'

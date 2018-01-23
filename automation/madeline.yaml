@@ -2,7 +2,16 @@
   trigger:
     platform: time
     at: '8:00:00'
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
   action:
     service: light.turn_off
     entity_id:
       - light.front_bedroom
+      - light.dining_room_level
