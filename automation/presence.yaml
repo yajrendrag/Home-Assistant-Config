@@ -42,6 +42,7 @@
 #        message: "Jay moved rooms to {{ trigger.to_state.state ~ ' ' ~ trigger.for ~ ' seconds ago' }}"
 
 - alias: 'Lily Away'
+#  initial_state: True
   condition:
     condition: state
     entity_id: input_boolean.lily_home
@@ -59,6 +60,7 @@
        entity_id: input_boolean.lily_home
 
 - alias: 'Lily Home'
+#  initial_state: False
   condition:
     condition: state
     entity_id: input_boolean.lily_home
@@ -76,6 +78,7 @@
        entity_id: input_boolean.lily_home
 
 - alias: 'Madeline Away'
+#  initial_state: False
   condition:
     condition: state
     entity_id: input_boolean.maddie_home
@@ -95,6 +98,7 @@
      entity_id: input_boolean.maddie_home
 
 - alias: 'Madeline Home'
+#  initial_state: True
   condition:
     condition: state
     entity_id: input_boolean.maddie_home
@@ -114,6 +118,7 @@
      entity_id: input_boolean.maddie_home
 
 - alias: 'Jay Home'
+#  initial_state: True
   condition:
     condition: state
     entity_id: input_boolean.jay_home
@@ -123,9 +128,6 @@
       entity_id: device_tracker.jays7_galaxy_s7
       to: 'home'
     - platform: state
-      entity_id: device_tracker.tile_samsungsmg950u
-      to: 'home'
-    - platform: state
       entity_id: device_tracker.tile_keys
       to: 'home'
   action:
@@ -133,6 +135,7 @@
      entity_id: input_boolean.jay_home
 
 - alias: 'Jay Not Home'
+#  initial_state: False
   condition:
     condition: state
     entity_id: input_boolean.jay_home
@@ -140,16 +143,6 @@
   trigger:
     - platform: state
       entity_id: device_tracker.jays7_galaxy_s7
-      to: 'not_home'
-      for:
-        minutes: '5'
-    - platform: state
-      entity_id: device_tracker.tile_samsungsmg950u
-      to: 'not_home'
-      for:
-        minutes: '5'
-    - platform: state
-      entity_id: device_tracker.tile_keys
       to: 'not_home'
       for:
         minutes: '5'

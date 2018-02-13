@@ -46,22 +46,22 @@
 ##############################
 
 #Turn on living room camera switch based on battery levels
-- alias: 'lr camera switch on'
-  trigger:
-    platform: template
-    value_template: "{% if states ('sensor.note_4_battery') | int < 70 %}true{% endif %}"
-  action:
-    service: switch.turn_on
-    entity_id: switch.living_room_camera_power_switch
+#- alias: 'lr camera switch on'
+#  trigger:
+#    platform: template
+#    value_template: "{% if states ('sensor.note_4_battery') | int < 80 %}true{% endif %}"
+#  action:
+#    service: switch.turn_on
+#    entity_id: switch.living_room_camera_power_switch
 
 #Turn off living room camera switch based on battery levels
-- alias: 'lr camera switch off'
-  trigger:
-    platform: template
-    value_template: "{% if states ('sensor.note_4_battery') | int > 95 %}true{% endif %}"
-  action:
-    service: switch.turn_off
-    entity_id: switch.living_room_camera_power_switch
+#- alias: 'lr camera switch off'
+#  trigger:
+#    platform: template
+#    value_template: "{% if states ('sensor.note_4_battery') | int > 96 %}true{% endif %}"
+#  action:
+#    service: switch.turn_off
+#    entity_id: switch.living_room_camera_power_switch
 
 #Turn on master bedroom phone power switch based on battery levels
 #- alias: 'master phone pwr switch on'
@@ -80,6 +80,13 @@
 #  action:
 #    service: switch.turn_off
 #    entity_id: switch.basement_phone_power_switch
+- alias: 'reload ffmpeg noise if too much time since last state change'
+  trigger:
+    platform: state
+    entity_id: sensor.ffmpeg_noise_status
+    to: 'expired'
+  action:
+    service: shell_command.reload_ffmpeg
 
 ##############################
 #                            #
@@ -111,7 +118,7 @@
 - alias: 'wink update needed notifier'
   trigger:
     platform: template
-    value_template: '{% if states.binary_sensor.gwink.attributes["update needed"] == true %}true{%else%}false{%endif%}'
+    value_template: '{% if states.binary_sensor.gwink.attributes.update_needed == true %}true{%else%}false{%endif%}'
   action:
     service: notify.notify
     data:
@@ -146,8 +153,14 @@
 - alias: 'motion detected'
 #  initial_state: False
   trigger:
-    platform: mqtt
-    topic: 'homeassistant/motion/#'
+  - platform: mqtt
+    topic: 'homeassistant/motion/basement-alarm'
+  - platform: mqtt
+    topic: 'homeassistant/motion/livingroom'
+  - platform: mqtt
+    topic: 'homeassistant/motion/kitchen'
+  - platform: mqtt
+    topic: 'homeassistant/motion/garage'
   condition:
     - condition: state
       entity_id: group.family

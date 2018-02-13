@@ -1,5 +1,6 @@
 default_view:
   view: yes
+  name: Home
   entities:
     - climate.hallway
     - cover.main
@@ -97,7 +98,7 @@ Master:
   entities:
     - group.master_lights
 #    - switch.bedroom_phone_power
-    - group.note_4_battery
+#    - group.note_4_battery
     - switch.living_room_camera_power_switch
 
 Basement:
@@ -155,8 +156,8 @@ Devices:
   entities:
     - group.family
     - group.jay_is_currently_in
-    - group.nexus_5x_battery
-    - group.note_4_battery
+#    - group.nexus_5x_battery
+#    - group.note_4_battery
     - input_boolean.lily_home
     - input_boolean.maddie_home
     - input_boolean.jay_home
@@ -196,6 +197,7 @@ Sensors:
   name: Sensors
   entities:
     - group.basement_sensor
+    - group.basement2_sensor
     - group.kitchen_sensor
     - group.den_sensor
     - group.entry_sensor
@@ -210,6 +212,7 @@ Alarms:
     - sensor.den_burglar
     - sensor.kitchen_burglar
     - sensor.basement_burglar
+    - sensor.basement2_burglar
     - binary_sensor.basement_sound
     - sensor.basement_camera_motion
     - sensor.basement_camera_sensor
@@ -228,6 +231,7 @@ Binary Sensors:
   name: Binary Sensor Status
   entities:
     - binary_sensor.basement_sensor
+    - binary_sensor.basement2_sensor
     - binary_sensor.entry_sensor
     - binary_sensor.den_sensor
     - binary_sensor.kitchen_sensor
@@ -274,11 +278,11 @@ Family:
 #  entities:
 #    - sensor.nexus_5x_battery
 
-Note 4 Battery:
-  view: no
-  name: Galaxy Note 4 Battery Level
-  entities:
-    - sensor.note_4_battery
+#Note 4 Battery:
+#  view: no
+#  name: Galaxy Note 4 Battery Level
+#  entities:
+#    - sensor.note_4_battery
 
 Misc Automations:
   view: no
@@ -314,8 +318,8 @@ Basement Automations:
     - automation.turn_off_basement_lights_in_late_pm
     - automation.turn_on_basement_lights_if_too_dark_and_motion
     - automation.turn_on_basement_stairs_light_in_late_pm
-    - automation.master_phone_pwr_switch_off
-    - automation.master_phone_pwr_switch_on
+#    - automation.master_phone_pwr_switch_off
+#    - automation.master_phone_pwr_switch_on
     - automation.media_player_paused
     - automation.media_player_plays
     - automation.toggle_zpower_switch_1
@@ -331,8 +335,8 @@ Master Automations:
     - automation.master_bedroom_nightstand_lights_in_late_pm
     - automation.master_nightstand_lights_off_at_1230am
     - automation.dim_lights_slowly_between_9pm_and_midnight
-    - automation.lr_camera_switch_off
-    - automation.lr_camera_switch_on
+#    - automation.lr_camera_switch_off
+#    - automation.lr_camera_switch_on
 
 Den Automations:
   view: no
@@ -383,6 +387,19 @@ Basement Sensor:
     - sensor.basement_sourcenodeid
     - sensor.basement_temperature
     - sensor.basement_ultraviolet
+
+Basement2 Sensor:
+  view: no
+  name: Basement Media Sensor
+  entities:
+    - sensor.basement2_alarm_level
+    - sensor.basement2_alarm_type
+    - sensor.basement2_burglar
+    - sensor.basement2_luminance
+    - sensor.basement2_relative_humidity
+    - sensor.basement2_sourcenodeid
+    - sensor.basement2_temperature
+    - sensor.basement2_ultraviolet
 
 Den Sensor:
   view: no
@@ -440,6 +457,8 @@ Misc Sensors:
     - sensor.lr_motion_detection
     - sensor.current_ha_version
     - sensor.installed_version
+    - device_tracker.jays7_galaxy_s7
+    - device_tracker.tile_keys
 
 LR Motion Sensor:
   view: no

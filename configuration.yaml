@@ -175,9 +175,10 @@ input_boolean: !include_dir_merge_named input_booleans/
 logger:
   default: error
   logs:
-    homeassistant.components.camera: critical
+    homeassistant.components.camera: warning
 
 ffmpeg:
+  ffmpeg_bin: /usr/local/bin/ffmpeg
 
 binary_sensor:
   - platform: nest
@@ -187,8 +188,8 @@ binary_sensor:
   - platform: ffmpeg_noise
     name: basement_sound
     input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
-    peak: -23
-    duration: 2
+    peak: -25
+    duration: 1
   - platform: ring
 
 timer:

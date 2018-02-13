@@ -31,31 +31,35 @@
     jay_home:
       friendly_name: Jay Home
       value_template: "{{ 'home' if states.input_boolean.jay_home is not none and states ('input_boolean.jay_home') == 'on' else 'not_home' }}"
-      entity_id: input_boolean.jay_home
+#      entity_id: input_boolean.jay_home
     maddie_home:
       friendly_name: Maddie Home
       value_template: "{{ 'home' if states.input_boolean.maddie_home is not none and states ('input_boolean.maddie_home') == 'on' else 'not_home' }}"
-      entity_id: input_boolean.maddie_home
+#      entity_id: input_boolean.maddie_home
     lily_home:
       friendly_name: Lily Home
       value_template: "{{ 'home' if states.input_boolean.lily_home is not none and states ('input_boolean.lily_home') == 'on' else 'not_home' }}"
-      entity_id: input_boolean.lily_home
+#      entity_id: input_boolean.lily_home
     basement_camera_sensor:
       friendly_name: basement camera sensor
       value_template: "{{ 'off' if states.input_boolean.basement_camera_motion_bool is not none and states ('input_boolean.basement_camera_motion_bool') == 'off' else 'on' }}"
-      entity_id: input_boolean.basement_camera_motion_bool
+#      entity_id: input_boolean.basement_camera_motion_bool
     total_basement_motion:
       friendly_name: Motion Detected in basement
-      value_template: "{{ 'no motion' if states('sensor.basement_camera_sensor') == 'off' and states('binary_sensor.basement_sound') == 'off' and states('sensor.basement_burglar') == '0' else 'motion' }}"
-      entity_id:
-        - sensor.basement_camera_sensor
-        - binary_sensor.basement_sound
-        - sensor.basement_burglar
-    note_4_battery:
-      friendly_name: Note 4 Battery
-      value_template: "{{ states.device_tracker.jay_note_4.attributes.battery|default(-1)|int if states.device_tracker.jay_note_4 is not none }}"
-      unit_of_measurement: '%'
-      entity_id: device_tracker.jay_note_4
+      value_template: "{{ 'no motion' if states('sensor.basement_camera_sensor') == 'off' and states('binary_sensor.basement_sound') == 'off' and states('sensor.basement_burglar') == '0' and states('sensor.basement2_burglar') == '0' else 'motion' }}"
+    ffmpeg_noise_status:
+      friendly_name: ffmpeg last triggered timer
+      value_template: "{{ 'expired' if states.binary_sensor.basement_sound.last_updated is not none and (as_timestamp(utcnow()) - as_timestamp(states.binary_sensor.basement_sound.last_updated)) | float > 2700.0 else 'not expired' }}"
+
+#      entity_id:
+#        - sensor.basement_camera_sensor
+#        - binary_sensor.basement_sound
+#        - sensor.basement_burglar
+#    note_4_battery:
+#      friendly_name: Note 4 Battery
+#      value_template: "{{ states.device_tracker.jay_note_4.attributes.battery|default(-1)|int if states.device_tracker.jay_note_4 is not none }}"
+#      unit_of_measurement: '%'
+#      entity_id: device_tracker.jay_note_4
   #  nexus_5x_battery:
   #    friendly_name: Nexus 5x Battery
   #    value_template: "{{ states.device_tracker.jayn5_nexus_5x.attributes.battery|default(-1)|int if states.device_tracker.jayn5_nexus_5x is not none }}"

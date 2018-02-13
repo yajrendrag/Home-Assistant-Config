@@ -80,6 +80,9 @@ sensor.den_burglar:
 sensor.basement_burglar:
   friendly_name: Basement Motion
   icon: mdi:run-fast
+sensor.basement2_burglar:
+  friendly_name: Media motion
+  icon: mdi:run-fast
 sensor.kitchen_burglar:
   friendly_name: Kitchen Motion
   icon: mdi:run-fast
@@ -112,6 +115,9 @@ binary_sensor.hallway_thermostat_online:
 #
 binary_sensor.basement_sensor:
   friendly_name: Basement MultiSensor Status
+  icon: mdi:toggle-switch
+binary_sensor.basement2_sensor:
+  friendly_name: Media MultiSensor Status
   icon: mdi:toggle-switch
 binary_sensor.entry_sensor:
   friendly_name: Entry MultiSensor Status
@@ -156,7 +162,7 @@ group.madeline:
 #  Camera Power Customizations
 #
 switch.living_room_camera_power_switch:
-  friendly_name: Note 4 Power
+  friendly_name: Master Camera Power
   icon: mdi:power-socket
 switch.basement_phone_power_switch:
   friendly_name: Storage Camera Power
