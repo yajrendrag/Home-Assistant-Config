@@ -3,6 +3,7 @@
 *.csr
 *.crt
 *.key
+*.json
 certs
 www
 custom_components
@@ -24,3 +25,6 @@ harmony_media_room.conf
 pyozw.sqlite
 .*
 !/.gitignore
+mpd-events.txt
+certs
+shell_commands

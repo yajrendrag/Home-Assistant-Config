@@ -1,7 +1,7 @@
 
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: Home
+  name: Gardner
   # Location required to calculate the time the sun rises and sets
   latitude: !secret ha_latitude
   longitude: !secret ha_longitude
@@ -27,6 +27,15 @@ discovery:
   ignore:
     - roku
     - samsung_tv
+#    - igd
+
+#panel_iframe:
+#  config:
+#    title: Configurator
+#    icon: mdi:wrench
+#    url: http://192.168.1.160:3218
+
+config:
 
 zoneminder:
   host: 192.168.1.165
@@ -35,8 +44,10 @@ zoneminder:
   username: !secret blue
   password: !secret bluep
 
+auth:
+
 http:
-  api_password: !secret http_pass
+#  api_password: !secret http_pass
 #  ssl_certificate: !secret ha_ssl_cert
 #  ssl_key: !secret ha_ssl_key
 #  base_url: !secret ha_base_url
@@ -54,8 +65,17 @@ hue:
     - host: 192.168.1.137
 
 media_player:
-  - platform: sonos
   - platform: openhome
+  - platform: mpd
+    host: 192.168.1.100
+  - platform: snapcast
+    host: 192.168.1.100
+
+# sonos:
+#  media_player:
+#    hosts:
+#      - 192.168.1.117
+#      - 192.168.1.153
 
 wink:
   email: !secret wink_email
@@ -69,9 +89,11 @@ ring:
 
 zwave:
   usb_path: /dev/ttyACM0
-  config_path: /srv/jhass/src/python-openzwave/openzwave/config
+#  config_path: /srv/jhass/src/python-openzwave/openzwave/config
+#  config_path: /srv/jhass/lib/python3.6/site-packages/python_openzwave/ozw_config/config
+  config_path: /srv/jhass/lib/python3.6/site-packages/python_openzwave/ozw_config
   autoheal: False
-  new_entity_ids: true
+#  new_entity_ids: true
 
 notify:
   platform: pushbullet
@@ -94,6 +116,8 @@ shell_command:
   den_detect_on: /usr/bin/python3 /home/jay/den-detection-on.py
   den_detect_off: /usr/bin/python3 /home/jay/den-detection-off.py
   reload_ffmpeg: /usr/bin/python3 /home/jay/reload-ffmpeg.py
+  process_mpd_data: /home/jhass/.homeassistant/shell_commands/processmpd.sh {{ mpd_data }}
+  init_media_sensor: /usr/bin/python3 /home/jay/media-burg.py
 
 mqtt:
   broker: !secret mqtt_broker
@@ -103,11 +127,17 @@ mqtt:
   username: !secret mqtt_user
   password: !secret mqtt_pass
 
-#mqtt_statestream:
-#  base_topic: homeassistant
-#  publish_attributes: true
-#  publish_timestamps: true
-
+mqtt_statestream:
+  base_topic: homeassistant
+  publish_attributes: true
+  publish_timestamps: true
+  include:
+#    domains:
+#      - ffmpeg
+#      - media_player
+    entities:
+#      - binary_sensor.basement_sound
+      - media_player.mpd
 device_tracker:
   - platform: owntracks
     consider_home: 180
@@ -132,7 +162,7 @@ device_tracker:
       - 192.168.1.154
       - 192.168.1.146
       - 192.168.1.159
-      - 192.168.1.120
+      - 192.168.1.135
     home_interval: 15
     scan_options: " --privileged -p 62078 -sS "
   - platform: tile
@@ -140,6 +170,10 @@ device_tracker:
     username: !secret tile_user
     password: !secret tile_pw
 
+asterisk_mbox:
+  password: !secret astmbox-pw
+  host: !secret astmbox-host
+  port: !secret astmbox-port
 
 input_select:
   jay_room_tracker:
@@ -175,7 +209,8 @@ input_boolean: !include_dir_merge_named input_booleans/
 logger:
   default: error
   logs:
-    homeassistant.components.camera: warning
+    homeassistant.components.asterisk_mbox: debug
+    homeassistant.components.mailbox: debug
 
 ffmpeg:
   ffmpeg_bin: /usr/local/bin/ffmpeg
@@ -187,7 +222,7 @@ binary_sensor:
       - 'is_using_emergency_heat'
   - platform: ffmpeg_noise
     name: basement_sound
-    input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
+    input: -rtsp_transport tcp -i rtsp://admin:madlil54@192.168.1.214:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif
     peak: -25
     duration: 1
   - platform: ring
@@ -214,3 +249,21 @@ recorder:
   db_url: !secret recorder_db_url
   purge_interval: 2
   purge_keep_days: 14
+
+influxdb:
+  host: localhost
+  include:
+    entities:
+      - sensor.hallway_thermostat_temperature
+      - sensor.den_temperature
+      - sensor.kitchen_temperature
+      - sensor.basement2_temperature
+      - sensor.entry_temperature
+      - sensor.jay_home
+      - sensor.pws_temp_f
+      - group.jay
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+    mode: daily

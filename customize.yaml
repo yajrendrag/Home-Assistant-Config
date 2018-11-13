@@ -4,9 +4,12 @@
 light.basement_3way_dimmer_level:
   emulated_hue_hidden: false
   emulated_hue_name: "basement ceiling"
+  friendly_name: "Ceiling 3Way Dimmer"
 switch.basement_stairs_switch:
   emulated_hue_hidden: false
   emulated_hue_name: "basement stairs switch"
+  friendly_name: "Basement Stairs Switch"
+  icon: mdi:light-switch
 light.tiffany_level:
   emulated_hue_hidden: true
   emulated_hue_name: "tiffany"
@@ -41,6 +44,10 @@ light.dining_room_level:
   emulated_hue_hidden: false
   emulated_hue_name: "dining room"
   friendly_name: "dining room"
+light.front_hall_table_level:
+  emulated_hue_hidden: false
+  emulated_hue_name: "front hall table"
+  friendly_name: "front hall table"
 #
 #  WeatherUnderground Customizations
 #
@@ -98,18 +105,21 @@ sensor.basement_camera_motion:
 sensor.total_basement_motion:
   friendly_name: All Basement Motion
   icon: mdi:run-fast
+#sensor.ffmpeg_noise_status:
+#  friendly_name: FFmpeg Noise Status
+#  icon: mdi:ear-hearing
 #
 #  Nest Customizations
 #
 binary_sensor.hallway_thermostat_has_leaf:
   friendly_name: Green Mode
-  icon: mdi:nest-thermostat
+  icon: mdi:thermostat
 binary_sensor.hallway_thermostat_is_using_emergency_heat:
   friendly_name: Emergency Heat
-  icon: mdi:nest-thermostat
+  icon: mdi:thermostat
 binary_sensor.hallway_thermostat_online:
   friendly_name: Thermostat Online
-  icon: mdi:nest-thermostat
+  icon: mdi:thermostat
 #
 #  Binary Sensor Customizations
 #
@@ -163,7 +173,35 @@ group.madeline:
 #
 switch.living_room_camera_power_switch:
   friendly_name: Master Camera Power
-  icon: mdi:power-socket
+  icon: mdi:power-socket-us
 switch.basement_phone_power_switch:
   friendly_name: Storage Camera Power
-  icon: mdi:power-socket
+  icon: mdi:power-socket-us
+
+switch.rainmachine_switch:
+  friendly_name: Rain Machine
+  icon: mdi:weather-rainy
+
+switch.hkmaster_switch:
+  friendly_name: Master SoundSticks
+  icon: mdi:power-socket-us
+
+switch.zpower_strip_switch_2:
+  friendly_name: "Basement Camera Plug"
+  icon: mdi:power-socket-us
+
+switch.zpower_strip_switch_3:
+  friendly_name: "Basement Table Lamp Plug"
+  icon: mdi:power-socket-us
+
+switch.zpower_strip_switch_4:
+  friendly_name: "Empty"
+  icon: mdi:power-socket-us
+
+switch.zpower_strip_switch_5:
+  friendly_name: "Wink Plug"
+  icon: mdi:power-socket-us
+
+device_tracker.tile_41896daa035409f0:
+  friendly_name: "tile keys"
+  icon: mdi:account-location

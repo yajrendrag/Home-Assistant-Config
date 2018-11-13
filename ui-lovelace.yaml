@@ -1,0 +1,688 @@
+title: My Lovely Home Automation
+views:
+  - id: Cameras
+    title: Cameras
+    cards:
+      - id: daead08eea2f4d0bac57c37c3c4996f6  # Automatically created id
+        type: picture-entity
+        title: basement
+        entity: camera.basement
+        camera_image: camera.basement
+        show_info: true
+        tap_action: dialog
+
+      - id: 98fc1773df6441f78187b6b5bb44e023  # Automatically created id
+        type: picture-entity
+        title: Front Door
+        entity: camera.front_door
+        camera_image: camera.front_door
+        show_info: true
+        tap_action: dialog
+
+      - id: ea5a6ab71634462da4f00c5e6d0fb150  # Automatically created id
+        type: picture-entity
+        title: garage
+        entity: camera.garage
+        camera_image: camera.garage
+        show_info: true
+        tap_action: dialog
+
+      - id: 55f7dc7bdb584ea0980a5b96829b9299  # Automatically created id
+        type: picture-entity
+        title: kitchen
+        entity: camera.kitchen
+        camera_image: camera.kitchen
+        show_info: true
+        tap_action: dialog
+
+      - id: 099fcca4b23540a8bd425d143b014266  # Automatically created id
+        type: picture-entity
+        title: livingroom
+        entity: camera.livingroom
+        camera_image: camera.livingroom
+        show_info: true
+        tap_action: dialog
+
+      - id: cb467bb5e51148c4bb364a7060672a2a  # Automatically created id
+        type: picture-entity
+        title: master
+        entity: camera.master
+        camera_image: camera.master
+        show_info: true
+        tap_action: dialog
+
+      - id: 2f24fba0f52e495f9093807cd83db089  # Automatically created id
+        type: picture-entity
+        title: storage
+        entity: camera.storage
+        camera_image: camera.storage
+        show_info: true
+        tap_action: dialog
+
+  - id: climate
+    title: climate
+    panel: true
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - id: 0a31177ebc534809a04c487970279fe4  # Automatically created id
+                type: picture-entity
+                title: Outdoor Temperature
+                entity: camera.grafana_current_outdoor_temp
+                camera_image: camera.grafana_current_outdoor_temp
+                show_info: true
+                tap_action: dialog
+              - id: 8a2d2210d8c34a0bbcbc242574f2ee4d  # Automatically created id
+                type: picture-entity
+                title: Grafana_Temps
+                entity: camera.grafana_temps
+                camera_image: camera.grafana_temps
+                show_info: true
+                tap_action: dialog
+          - type: entities
+            id: divider1
+            show_header_toggle: False
+            entities:
+              - type: divider
+          - type: horizontal-stack
+            cards:
+              - id: Thermostat
+                title: Thermostat
+                type: thermostat
+                entity: climate.hallway
+              - id: forecast
+                title: Weather
+                type: weather-forecast
+                entity: weather.dark_sky
+
+  - id: Home  # Automatically created id
+    title: Home
+    cards:
+      - id: 85ed8f27964e4e29a39f9edf35741c7c  # Automatically created id
+        type: media-control
+        entity: media_player.living_room
+
+      - id: 33b60c89e9ee4fbf817e140174b2b67b  # Automatically created id
+        type: media-control
+        entity: media_player.media_room
+
+      - id: 2eef501c5cfc412a989cf41a65ebd939  # Automatically created id
+        type: media-control
+        entity: media_player.mpd
+
+      - id: 4580c8d9f6fd46238cee5ea16c812f7b  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_client_10ddb1c5b74a
+
+      - id: f006498630dc4c6382225a94a248b936  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_client_449160bd0865
+
+      - id: 33fa78fc8a7448cc88ec7ca588bfd776  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_client_6805ca1a8b59
+
+      - id: 619271f5355e4d11b677bc18e9850695  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_client_b827eb64a98b
+
+      - id: d87d3caa54b3418bae7cde04fabd0905  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_client_b827eb80f287
+
+      - id: bf0a78f7b80a46e1b690351c679730f6  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_client_b8aeed72fc2c
+
+      - id: 1ef60998d687441baa54e9b8bd4e8c80  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_client_c03fd56b8de9
+
+      - id: bcc391ac810d4682912f56a8226b56b3  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_group_30be2db3d0d2c581d4cd2bdfdac38f7c
+
+      - id: ea235ddb9bc14b1cbde1eec0567eadf5  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_group_801b1fe03e0c25eace2d3cb25d4a3fc6
+
+      - id: 60fd6f17e40349f0856f19f8a8d39b6b  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_group_807b4c97736b23aa8dd0015a59002e2d
+
+      - id: 45aec82c2f17470593e1bca51a482391  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_group_9166661cedb69f38541962fbfa7f7cdb
+
+      - id: 44faf5350d424f458a05aa64ecb1531d  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_group_c5b5b7f4c0f49ac53a534129fd708b37
+
+      - id: 0e298fbb54f74c9a8953204e7caf63f9  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_group_e37369d696cfa022576e0d47c2254748
+
+      - id: 553349b4628f4733a499f8ce434c4e4d  # Automatically created id
+        type: media-control
+        entity: media_player.snapcast_group_f552a466d0f088c4b799ec1b2931e677
+
+      - id: 65e470768b4b4ed58bc7243e1eca53fd  # Automatically created id
+        type: entities
+        title: Automations
+        show_header_toggle: true
+        entities:
+          - automation.alternate_updater_notifier
+          - automation.any_lights_off_in_early_am
+          - automation.basement_corner_light_in_late_pm
+          - automation.basement_corner_light_off_at_1245am
+          - automation.capture_mpd_media_player_events
+          - automation.den_light_in_morning_during_the_week
+          - automation.den_lights_off_at_10pm_during_the_week
+          - automation.dim_lights_slowly_between_9pm_and_midnight
+          - automation.family_home__turn_nest_to_home_mode
+          - automation.garage_door_open_notification
+          - automation.initialize_media_burglar_sensor_to_0
+          - automation.jay_home
+          - automation.jay_not_home
+          - automation.lights_off_at_midnight
+          - automation.lily_away
+          - automation.lily_home
+          - automation.lr_lights_on_late_pm
+          - automation.madeline_away
+          - automation.madeline_home
+          - automation.master_bedroom_lights_in_late_pm
+          - automation.master_bedroom_nightstand_lights_in_late_pm
+          - automation.master_nightstand_lights_off_at_1230am
+          - automation.media_player_paused
+          - automation.media_player_plays
+          - automation.motion_detected
+          - automation.no_motion_countdown
+          - automation.porchtimerswitch
+          - automation.power_off_rain_machine_outlet
+          - automation.power_on_rain_machine_outlet
+          - automation.restart_ffmpeg_if_it_stops
+          - automation.send_caller_id_notifications_to_pushbullet
+          - automation.sound_sticks_outlet_off_at_1230_am
+          - automation.sound_sticks_outlet_on_at_7am
+          - automation.timerstop
+          - automation.toggle_zpower_switch_1
+          - automation.toggle_zpower_switch_2
+          - automation.toggle_zpower_switch_3
+          - automation.toggle_zpower_switch_4
+          - automation.track_sensor_state_of_jay_wifi_locator
+          - automation.turn_off_basement_lights_based_on_motion__no_presence
+          - automation.turn_off_basement_lights_based_on_presence
+          - automation.turn_off_basement_lights_if_no_one_home
+          - automation.turn_off_basement_lights_in_late_pm
+          - automation.turn_off_den_lights_when_leaving_den
+          - automation.turn_off_den_lights_when_leaving_den_when_not_home
+          - automation.turn_off_entryway_lights_based_when_no_presence_detected
+          - automation.turn_off_front_bedroom_lights__8am
+          - automation.turn_off_front_porch_lights_in_morning
+          - automation.turn_off_kitchen_lights_based_on_presence_at_night
+          - automation.turn_off_kitchen_lights_if_no_one_home
+          - automation.turn_off_living_room_reading_lamp_at_bedtime
+          - automation.turn_on_basement_lights_if_too_dark_and_motion
+          - automation.turn_on_basement_stairs_light_in_late_pm
+          - automation.turn_on_den_lights_when_entering_den
+          - automation.turn_on_entryway_light_if_too_dark_and_motion
+          - automation.turn_on_front_porch_lights_at_sunset
+          - automation.turn_on_kitchen_lights_if_too_dark_and_motion
+          - automation.turn_on_living_room_reading_lamp_on_in_evening
+          - automation.update_available_notifications
+          - automation.wink_update_needed_notifier
+          - automation.zwave_heal_at_233am
+          - automation.zwave_soft_reset_at_230am
+
+      - id: 82e52340025e4b98be051dd9bf4b354e  # Automatically created id
+        type: entities
+        title: Binary Sensors
+        show_header_toggle: true
+        entities:
+          - binary_sensor.basement2_sensor
+          - binary_sensor.basement_sensor
+          - binary_sensor.basement_sound
+          - binary_sensor.den_sensor
+          - binary_sensor.entry_sensor
+          - binary_sensor.gwink
+          - binary_sensor.hallway_thermostat_fan
+          - binary_sensor.hallway_thermostat_has_leaf
+          - binary_sensor.hallway_thermostat_is_locked
+          - binary_sensor.hallway_thermostat_is_using_emergency_heat
+          - binary_sensor.hallway_thermostat_online
+          - binary_sensor.jaynest_away
+          - binary_sensor.kitchen_sensor
+          - binary_sensor.ring_front_door_ding
+          - binary_sensor.ring_front_door_motion
+
+      - id: 1795a675b3c24dffb6a616dd651e9e57  # Automatically created id
+        type: entities
+        title: Climate
+        show_header_toggle: true
+        entities:
+          - climate.hallway
+
+      - id: f21be4d5dd5249e4a752f1931ed9fb37  # Automatically created id
+        type: entities
+        title: Covers
+        show_header_toggle: true
+        entities:
+          - cover.main
+          - cover.single
+
+      - id: 5456a52f0c4242fc99c6bf063e6301ed  # Automatically created id
+        type: entity-filter
+        title: Device Trackers
+        show_header_toggle: true
+        entities:
+          - device_tracker.00015c9e6446
+          - device_tracker.00163e14574b
+          - device_tracker.00163e87a4fb
+          - device_tracker.020fb5aed406
+          - device_tracker.0800279cd971
+          - device_tracker.08669833f6bd
+          - device_tracker.40163bd03037
+          - device_tracker.5254002212b1
+          - device_tracker.525400763978
+          - device_tracker.52540097de71
+          - device_tracker.6c4d73193aab
+          - device_tracker.8c2daa5972c7
+          - device_tracker.9c8ecd0f8d95
+          - device_tracker.9cefd5fd1241
+          - device_tracker.9cefd5fd1250
+          - device_tracker.9cefd5fd2136
+          - device_tracker.a040a0693114
+          - device_tracker.amc0154f_l0v83w
+          - device_tracker.amc01566_bc5uun
+          - device_tracker.amc01599_xwau51
+          - device_tracker.amc015z1_3z348c
+          - device_tracker.android3b700af3322d9a64
+          - device_tracker.appletv
+          - device_tracker.b0d59d56005d
+          - device_tracker.b0d59d8f95fa
+          - device_tracker.b0d59d8f9a83
+          - device_tracker.b827eb9987c3
+          - device_tracker.b827eba74a98
+          - device_tracker.b827ebccd296
+          - device_tracker.b827ebf21fcd
+          - device_tracker.bca920aed406
+          - device_tracker.centos7
+          - device_tracker.d40aa958e050
+          - device_tracker.d88f76cb2ae7
+          - device_tracker.epson356d3f
+          - device_tracker.hdhr1017cbf8
+          - device_tracker.hdhr20200b60
+          - device_tracker.iphone
+          - device_tracker.jay_ipadpro
+          - device_tracker.jay_note_4
+          - device_tracker.jaygardnmd2rg_2
+          - device_tracker.jaygardnmd2rg_3
+          - device_tracker.jays7_galaxy_s7
+          - device_tracker.lauragarsiphone
+          - device_tracker.laurasmbp_2
+          - device_tracker.macbookpro
+          - device_tracker.madelinplewatch
+          - device_tracker.natalieonessmbp
+          - device_tracker.nemasapplewatch
+          - device_tracker.nemosaic
+          - device_tracker.obi202
+          - device_tracker.raspberrypi
+          - device_tracker.raspberrypi_2
+          - device_tracker.samsunggalaxyampprime3
+          - device_tracker.snapcast
+          - device_tracker.tile_41896daa035409f0
+          - device_tracker.tile_p6592b29a51b689a4f4217c1f4100d865
+          - device_tracker.ubuntu
+          - device_tracker.ubuntu18
+          - device_tracker.ubuntu18_2
+          - device_tracker.upmpdcli
+          - device_tracker.vitalpbx
+          - device_tracker.vitalpbx_2
+          - device_tracker.vitalpbx_3
+          - device_tracker.wnr1000v2
+          - device_tracker.xboxone
+        state_filter:
+          - home
+        card:
+          type: glance
+          title: My Device Trackers
+
+
+      - id: 205eab36a1864caeb8ac21f17d5e1254  # Automatically created id
+        type: entities
+        title: Groups
+        show_header_toggle: true
+        entities:
+          - group.alarms
+          - group.all_automations
+          - group.all_covers
+          - group.all_devices
+          - group.all_lights
+          - group.all_remotes
+          - group.all_scripts
+          - group.all_switches
+          - group.automations
+          - group.basement
+          - group.basement2_sensor
+          - group.basement_automations
+          - group.basement_motion_sensor
+          - group.basement_sensor
+          - group.binary_sensors
+          - group.default_view
+          - group.den
+          - group.den_automations
+          - group.den_sensor
+          - group.devices
+          - group.entry_sensor
+          - group.family
+          - group.front_bedroom_automations
+          - group.hallway_sensor
+          - group.jay
+          - group.jay_is_currently_in
+          - group.kids
+          - group.kitchen
+          - group.kitchen_automations
+          - group.kitchen_sensor
+          - group.lily
+          - group.living_room
+          - group.living_room_and_entry_automations
+          - group.lr_motion_sensor
+          - group.madeline
+          - group.madelines_room
+          - group.master
+          - group.master_automations
+          - group.master_lights
+          - group.misc_automations
+          - group.misc_sensors
+          - group.nest
+          - group.rooms
+          - group.scenes
+          - group.sensors
+          - group.temp_graphs
+          - group.weather
+
+      - id: cabfd683a7eb413cb1c261d0b2ae633e  # Automatically created id
+        type: entities
+        title: Input Booleans
+        show_header_toggle: true
+        entities:
+          - input_boolean.basement_camera_motion_bool
+          - input_boolean.jay_home
+          - input_boolean.jay_phone_basement
+          - input_boolean.jay_phone_den
+          - input_boolean.jay_phone_gym
+          - input_boolean.jay_phone_kitchen
+          - input_boolean.jay_phone_lr
+          - input_boolean.jay_phone_master
+          - input_boolean.lily_home
+          - input_boolean.maddie_home
+          - input_boolean.power_switch_1
+          - input_boolean.power_switch_2
+          - input_boolean.power_switch_3
+          - input_boolean.power_switch_4
+
+      - id: 4e4b4ee8641a44a4a629061dec030224  # Automatically created id
+        type: entities
+        title: Input Select
+        show_header_toggle: true
+        entities:
+          - input_select.jay_room_tracker
+
+      - id: 6680f01a642943f1be7350e8672d51d2  # Automatically created id
+        type: entities
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - light.basement_3way_dimmer_level
+          - light.basement_cabinet
+          - light.basement_corner_level
+          - light.basement_wall
+          - light.den
+          - light.den_corner
+          - light.den_window
+          - light.desk_drawer_level
+          - light.dining_room_level
+          - light.entry_hall_level
+          - light.front_bedroom
+          - light.front_bedroom_2
+          - light.front_hall_table_level
+          - light.front_porch_level
+          - light.lightstrip
+          - light.living_room
+          - light.living_room_c_table_level
+          - light.living_room_corner_level
+          - light.living_room_flood_left
+          - light.living_room_flood_right
+          - light.master
+          - light.master_bedroom
+          - light.master_corner
+          - light.master_left_night_stand
+          - light.master_right_night_stand
+          - light.media_room
+          - light.office
+          - light.tiffany_level
+
+      - id: dbda3e68b4d74f8aaa1e49454bd484fb  # Automatically created id
+        type: entities
+        title: Mailbox
+        show_header_toggle: true
+        entities:
+          - mailbox.asterisk_mbox
+
+      - id: a1f52f5382614f25a465093eede828e4  # Automatically created id
+        type: entities
+        title: Remotes
+        show_header_toggle: true
+        entities:
+          - remote.basement
+          - remote.gym
+          - remote.harmony_hub
+
+      - id: a74190673e3148178b277226fb8ed515  # Automatically created id
+        type: entities
+        title: Scenes
+        show_header_toggle: true
+        entities:
+          - scene.basement_dim
+          - scene.basement_normal
+          - scene.entry_hall_on
+          - scene.front_porch_dim
+          - scene.front_porch_full
+          - scene.living_room_dim
+          - scene.living_room_on
+
+      - id: 5f61bb79be2b4d1da4bce709c770dd95  # Automatically created id
+        type: entities
+        title: Scripts
+        show_header_toggle: true
+        entities:
+          - script.basement_lights_on
+          - script.brighten_front_porch
+          - script.dim_master_corner_lights
+          - script.dim_master_left_ns_lights
+          - script.dim_master_lights
+          - script.dim_master_right_ns_lights
+          - script.motion_timer
+          - script.motion_timer_off
+          - script.zwave_healer
+          - script.zwave_reset
+
+      - id: 206067ebbc19418292524fef2affe1bf  # Automatically created id
+        type: entities
+        title: Sensors
+        show_header_toggle: true
+        entities:
+          - sensor.basement2_alarm_level
+          - sensor.basement2_alarm_type
+          - sensor.basement2_burglar
+          - sensor.basement2_luminance
+          - sensor.basement2_relative_humidity
+          - sensor.basement2_sourcenodeid
+          - sensor.basement2_temperature
+          - sensor.basement2_ultraviolet
+          - sensor.basement_alarm_level
+          - sensor.basement_alarm_type
+          - sensor.basement_burglar
+          - sensor.basement_camera_motion
+          - sensor.basement_camera_sensor
+          - sensor.basement_luminance
+          - sensor.basement_relative_humidity
+          - sensor.basement_sourcenodeid
+          - sensor.basement_temperature
+          - sensor.basement_ultraviolet
+          - sensor.current_ha_version
+          - sensor.den_alarm_level
+          - sensor.den_alarm_type
+          - sensor.den_burglar
+          - sensor.den_luminance
+          - sensor.den_relative_humidity
+          - sensor.den_sourcenodeid
+          - sensor.den_temperature
+          - sensor.den_ultraviolet
+          - sensor.entry_alarm_level
+          - sensor.entry_alarm_type
+          - sensor.entry_burglar
+          - sensor.entry_luminance
+          - sensor.entry_relative_humidity
+          - sensor.entry_sourcenodeid
+          - sensor.entry_temperature
+          - sensor.entry_ultraviolet
+          - sensor.hallway_thermostat_humidity
+          - sensor.hallway_thermostat_hvac_state
+          - sensor.hallway_thermostat_operation_mode
+          - sensor.hallway_thermostat_target
+          - sensor.hallway_thermostat_temperature
+          - sensor.hkmaster_current
+          - sensor.hkmaster_energy
+          - sensor.hkmaster_power
+          - sensor.hkmaster_previous_reading
+          - sensor.hkmaster_voltage
+          - sensor.installed_version
+          - sensor.jay_home
+          - sensor.jay_wifi_locator
+          - sensor.jay_wifi_locator_1
+          - sensor.jaynest_eta
+          - sensor.kitchen_alarm_level
+          - sensor.kitchen_alarm_type
+          - sensor.kitchen_burglar
+          - sensor.kitchen_luminance
+          - sensor.kitchen_relative_humidity
+          - sensor.kitchen_sourcenodeid
+          - sensor.kitchen_temperature
+          - sensor.kitchen_ultraviolet
+          - sensor.lily_home
+          - sensor.lr_motion_detection
+          - sensor.maddie_home
+          - sensor.pws_alerts
+          - sensor.pws_feelslike_f
+          - sensor.pws_location
+          - sensor.pws_observation_time
+          - sensor.pws_precip_today_in
+          - sensor.pws_relative_humidity
+          - sensor.pws_station_id
+          - sensor.pws_temp_f
+          - sensor.pws_temperature_string
+          - sensor.pws_wind_mph
+          - sensor.rainmachine_current
+          - sensor.rainmachine_energy
+          - sensor.rainmachine_power
+          - sensor.rainmachine_previous_reading
+          - sensor.rainmachine_voltage
+          - sensor.total_basement_motion
+          - sensor.zpower_strip_energy
+          - sensor.zpower_strip_energy_2
+          - sensor.zpower_strip_energy_3
+          - sensor.zpower_strip_energy_4
+          - sensor.zpower_strip_energy_5
+          - sensor.zpower_strip_power
+          - sensor.zpower_strip_power_2
+          - sensor.zpower_strip_power_3
+          - sensor.zpower_strip_power_4
+          - sensor.zpower_strip_power_5
+          - sensor.zpower_strip_previous_reading
+          - sensor.zpower_strip_previous_reading_10
+          - sensor.zpower_strip_previous_reading_2
+          - sensor.zpower_strip_previous_reading_3
+          - sensor.zpower_strip_previous_reading_4
+          - sensor.zpower_strip_previous_reading_5
+          - sensor.zpower_strip_previous_reading_6
+          - sensor.zpower_strip_previous_reading_7
+          - sensor.zpower_strip_previous_reading_8
+          - sensor.zpower_strip_previous_reading_9
+
+      - id: a7b9358a12b249db990c09af995b41d3  # Automatically created id
+        type: entities
+        title: Sun
+        show_header_toggle: true
+        entities:
+          - sun.sun
+
+      - id: 5cd8e285c8aa4db8bcf70af47f1eca6d  # Automatically created id
+        type: entities
+        title: Switchs
+        show_header_toggle: true
+        entities:
+          - switch.basement_phone_power_switch
+          - switch.basement_stairs_switch
+          - switch.garage_camera_switch
+          - switch.hkmaster_switch
+          - switch.kitchen_camera_switch
+          - switch.kitchen_switch
+          - switch.living_room_camera_power_switch
+          - switch.living_room_reading_lamp_switch
+          - switch.livingroom_camera_switch
+          - switch.rainmachine_switch
+          - switch.zpower_strip_switch
+          - switch.zpower_strip_switch_2
+          - switch.zpower_strip_switch_3
+          - switch.zpower_strip_switch_4
+          - switch.zpower_strip_switch_5
+
+      - id: 175944ece332477892779a6d13c95ea6  # Automatically created id
+        type: entities
+        title: Timer
+        show_header_toggle: true
+        entities:
+          - timer.porch
+
+      - id: 4e0d67674eb34428a90734d84e2ba27c  # Automatically created id
+        type: entities
+        title: Zone
+        show_header_toggle: true
+        entities:
+          - zone.home
+
+      - id: ad358b81e03548d0b39ab4801760e34d  # Automatically created id
+        type: entities
+        title: Zwaves
+        show_header_toggle: true
+        entities:
+          - zwave.aeotec_zw090_zstick_gen5
+          - zwave.basement
+          - zwave.basement2
+          - zwave.basement_3way_dimmer
+          - zwave.basement_corner
+          - zwave.basement_phone_power
+          - zwave.basement_stairs
+          - zwave.den
+          - zwave.desk_drawer
+          - zwave.dining_room
+          - zwave.entry
+          - zwave.entry_hall
+          - zwave.front_hall_table
+          - zwave.front_porch
+          - zwave.garage_camera
+          - zwave.hkmaster
+          - zwave.kitchen
+          - zwave.kitchen_2
+          - zwave.kitchen_camera
+          - zwave.living_room_c_table
+          - zwave.living_room_camera_power
+          - zwave.living_room_corner
+          - zwave.living_room_reading_lamp
+          - zwave.livingroom_camera
+          - zwave.rainmachine
+          - zwave.tiffany
+          - zwave.zpower_strip

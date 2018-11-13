@@ -12,7 +12,8 @@ default_view:
     - camera.storage
     - camera.kitchen
     - camera.front_door
-    - group.weather
+#    - group.weather
+    - weather.dark_sky
     - group.alarms
     - group.nest
     - group.binary_sensors
@@ -54,6 +55,15 @@ Rooms:
     - group.den
     - group.kitchen
     - group.living_groom
+    - group.temp_graphs
+
+Temp Graphs:
+  view: yes
+  name: Temp Graphs
+  entities:
+    - camera.Grafana_Temps
+    - camera.Grafana_Current_Outdoor_Temp
+    - camera.Grafana_Current_Indoor_Temp
 
 Living Room:
   view: yes
@@ -63,11 +73,12 @@ Living Room:
     - light.living_room_corner_level
     - light.living_room_flood_left
     - light.living_room_flood_right
-    - light.front_hall_table
+    - light.front_hall_table_level
     - light.entry_hall_level
     - light.front_porch_level
     - switch.living_room_reading_lamp_switch
     - switch.garage_camera_switch
+    - switch.livingroom_camera_switch
     - light.dining_room_level
     - media_player.living_room
     - group.lr_motion_sensor
@@ -76,6 +87,7 @@ Living Room:
     - scene.living_room_dim
     - scene.front_porch_dim
     - scene.front_porch_full
+    - camera.front_door
 
 Madelines Room:
   view: yes
@@ -100,6 +112,7 @@ Master:
 #    - switch.bedroom_phone_power
 #    - group.note_4_battery
     - switch.living_room_camera_power_switch
+    - switch.hkmaster_switch
 
 Basement:
   view: yes
@@ -119,7 +132,7 @@ Basement:
     - scene.basement_dim
     - scene.basement_normal
     - switch.basement_phone_power_switch
-    - media_player.nuci5
+    - media_player.media_room
     - switch.zpower_strip_switch
     - switch.zpower_strip_switch_2
     - switch.zpower_strip_switch_3
@@ -129,6 +142,8 @@ Basement:
     - input_boolean.power_switch_2
     - input_boolean.power_switch_3
     - input_boolean.power_switch_4
+    - switch.rainmachine_switch
+#    - group.ffmpeg_noise_sensor
 
 Den:
   view: yes
@@ -140,6 +155,14 @@ Den:
     - light.desk_drawer_level
     - light.tiffany_level
     - media_player.jay_s_imac
+    - media_player.mpd
+    - media_player.snapcast_client_10ddb1c5b74a
+    - media_player.snapcast_client_449160bd0865
+    - media_player.snapcast_client_b827eb64a98b
+    - media_player.snapcast_client_b827eb80f287
+    - media_player.snapcast_client_b8aeed72fc2c
+    - media_player.snapcast_client_c03fd56b8de9
+    - media_player.snapcast_client_6805ca1a8b59
 
 Kitchen:
   view: yes
@@ -257,12 +280,14 @@ Jay:
   name: Jay
   entities:
     - sensor.jay_home
+    - device_tracker.tile_p6592b29a51b689a4f4217c1f4100d865
 
 Jay is currently in:
   view: no
   name: Jay is currently in
   entities:
     - sensor.jay_wifi_locator
+#    - sensor.jay_wifi_locator_1
 
 Family:
   view: no
@@ -458,7 +483,8 @@ Misc Sensors:
     - sensor.current_ha_version
     - sensor.installed_version
     - device_tracker.jays7_galaxy_s7
-    - device_tracker.tile_keys
+    - device_tracker.tile_41896daa035409f0
+#    - sensor.ffmpeg_noise_status
 
 LR Motion Sensor:
   view: no
@@ -471,3 +497,9 @@ Basement Motion Sensor:
   name: Basement Camera Motion Sensor Status
   entities:
     - sensor.basement_camera_motion
+
+#FFmpeg Noise Sensor:
+#  view: no
+#  name: FFmpeg Noise Status
+#  entities:
+#    - sensor.ffmpeg_noise_status

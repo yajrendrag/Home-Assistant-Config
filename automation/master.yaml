@@ -60,3 +60,21 @@
     entity_id:
       - light.master_left_night_stand
       - light.master_right_night_stand
+
+- alias: 'Sound Sticks outlet off at 12:30 am'
+  trigger:
+    platform: time
+    at: '00:30:00'
+  action:
+    service: switch.turn_off
+    entity_id:
+      - switch.hkmaster_switch
+
+- alias: 'Sound Sticks outlet on at 7am'
+  trigger:
+    platform: time
+    at: '07:00:00'
+  action:
+    service: switch.turn_on
+    entity_id:
+      - switch.hkmaster_switch

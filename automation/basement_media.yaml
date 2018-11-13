@@ -2,7 +2,7 @@
 - alias: "Media player paused"
   trigger:
     platform: state
-    entity_id: media_player.nuci5
+    entity_id: media_player.nuci5_3
     from: 'playing'
   condition:
     - condition: state
@@ -16,7 +16,7 @@
 - alias: "Media player plays"
   trigger:
     platform: state
-    entity_id: media_player.nuci5
+    entity_id: media_player.nuci5_3
     to: 'playing'
   condition:
     - condition: state

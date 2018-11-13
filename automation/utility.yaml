@@ -27,7 +27,7 @@
     service: homeassistant.turn_off
     entity_id:
       - light.entry_hall_level
-      - light.front_hall_table
+      - light.front_hall_table_level
       - light.office
       - light.lightstrip
       - switch.kitchen_switch
@@ -80,13 +80,35 @@
 #  action:
 #    service: switch.turn_off
 #    entity_id: switch.basement_phone_power_switch
-- alias: 'reload ffmpeg noise if too much time since last state change'
+
+#- alias: 'reload ffmpeg noise every 30 minutes'
+#  trigger:
+#    platform: time
+#    minutes: '/30'
+#    seconds: '00'
+#  action:
+#    service: shell_command.reload_ffmpeg
+##############################
+#                            #
+#       ffmpeg restart       #
+#                            #
+##############################
+
+- alias: 'restart ffmpeg if it stops'
   trigger:
-    platform: state
-    entity_id: sensor.ffmpeg_noise_status
-    to: 'expired'
+    - platform: event
+      event_type: system_log_event
+      event_data:
+        message: "FFmpeg isn't running!"
+#    - platform: state
+#      entity_id: binary_sensor.basement_sound
+#      to: 'unavailable'
   action:
-    service: shell_command.reload_ffmpeg
+    - service: mqtt.publish
+      data:
+        topic: homeassistant/ffmpeg_noise
+        payload: "FFmpeg isn't running! Restarting..."
+    - service: ffmpeg.restart
 
 ##############################
 #                            #
@@ -154,7 +176,7 @@
 #  initial_state: False
   trigger:
   - platform: mqtt
-    topic: 'homeassistant/motion/basement-alarm'
+    topic: 'homeassistant/motion/basement'
   - platform: mqtt
     topic: 'homeassistant/motion/livingroom'
   - platform: mqtt
@@ -182,23 +204,73 @@
 
 ##############################
 #                            #
-#       ffmpeg restart       #
+#     Call Notification      #
 #                            #
 ##############################
 
-- alias: 'restart ffmpeg'
+- alias: 'send caller id notifications to pushbullet'
   trigger:
-    platform: state
-    entity_id: binary_sensor.basement_sound
-    to: 'unavailable'
+    platform: mqtt
+    topic: 'homeassistant/call-from'
   action:
-    service: ffmpeg.restart
+    service: notify.notify
+    data_template:
+      message: >
+        You had a call from {{ trigger.payload_json['Caller-ID-Name']|replace('~',' ') ~ ', tel #: ' ~ trigger.payload_json['Caller-ID-Number'] }}
+        on {{ now().strftime("%A, %B %d, %Y at %I:%M%p" ) }}
+#        on {{ now().month ~ '/' ~now().day ~ ' @ ' ~ now().hour ~ ':' ~ now().minute }}
 
 ##############################
 #                            #
-#      group visibility      #
+#  Reset Sprinkler Outlet    #
 #                            #
 ##############################
+
+- alias: 'power off rain machine outlet'
+  trigger:
+    platform: time
+    at: '05:00:00'
+  action:
+    service: switch.turn_off
+    entity_id: switch.rainmachine_switch
+
+- alias: 'power on rain machine outlet'
+  trigger:
+    platform: time
+    at: '05:01:00'
+  action:
+    service: switch.turn_on
+    entity_id: switch.rainmachine_switch
+
+##############################
+#                            #
+# Capture Media Player Event #
+#                            #
+##############################
+
+- alias: 'capture mpd media player events'
+  trigger:
+    platform: event
+    event_type: state_changed
+    event_data:
+      entity_id: media_player.mpd
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: homeassistant/mpd
+        payload: "{{ trigger.event.data }}"
+    - service: shell_command.process_mpd_data
+      data_template:
+        mpd_data: "{{ '{old_state: ' ~ trigger.event.data['old_state']['attributes'] ~ ', ' ~ 'new_state: ' ~ trigger.event.data['new_state']['attributes'] ~ ', ' ~ 'time: ' ~ trigger.event.data['new_state']['last_updated']~'}' }}"
+
+- alias: 'initialize media burglar sensor to 0'
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - delay:
+        minutes: 1
+    - service: shell_command.init_media_sensor
 
 ##############################
 #                            #

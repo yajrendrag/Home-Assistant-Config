@@ -1,59 +1,17 @@
-#- platform: ffmpeg
-#  name: livingroom
-#  input: -rtsp_transport tcp -i rtsp://192.168.1.213:554/ch0_0.h264
-#- platform: ffmpeg
-#  name: garage
-#  input: -rtsp_transport tcp -i rtsp://192.168.1.215:554/ch0_0.h264
-#- platform: ffmpeg
-#  name: basement
-#  input: -rtsp_transport tcp -i rtsp://192.168.1.214:554/ch0_0.h264
-#- platform: mjpeg
-#  mjpeg_url: http://192.168.1.143:8080/video
-#  name: master
-#- platform: mjpeg
-#  mjpeg_url: http://192.168.1.166:89/mjpg/YiLR
-#  name: livingroom
-#  username: !secret blue
-#  password: !secret bluep
-#  authentication: basic
-#- platform: mjpeg
-#  mjpeg_url: http://192.168.1.166:89/mjpg/YiB
-#  name: basement
-#  username: !secret blue
-#  password: !secret bluep
-#  authentication: basic
-#- platform: mjpeg
-#  mjpeg_url: http://192.168.1.166:89/mjpg/YiG
-#  name: garage
-#  username: !secret blue
-#  password: !secret bluep
-#  authentication: basic
 - platform: zoneminder
 - platform: ring
-#- platform: mjpeg
-##  mjpeg_url: http://192.168.1.160:32772/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=2&user=jay-ha&connkey=757229&rand=1488983459
-#  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=2&user=admin&connkey=848243&rand=1488857225
-#  name: garage
-#  username: !secret mqtt_user
-#  password: !secret mqtt_pass
-#  authentication: basic
-#- platform: mjpeg
-##  mjpeg_url: http://192.168.1.160:32772/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=3&user=jay-ha&connkey=696940&rand=1488983413
-#  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=3&user=admin&connkey=601718&rand=1488857266
-#  name: basement
-#  username: !secret mqtt_user
-#  password: !secret mqtt_pass
-#  authentication: basic
-##- platform: mjpeg
-##  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=4&user=admin&connkey=430352&rand=1489346525
-##  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=30&buffer=1000&monitor=7&user=admin&connkey=90937&rand=1490477632
-##  name: kitchen
-##  username: !secret mqtt_user
-##  password: !secret mqtt_pass
-##  authentication: basic
-#- platform: mjpeg
-#  mjpeg_url: http://192.168.2.100/zm/cgi-bin/nph-zms?mode=jpeg&scale=100&maxfps=5&buffer=1000&monitor=5&user=admin&connkey=323283&rand=1489346711
-#  name: master
-#  username: !secret mqtt_user
-#  password: !secret mqtt_pass
-#  authentication: basic
+- platform: generic
+  name: Grafana_Temps
+  still_image_url: 'http://192.168.1.107:3000/render/d-solo/ckTBIaxmk/home-stats?refresh=15m&orgId=1&panelId=2&width=1000&height=500&tz=America%2FDenver'
+  username: !secret grafana_user
+  password: !secret grafana_pass
+- platform: generic
+  name: Grafana_Current_Outdoor_Temp
+  still_image_url: 'http://192.168.1.107:3000/render/d-solo/ckTBIaxmk/home-stats?refresh=15m&orgId=1&panelId=6&width=1000&height=500&tz=America%2FDenver'
+  username: !secret grafana_user
+  password: !secret grafana_pass
+- platform: generic
+  name: Grafana_Current_Indoor_Temp
+  still_image_url: 'http://192.168.1.107:3000/render/d-solo/ckTBIaxmk/home-stats?refresh=15m&orgId=1&panelId=4&width=1000&height=500&tz=America%2FDenver'
+  username: !secret grafana_user
+  password: !secret grafana_pass

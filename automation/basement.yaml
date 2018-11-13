@@ -124,6 +124,7 @@
 
 #turn off basement lights if no one home
 - alias: 'turn off basement lights if no one home'
+  initial_state: false
   trigger:
     platform: state
     entity_id: group.family
